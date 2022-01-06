@@ -1,10 +1,5 @@
 module.exports = {
   webpack5: true,
-  webpack: function (config, options) {
-    console.log('Webpack version: ', options.webpack.version)
-    config.experiments = {}
-    return config
-  },
   async redirects() {
     return [
       {
