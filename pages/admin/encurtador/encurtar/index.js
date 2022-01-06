@@ -1,13 +1,8 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
+
 import { parseCookies } from 'nookies'
 import { useForm } from 'react-hook-form'
-import { useContext, useEffect, useState } from 'react'
-import { FaLink } from 'react-icons/fa'
-import QRCode from 'qrcode.react'
 import { useToasts } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 

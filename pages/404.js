@@ -1,6 +1,5 @@
 /* eslint-disable prefer-const */
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
 import Link from 'next/link'

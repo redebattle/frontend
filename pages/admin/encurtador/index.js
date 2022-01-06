@@ -1,16 +1,12 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
+
 import Link from 'next/link'
 import Router from 'next/router'
 import { parseCookies } from 'nookies'
-import { useForm } from 'react-hook-form'
-import { useContext, useState, useEffect } from 'react'
-import { FaTrashAlt, FaEdit, FaEye, FaPause } from 'react-icons/fa'
+import { useState, useEffect } from 'react'
+import { FaTrashAlt, FaEye } from 'react-icons/fa'
 import Modal from 'react-modal'
-
-import Layout from '../../../components/Layout'
 import AdminSidebar from '../../../components/AdminSidebar'
 import api from '../../../service/api'
 import { useToasts } from 'react-toast-notifications'

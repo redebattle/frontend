@@ -1,9 +1,7 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useContext, useState, useEffect } from 'react'
+
+import { useContext, useState } from 'react'
 import { parseCookies } from 'nookies'
 import { useToasts } from 'react-toast-notifications'
 import { useForm } from 'react-hook-form'
@@ -14,7 +12,7 @@ import router from 'next/router'
 import { confirmAlert } from 'react-confirm-alert' // Import
 import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
 
-import { FaTrashAlt, FaEdit, FaEye } from 'react-icons/fa'
+import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import { AuthContext } from '../../../contexts/AuthContext'
 import AdminSidebar from '../../../components/AdminSidebar'
 import api from '../../../service/api'

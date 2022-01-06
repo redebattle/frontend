@@ -1,18 +1,15 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
+
 import Link from 'next/link'
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
+
 import { useToasts } from 'react-toast-notifications'
 import { setCookie } from 'nookies'
-import { FaCode, FaLock, FaHeart, FaCoffee } from 'react-icons/fa'
+import { FaCode, FaHeart, FaCoffee } from 'react-icons/fa'
 
 import api from '../../../service/api'
 import router from 'next/router'
-import { route } from 'next/dist/next-server/server/router'
-
 export default function AdminForgotPassword() {
   const { register, handleSubmit } = useForm()
   const { addToast } = useToasts()

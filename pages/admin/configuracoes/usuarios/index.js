@@ -1,9 +1,8 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 import { useContext, useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
-import { FaEye, FaEdit, FaTrashAlt } from 'react-icons/fa'
+import { FaEdit, FaTrashAlt } from 'react-icons/fa'
 import { useToasts } from 'react-toast-notifications'
 
 import { AuthContext } from '../../../../contexts/AuthContext'

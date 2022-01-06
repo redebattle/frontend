@@ -1,5 +1,4 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
 import Link from 'next/link'
@@ -153,10 +152,10 @@ export default function AdminMyAccount({ profile }) {
                       />
                       {errors.senhaantiga &&
                         errors.senhaantiga.type === 'minLength' && (
-                        <span className="flex flex-col items-center justify-center text-red-500">
+                          <span className="flex flex-col items-center justify-center text-red-500">
                             Senha muito curta
-                        </span>
-                      )}
+                          </span>
+                        )}
                     </div>
                     <div className="mb-4">
                       <label className="block text-white text-sm font-bold mb-2">
@@ -188,10 +187,10 @@ export default function AdminMyAccount({ profile }) {
                       />
                       {errors.confirmarsenha &&
                         errors.confirmarsenha.type === 'minLength' && (
-                          <span className="flex flex-col items-center justify-center text-red-500">
+                        <span className="flex flex-col items-center justify-center text-red-500">
                             Senha muito curta
-                          </span>
-                      )}
+                        </span>
+                        )}
                     </div>
                   </div>
 

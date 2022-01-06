@@ -1,7 +1,5 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
 import { parseCookies } from 'nookies'
 import { FaLink } from 'react-icons/fa'
 import QRCode from 'qrcode.react'
