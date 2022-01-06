@@ -1,5 +1,4 @@
 /* eslint-disable handle-callback-err */
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react/react-in-jsx-scope */
 import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt } from 'react-icons/fa'
 import { destroyCookie } from 'nookies'
