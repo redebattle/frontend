@@ -136,7 +136,19 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
         <div className="content">
           <div className="flex flex-row w-full">
             <div className="flex flex-col w-full">
-              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10">
+              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
+                <h1 className='text-gray-300 font-bold text-xl pb-4'>Faça parte da nossa equipe!</h1>
+                <p className='text-gray-300 pb-3'>
+                  A equipe de moderação da Rede Battle é composta por <u>ajudantes</u>, <u>moderadores</u> e <u>administradores</u>.
+                  São voluntários responsáveis por manter a segurança da nossa comunidade,
+                  moderando todas as plataformas, como servidor, fórum, e Discord,
+                  e aplicando punições quando identificam que uma regra foi quebrada.
+                  Eles também colaboram com testes de atualizações e novos projetos.</p>
+                  <button className="mt-3 bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Saiba como aplicar para a equipe
+                  </button>
+              </div>
+              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
                 {cargos.length === 0 && (
                   <h1 className="text-gray-300 text-xl text-center">
                     Não há equipe cadastrada.
@@ -162,7 +174,7 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
                 })}
               </div>
             </div>
-            <div className="flex flex-col ">
+            {/* <div className="flex flex-col ">
               <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-8">
                 <div className="flex items-center justify-center p-4">
                   <center>
@@ -176,7 +188,7 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
                   </center>
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         </div>
       </div>

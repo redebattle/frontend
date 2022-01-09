@@ -4,9 +4,10 @@ import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
 import { FaSearch } from 'react-icons/fa'
-import api from '../service/api'
-import Header from '../components/Header'
-import Footer from '../components/Footer'
+import api from '../../service/api'
+import apiWay from '../../service/apiWay'
+import Header from '../../components/Header'
+import Footer from '../../components/Footer'
 export default function Punicoes({ bans, estatisticas }) {
   return (
     <>
@@ -32,27 +33,24 @@ export default function Punicoes({ bans, estatisticas }) {
                     {bans.map(ban => {
                       const [dataBan, setDataBan] = useState(null)
                       useEffect(() => {
-                        api.get('').then(response =>
-                          setDataBan(
-                            Intl.DateTimeFormat('pt-BR', {
-                              hour: '2-digit',
-                              minute: '2-digit',
-                              day: '2-digit',
-                              month: 'long',
-                              year: 'numeric'
-                            }).format(new Date(ban.time * 1))
-                          )
+                        setDataBan(
+                          Intl.DateTimeFormat('pt-BR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                            day: '2-digit',
+                            month: '2-digit',
+                            year: 'numeric'
+                          }).format(new Date(ban.time * 1))
                         )
                       }, [dataBan])
                       return (
                         <tr key={ban.id} className="">
                           <td className="p-3 text-gray-300">
                             <div className="flex items-center">
-                              <img
-                                src={`https://cravatar.eu/helmavatar/${ban.HistoricoBanimento.name}/40`}
-                                className="p-2"
-                              />
-                              {ban.HistoricoBanimento.name}
+                              <img src={ban.user.avatar} className="p-2" />
+                              <Link href={`punicoes/${ban.id}`}>
+                                {ban.user.name}
+                              </Link>
                             </div>
                           </td>
                           <td className="p-3 text-gray-300">{ban.reason}</td>
@@ -160,21 +158,16 @@ export default function Punicoes({ bans, estatisticas }) {
 
 export async function getServerSideProps({ query }) {
   const page = query.pagina || 1
-  // const posts = await api
-  //   .get(`/postagens/list?page=${page}&itens=1&sort=createdAt&order=desc`)
-  //   .then(res => res.data.obs.rows)
-  //   .catch(e => {
-  //     console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
-  //   })
-  const bans = await api
-    .get('/banimentos/all')
+
+  const bans = await apiWay
+    .get('https://way.redebattle.com.br/api/v1/banimentos/all')
     .then(res => res.data)
     .catch(e => {
       console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
     })
 
-  const estatisticas = await api
-    .get('/banimentos/estatisticas')
+  const estatisticas = await apiWay
+    .get('https://way.redebattle.com.br/api/v1/banimentos/estatisticas')
     .then(res => res.data)
     .catch(e => {
       console.log('Ocorreu um erro ao acessar a API de getEstatisticas', e)

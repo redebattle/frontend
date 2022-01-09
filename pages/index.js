@@ -14,6 +14,8 @@ import Header from '../components/Header'
 import UserAvatar from 'react-user-avatar'
 import Manutencao from '../components/Manutencao'
 import { useToasts } from 'react-toast-notifications'
+import ScrollToTheTopButton from '../components/ScrollToTheTopButton'
+import { Timeline } from 'react-twitter-widgets'
 const News = ({
   autor,
   imgSrc,
@@ -44,8 +46,8 @@ const News = ({
     )
   }, [dataPost])
   return (
-    <div className="justify-center shadow-md sm:w-full bg-dark2 ">
-      <div className="py-5 px-5 space-y-2 sm:space-x-3 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full border border-dark3">
+    <div className="justify-center shadow-md sm:w-full bg-dark2 rounded-lg">
+      <div className="py-5 px-5 space-y-2 sm:space-x-3 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full border border-dark3 rounded-t-lg">
         <motion.button whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
           <UserAvatar
             size="60"
@@ -81,7 +83,7 @@ const News = ({
           {titulo}
         </h1>
       </div>
-      <div className="bg-gradient-to-b from-dark2 to-transparent tracking-tight border-b-4 border-black border-opacity-60 align-middle items-center pb-3 mb-6">
+      <div className="bg-gradient-to-b from-dark2 to-transparent tracking-tight border-b-4 border-black border-opacity-60 align-middle items-center pb-3 mb-6 rounded-b-lg">
         <p
           className="px-3 py-5 border-current sm:text-sm text-gray-300"
           dangerouslySetInnerHTML={{ __html: conteudo.split(0, 5) }}
@@ -176,12 +178,13 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
       <Header />
       <div className="INDEX">
         <title>Rede Battle</title>
+        <ScrollToTheTopButton />
         <div className="flex grid grid-flow-row auto-rows-auto grid-cols-3 gap-4 mt-4 md:mt-8 px-6">
           <div className="pb-4 col-span-2">
             {(postsInfo.obs.rows.length === 0 && (
-              <div className="bg-dark2 p-10 text-center">
+              <div className="bg-dark2 p-10 text-center rounded-lg">
                 <h1 className="text-gray-300 text-xl font-medium">
-                  Ainda não há postagens
+                  Ainda não há postagens 😞
                 </h1>
               </div>
             )) ||
@@ -250,9 +253,9 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
             <div className="pl-10">
               <div className="COMECA AQUI">
                 <div className="justify-center">
-                  <div className="bg-dark2 border-b-4 border-black border-opacity-60">
+                  <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
                     <h1 className="pt-5 font-medium text-gray-200 text-center text-xl tracking-tight">
-                      Nosso IP
+                      Nosso IP 😗
                     </h1>
                     <h2 className="pb-5 text-md text-center text-gray-300 font-light tracking-tight">
                       Clique no IP para copiar
@@ -276,7 +279,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                 </div>
               </div>
               <div className="COMECA AQUI">
-                <div className="flex justify-center pt-5">
+                <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
                   <iframe
                     src="https://discordapp.com/widget?id=762534744969052181&theme=dark"
                     width="350"
@@ -287,18 +290,19 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                 </div>
               </div>
               <div className="COMECA AQUI">
-                <div className="flex justify-center pt-5">
-                  <a
-                    className="twitter-timeline text-gray-300"
-                    href="https://twitter.com/ofilipemoreno?ref_src=twsrc%5Etfw"
-                  >
-                    Tweets by ofilipemoreno
-                  </a>{' '}
-                  <script
-                    async
-                    src="https://platform.twitter.com/widgets.js"
-                    charSet="utf-8"
-                  ></script>
+                <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+                    <p className='text-gray-300'>Publicidade</p>
+                </div>
+              </div>
+              <div className="COMECA AQUI">
+                <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+                <Timeline
+                  dataSource={{ sourceType: "profile", screenName: "cubeboxoficial" }}
+                  options={{ theme: "dark", width: "350", height: "600", lang: "pt" }}
+                  renderError={_err =>
+                    "Deu um erro na Timeline do Twitter bro :( Arruma ae pow"
+                  }
+                />
                 </div>
               </div>
             </div>
@@ -332,7 +336,7 @@ export async function getServerSideProps({ query }) {
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return (error = true)
+        return error === true
       })
 
     return {

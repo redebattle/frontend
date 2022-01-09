@@ -654,7 +654,8 @@ export default function adminEquipeIndex({
     }
   }
 
-  async function handleNewMember({ nome, cargo, twitter, discord }) {
+  async function handleNewMember({ nome, twitter, discord, cargo }) {
+    console.log('Entrou?')
     let cargoID
     try {
       await cargos.map(cg => {
@@ -701,7 +702,7 @@ export default function adminEquipeIndex({
       >
         <div className="">
           <div className="text-gray-300 flex items-center justify-center">
-            <h1 className="">Criar novo cargo</h1>
+            <h1 className="">Criando novo cargo</h1>
           </div>
           <div className="p-6">
             <form onSubmit={handleSubmit(handleCriarCargo)}>
@@ -756,13 +757,110 @@ export default function adminEquipeIndex({
                   type="submit"
                   className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                  Salvar
+                  Cadastrar
                 </button>
               </div>
             </form>
             <div className="flex items-center justify-center mt-2">
               <button
                 onClick={closeModal1}
+                className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={modalIsOpen2}
+        onRequestClose={closeModal2}
+        style={customStyles}
+      >
+        <div className="">
+          <div className="text-gray-300 flex items-center justify-center">
+            <h1 className="">Adicionando novo membro</h1>
+          </div>
+          <div className="p-6">
+            <form onSubmit={handleSubmit(handleNewMember)}>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Nome
+                </label>
+                <input
+                  {...register('nome', { required: true, minLength: 3 })}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="nome"
+                  type="text"
+                  placeholder="Digite o nome"
+                  required
+                />
+                {errors.nome?.type === 'required' && (
+                  <span className="text-gray-300">Nome é obrigatório</span>
+                )}
+                {errors.name && errors.name.type === 'minLength' && (
+                  <span className="text-gray-300">Nome muito curto</span>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Twitter
+                </label>
+                <input
+                  {...register('twitter')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="twitter"
+                  type="text"
+                  placeholder="Digite o twitter"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Discord
+                </label>
+                <input
+                  {...register('discord')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="discord"
+                  type="text"
+                  placeholder="Digite o discord"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Cargo
+                </label>
+                <select
+                  {...register('cargo')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="select"
+                >
+                  <option key="">Escolha</option>
+                  {cargos.map(cargo => {
+                    return (
+                      <option key={cargo.id} id={cargo.id}>
+                        {cargo.nome}
+                      </option>
+                    )
+                  })}
+                </select>
+              </div>
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </form>
+            <div className="flex items-center justify-center mt-2">
+              <button
+                onClick={closeModal2}
                 className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
               >
                 Cancelar
@@ -789,7 +887,7 @@ export default function adminEquipeIndex({
                   onClick={openModal1}
                   className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
                 >
-                  Adicionar novo cargo
+                  Adicionar cargo
                 </button>
               </div>
 
