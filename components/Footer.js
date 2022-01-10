@@ -27,7 +27,7 @@ const Footer = () => {
   return (
     <footer className="bg-purple-600 border-b-4 border-purple-700 pt-10 mt-10">
       <div className="max-w-6xl m-auto text-white flex flex-wrap justify-between align-middle items-center pr-20">
-        <div className="pt-12 pr-8 w-1/2 sm:w-4/12 md:w-3/12 align-middle items-center">
+        <div className="pr-8 w-1/2 sm:w-4/12 md:w-3/12 align-middle items-center">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ rotate: 0, scale: 1 }}

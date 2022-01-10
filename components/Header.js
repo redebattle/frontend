@@ -59,7 +59,7 @@ export default function Header({ online }) {
               onClick={copyToClipboard}
             >
               <h1 className="text-white font-semibold text-4xl text-left">
-                {playersOnline || (
+                {Intl.NumberFormat('pt-BR').format(playersOnline) || (
                   <SkeletonTheme
                     color="rgba(33, 33, 33, 0.2)"
                     highlightColor="rgba(255, 255, 255, 0.3)"
@@ -98,7 +98,7 @@ export default function Header({ online }) {
               whileTap={{ scale: 0.9 }}
             >
               <h1 className="text-white font-semibold text-4xl text-left">
-                {discordOnline || (
+                {Intl.NumberFormat('pt-BR').format(discordOnline) || (
                   <SkeletonTheme
                     color="rgba(33, 33, 33, 0.2)"
                     highlightColor="rgba(255, 255, 255, 0.3)"
