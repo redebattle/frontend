@@ -16,16 +16,16 @@ import Manutencao from '../../components/Manutencao'
 import api from '../../service/api'
 const Equipe = ({ nome, twitter, discord, cor }) => {
   return (
-    <div className="p-4 mx-6">
+    <div className="p-4 mx-6 bg-dark2 border border-b-4 border-black rounded-lg">
       <div>
         <img
-          src={`https://minotar.net/bust/${nome}/100.png`}
+          src={`https://minotar.net/bust/${nome}/120.png`}
           className="rounded-md tool"
           data-tip
           data-for="equipe"
         />
         <p
-          className="flex items-center justify-center text-gray-300 mt-3"
+          className="flex items-center justify-center mt-3 text-xl font-medium"
           style={{ color: cor }}
         >
           {nome || (
@@ -43,15 +43,15 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
       <div className="mt-2 text-center">
         <div className="flex flex-row items-center justify-center text-2xl">
           {!twitter || (
-            <div>
+            <div data-tip={`${twitter}`} class="tooltip tooltip-bottom">
               <a href={`https://twitter.com/${twitter}`}>
                 <FaTwitter className="mr-1 text-gray-300 hover:text-twitter" />
               </a>
             </div>
           )}
           {!discord || (
-            <div>
-              <a href={`${discord}`}>
+            <div data-tip={`${discord}`} class="tooltip tooltip-bottom">
+              <a>
                 <FaDiscord className="ml-1 text-gray-300 hover:text-discord" />
               </a>
             </div>
@@ -65,8 +65,8 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
 const Cargo = ({ nome, totalCargo, equipe, cor }) => {
   return (
     <div id="equipe">
-      <div>
-        <h1 style={{ color: cor }} className="text-2xl ">
+      <div className='bg-dark2 p-2 rounded-lg pl-3 border border-b-4 border-black border-opacity-60'>
+        <h1 style={{ color: cor }} className="text-lg font-bold">
           {nome || (
             <SkeletonTheme
               color="rgba(33, 33, 33, 0.2)"

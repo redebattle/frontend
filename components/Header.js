@@ -4,7 +4,7 @@ import { motion } from 'framer-motion'
 import { GetServerSideProps } from 'next'
 import Link from 'next/link'
 import { useEffect, useRef, useState } from 'react'
-import { FaHome, FaShoppingCart, FaUserAlt, FaCookie } from 'react-icons/fa'
+import { FaHome, FaShoppingCart, FaUserAlt, FaCookie, FaDiscord, FaBan, FaClipboard, FaUsers, FaFile, FaSignInAlt } from 'react-icons/fa'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 
@@ -28,11 +28,11 @@ export default function Header({ online }) {
     api
       .get('/api/server')
       .then(response => {
-        setplayersOnline(response.data.players.online)
+        setplayersOnline(response?.data?.players?.online ? response?.data?.players?.online : 'Error')
       })
       .catch(e => {
         setplayersOnline(null)
-        console.log('Ocorreu um erro ao acessar a API do getOnlinePlayers', e)
+        console.log('Ocorreu um erro na conexão a API getOnlinePlayers', e)
       })
   })
 
@@ -40,11 +40,11 @@ export default function Header({ online }) {
     api
       .get('/api/discord')
       .then(response => {
-        setdiscordOnline(response.data.presence_count)
+        setdiscordOnline(response?.data?.presence_count ? response?.data?.presence_count : '0')
       })
       .catch(e => {
         setdiscordOnline(null)
-        console.log('Ocorreu um erro ao acessar a API do getDiscordOn', e)
+        console.log('Ocorreu um erro na conexão a API getDiscordOn', e)
       })
   })
 
@@ -127,28 +127,31 @@ export default function Header({ online }) {
               <FaShoppingCart /> <div className="pl-1">LOJA</div>
             </a>
           </Link>
-          <Link href="/forum">
+          <Link href="/discord">
             <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              FÓRUM
+              <FaDiscord /> <div className="pl-1">DISCORD</div>
             </a>
           </Link>
-          <Link href="/discord">
-            <a className="tracking-wide hover:text-purple-300">DISCORD</a>
-          </Link>
           <Link href="/equipe">
-            <a className="tracking-wide hover:text-purple-300">EQUIPE</a>
+            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
+              <FaUsers /> <div className="pl-1">EQUIPE</div>
+            </a>
           </Link>
           <Link href="/punicoes">
-            <a className="tracking-wide hover:text-purple-300">PUNIÇÕES</a>
+            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
+              <FaBan /> <div className="pl-1">PUNIÇÕES</div>
+            </a>
           </Link>
           <Link href="/changelog">
-            <a className="tracking-wide hover:text-purple-300">CHANGELOG</a>
+            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
+              <FaFile /> <div className="pl-1">CHANGELOG</div>
+            </a>
           </Link>
         </nav>
         <nav className="space-x-8 text-1xl text-white font-semibold">
           <Link href="/conta">
             <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaUserAlt /> <div className="pl-1">LOGAR</div>
+              <FaSignInAlt /> <div className="pl-1">LOGAR</div>
             </a>
           </Link>
         </nav>

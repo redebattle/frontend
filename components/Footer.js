@@ -148,19 +148,19 @@ const Footer = () => {
             border-t border-purple-500 text-white text-sm
             flex-col md:flex-row max-w-6xl"
         >
-          <div className="mt-2">
-            Copyright © Rede Battle. Todos direitos reservados.
-          </div>
           {/* <div className="mt-2">
-            © CubeBox 2021 - Todos os direitos reservados. <br />
+            Copyright © Rede Battle. Todos direitos reservados.
+          </div> */}
+          <div className="mt-2">
+            © Rede Battle 2022 - Todos os direitos reservados. <br />
             Esse site não é afiliado à Mojang, AB e/ou Microsoft. "Minecraft" é
             uma marca comercial da Mojang Synergies AB
-          </div> */}
+          </div>
 
           <div className="md:flex-auto md:flex-row-reverse mt-2 flex-row flex">
             <a
               href={social?.discord_url}
-              className="w-8 mx-1 text-3xl hover:text-discord"
+              className="w-8 mx-1 text-3xl hover:text-white flex items-center justify-center bg-purple-700 hover:bg-discord border-b-2 border-black p-2 rounded-lg px-5"
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FaDiscord />
@@ -168,7 +168,7 @@ const Footer = () => {
             </a>
             <a
               href={social?.youtube_url}
-              className="w-8 mx-1 text-3xl hover:text-youtube"
+              className="w-8 mx-1 text-3xl hover:text-white flex items-center justify-center bg-purple-700 hover:bg-youtube border-b-2 border-black p-2 rounded-lg px-5"
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FaYoutube />
@@ -176,7 +176,7 @@ const Footer = () => {
             </a>
             <a
               href={social?.instagram_url}
-              className="w-8 mx-1 text-3xl hover:text-instagram"
+              className="w-8 mx-1 text-3xl hover:text-white flex items-center justify-center bg-purple-700 hover:bg-gradient-to-b hover:from-instagram_grad_1 hover:via-instagram_grad_2 hover:via-instagram_grad_3 hover:via-instagram_grad_4 hover:via-instagram_grad_5 hover:via-instagram_grad_6 hover:to-instagram_grad_8 border-b-2 border-black p-2 rounded-lg px-5"
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FaInstagram />
@@ -184,7 +184,7 @@ const Footer = () => {
             </a>
             <a
               href={social?.twitter_url}
-              className="w-8 mx-1 text-3xl hover:text-twitter"
+              className="w-8 mx-1 text-3xl hover:text-white flex items-center justify-center bg-purple-700 hover:bg-twitter border-b-2 border-black p-2 rounded-lg px-5"
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FaTwitter />
@@ -192,7 +192,7 @@ const Footer = () => {
             </a>
             <a
               href={social?.facebook_url}
-              className="w-8 mx-1 text-3xl hover:text-facebook"
+              className="w-8 mx-1 text-3xl hover:text-white flex items-center justify-center bg-purple-700 hover:bg-facebook border-b-2 border-black p-2 rounded-lg px-5"
             >
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <FaFacebookF />

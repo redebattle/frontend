@@ -33,11 +33,11 @@ export default function ContaLogin() {
         <div className="w-full max-w-xs pt-10 pl-3">
           <form
             onSubmit={logar}
-            className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded px-8 pt-6 pb-8 mb-4"
+            className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
           >
             <div className="pb-2">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-                <img src={`https://cravatar.eu/helmavatar/${nick}/96`} />
+                <img src={`https://cravatar.eu/helmavatar/${nick}/96`} className='rounded-lg' />
               </motion.div>
             </div>
             <div className="mb-4">
@@ -45,7 +45,7 @@ export default function ContaLogin() {
                 Nick usado no servidor
               </label>
               <input
-                className="shadow bg-dark appearance-none border rounded w-full py-2 px-3 text-gray-400 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow bg-dark appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                 id="nick"
                 type="text"
                 placeholder="Nick"
@@ -54,7 +54,7 @@ export default function ContaLogin() {
               />
             </div>
             <div className="mb-6">
-              <label className="block text-gray-400 mb-2" htmlFor="senha">
+              <label className="block text-gray-300 mb-2" htmlFor="senha">
                 Senha usada no servidor
               </label>
               <input
