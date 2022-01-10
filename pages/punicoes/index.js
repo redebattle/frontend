@@ -3,7 +3,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import moment from 'moment'
-import { FaSearch } from 'react-icons/fa'
+import { FaAd, FaBan, FaBullhorn, FaChartLine, FaClock, FaSearch } from 'react-icons/fa'
 import api from '../../service/api'
 import apiWay from '../../service/apiWay'
 import Header from '../../components/Header'
@@ -17,80 +17,89 @@ export default function Punicoes({ bans, estatisticas }) {
         <div className="flex grid grid-rows-1 grid-cols-4 mt-4 md:mt-8 px-12">
           <div className=" pb-4 col-span-3">
             <div className="justify-center  rounded-xl">
-              <div className="py-5 px-5 space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                <table className="bg-dark2 border-b-4 border-black border-opacity-60 table-auto w-full justify-center align-middle items-center">
-                  <thead>
-                    <tr className="bg-purple-600 text-white font-medium text-xl border-b-4 border-purple-700">
-                      <th className="pl-2 pt-3 pb-3">Jogador</th>
-                      <th className="pr-3 pt-3 pb-3">Motivo</th>
-                      <th className="pr-3 pt-3 pb-3">Autor</th>
-                      <th className="pr-3 pt-3 pb-3">Data</th>
-                      <th className="pr-3 pt-3 pb-3">Duração</th>
-                      <th className="pr-3 pt-3 pb-3">Status</th>
-                    </tr>
-                  </thead>
-                  <tbody className="">
-                    {bans.map(ban => {
+              <div className="mb-3 py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg">
+                <div className='flex flex-col items-center justify-center'>
+                  <h1 className='uppercase font-bold text-4xl p-1 text-gray-300'>Punições</h1>
+                  <p className='pb-1 text-gray-300'>REGISTRO GERAL DE PUNIÇÕES</p>
+                </div>
+              </div>
+              <div className="py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg">
+                {bans.map(ban => {
                       const [dataBan, setDataBan] = useState(null)
+                      const [hoursBan, setHoursBan] = useState(null)
                       useEffect(() => {
                         setDataBan(
                           Intl.DateTimeFormat('pt-BR', {
-                            hour: '2-digit',
-                            minute: '2-digit',
                             day: '2-digit',
                             month: '2-digit',
                             year: 'numeric'
                           }).format(new Date(ban.time * 1))
                         )
                       }, [dataBan])
+                      useEffect(() => {
+                        setHoursBan(
+                          Intl.DateTimeFormat('pt-BR', {
+                            hour: '2-digit',
+                            minute: '2-digit',
+                          }).format(new Date(ban.time * 1))
+                        )
+                      }, [hoursBan])
                       return (
-                        <tr key={ban.id} className="">
-                          <td className="p-3 text-gray-300">
-                            <div className="flex items-center">
-                              <img src={ban.user.avatar} className="p-2" />
-                              <Link href={`punicoes/${ban.id}`}>
-                                {ban.user.name}
-                              </Link>
+                        <div className='p-1'>
+                          <div class="collapse border rounded-box border-base-300 collapse-plus">
+                            <input type="checkbox" />
+                            <div class="collapse-title text-base font-medium flex items-center">
+                              <FaClock className='mr-2 text-sm' /> {hoursBan} <img src={`https://minotar.net/avatar/${ban.user.name}/25`} className='ml-5 mr-2 rounded-md'></img>{ban.user.name} foi banido por {ban.reason}
                             </div>
-                          </td>
-                          <td className="p-3 text-gray-300">{ban.reason}</td>
-                          <td className="p-3 text-gray-300">
-                            {ban.banned_by_name}
-                          </td>
-                          <td className="p-3 text-gray-300">{dataBan}</td>
-                          <td className="p-3 text-gray-300">
-                            {ban.until < 0 && 'Permanente'}{' '}
-                            {ban.until > 0 &&
-                              new Date(ban.until * 1).toLocaleDateString(
-                                'pt-BR'
-                              )}
-                          </td>
-                          <td className="p-3 text-gray-300">
-                            {ban.active === 0 && 'Revogado'}
-                            {ban.active !== 0 && 'Ativo'}
-                          </td>
-                        </tr>
+                            <div class="collapse-content flex flex-col">
+                              <div className='flex flex-row justify-between p-2'>
+                                <p>Motivo: <br />{ban.reason}</p>
+                                <p>Término: <br />{ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                                  {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
+                                </p>
+                                <p>Status: <br />{parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-roxo">Expirado</span>}
+                                                {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600">Revogado</span>}
+                                                {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-lime-400">Ativo</span>}
+                                </p>
+                                <p>Autor: <br /><div className='flex justify-between'><img src={`https://minotar.net/avatar/${ban.banned_by_name}/25`} className='mr-2 rounded-md'></img>{ban.banned_by_name}</div></p>
+                                <p>Data: <br />{dataBan} às {hoursBan}</p>
+                              </div>
+                              {parseInt(ban.active.data) !== 1 && ban.removed_by_name !== '#expired' && <div className='flex flex-row justify-between p-3 bg-lime-600 bg-opacity-25 rounded-lg'>
+                                {ban.removed_by_name !== '#expired' && <p>Revogado por: <br /> <div className='flex'><img src={`https://minotar.net/avatar/${ban.removed_by_name}/25`} className='mr-2 rounded-md'></img>{ban.removed_by_name}</div></p>}
+                                {ban.removed_by_name !== '#expired' && <p>Motivo: <br /> {ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>}
+                                {ban.removed_by_name !== '#expired' && <p>Data: <br /> {Intl.DateTimeFormat('pt-BR', {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  year: 'numeric',
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                }).format(new Date(ban.removed_by_date))} às {Intl.DateTimeFormat('pt-BR', {
+                                  hour: '2-digit',
+                                  minute: '2-digit',
+                                }).format(new Date(ban.removed_by_date))}</p>}
+                              </div>}
+                            </div>
+                          </div>
+                        </div>
                       )
                     })}
-                  </tbody>
-                </table>
               </div>
             </div>
           </div>
 
           {/* Sidebar */}
           <div className="Sidebar">
-            <div className="pl-10 max-w-md">
+            <div className="max-w-md">
               <div className="COMECA AQUI p-3">
                 <div className="flex items-center justify-center">
                   <div className="flex">
                     <input
                       type="text"
-                      className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none"
+                      className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-none rounded-l-lg"
                       placeholder="Buscar usuário..."
                     />
                     <Link href="?user=">
-                      <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700">
+                      <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 rounded-r-lg border-none">
                         <FaSearch className="text-gray-200" />
                       </button>
                     </Link>
@@ -99,11 +108,14 @@ export default function Punicoes({ bans, estatisticas }) {
               </div>
               <div className="COMECA AQUI p-3">
                 <div className="justify-center">
-                  <div className="bg-dark2 border-b-4 border-black border-opacity-60">
-                    <h1 className="pt-5 font-semibold text-gray-200 text-center text-xl tracking-tight">
+                  <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+                    <div className='flex items-center justify-center pt-5 text-blue-500 text-7xl'>
+                      <FaChartLine />
+                    </div>
+                    <h1 className="p-3 font-semibold text-gray-200 text-center text-xl tracking-tight">
                       Estatísticas
                     </h1>
-                    <div className="pt-5 pb-5">
+                    <div className="pb-5">
                       <h2 className="text-md text-center text-gray-300 font-light tracking-tight">
                         Punições aplicadas: {estatisticas.total}
                       </h2>
@@ -117,11 +129,14 @@ export default function Punicoes({ bans, estatisticas }) {
               </div>
               <div className="COMECA AQUI p-3">
                 <div className="justify-center">
-                  <div className="bg-dark2 border-b-4 border-black border-opacity-60">
-                    <h1 className="pt-5 font-semibold text-white text-center text-xl tracking-tight">
+                  <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+                    <div className='flex items-center justify-center pt-5 text-red-500 text-7xl'>
+                      <FaBan />
+                    </div>
+                    <h1 className="p-3 font-semibold text-white text-center text-xl tracking-tight">
                       Evite punições, conheça as regras!
                     </h1>
-                    <div className="flex pt-5 pb-5 items-center justify-center">
+                    <div className="flex pb-5 items-center justify-center">
                       <Link href="#">
                         <button className="bg-purple-600 border-b-4 border-purple-700 transform hover:scale-110 transition delay-60 duration-300 ease-in-out h-10 w-32 font-semibold text-white">
                           Leia mais
@@ -133,11 +148,14 @@ export default function Punicoes({ bans, estatisticas }) {
               </div>
               <div className="COMECA AQUI p-3">
                 <div className="justify-center">
-                  <div className="bg-dark2 border-b-4 border-black border-opacity-60">
-                    <h1 className="pt-5 font-semibold text-white text-center text-xl tracking-tight">
+                  <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+                    <div className='flex items-center justify-center pt-5 text-orange-500 text-7xl'>
+                      <FaBullhorn />
+                    </div>
+                    <h1 className="p-3 font-semibold text-white text-center text-xl tracking-tight">
                       Contribua com nossa comunidade! Denuncie infratores!
                     </h1>
-                    <div className="flex pt-5 pb-5 items-center justify-center">
+                    <div className="flex pb-5 items-center justify-center">
                       <Link href="#">
                         <button className="bg-purple-600 border-b-4 border-purple-700 transform hover:scale-110 transition delay-60 duration-300 ease-in-out h-10 w-32 font-semibold text-white">
                           Denunciar
