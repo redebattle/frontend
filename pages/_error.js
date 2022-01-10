@@ -3,8 +3,8 @@ function Error({ statusCode }) {
     // eslint-disable-next-line react/react-in-jsx-scope
     <p>
       {statusCode
-        ? `An error ${statusCode} occurred on server`
-        : 'An error occurred on client'}
+        ? `Ocorreu um erro ${statusCode} no servidor.`
+        : 'Ocorreu um erro no cliente.'}
     </p>
   )
 }

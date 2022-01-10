@@ -12,7 +12,6 @@ import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
 import { array, arrayOf } from 'prop-types'
 export default function Punicoes({ bans, name }) {
-
   return (
     <>
       <title>Punições | Rede Battle</title>
@@ -149,13 +148,6 @@ export async function getServerSideProps({ query }) {
       console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
     })
 
-  if (!bans) {
-    return (
-      <div>
-        <h1>Nenhuma punição foi encontrado.</h1>
-      </div>
-    )
-  }
   return {
     props: { bans, name }
   }

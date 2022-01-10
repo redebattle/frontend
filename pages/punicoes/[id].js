@@ -7,7 +7,32 @@ import apiWay from '../../service/apiWay'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 export default function Punicoes({ ban, error }) {
-  console.log('ERROR:::' + error)
+
+  if (!ban) {
+    return (
+      <>
+<title>Punições | Rede Battle</title>
+      <Header />
+      <div className="INDEX">
+        <div className="flex grid grid-rows-1 mt-4 md:mt-8 px-12">
+          <div className=" pb-4 col-span-3">
+            <div className="justify-center  rounded-xl">
+              <div className="py-5 px-5 space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
+                <div className="bg-dark2 p-10 text-center w-full rounded-lg">
+                  <h1 className="text-gray-300 text-xl font-medium">
+                    Nenhuma punição encontrada com esse ID.
+                  </h1>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <Footer />
+      </>
+    )
+  }
+
   if (error) {
     return (
       <Error
@@ -32,14 +57,14 @@ export default function Punicoes({ ban, error }) {
   }, [dataBan])
   return (
     <>
-      <title>Punição #{ban.id} - {ban.user.name} | Rede Battle</title>
+      <title>Punição #{ban?.id} - {ban?.user?.name} | Rede Battle</title>
       <Header />
       <div className="INDEX">
         <div className="flex grid grid-rows-1 mt-4 md:mt-8 px-12">
           <div className=" pb-4 col-span-3">
             <div className="justify-center  rounded-xl">
               <div className="py-5 px-5 space-y-2 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6">
-                {(!ban && (
+                {(ban === null && (
                   <div className="bg-dark2 p-10 text-center w-full">
                     <h1 className="text-gray-300 text-xl font-medium">
                       Punição não encontrada.
@@ -180,6 +205,8 @@ export async function getServerSideProps({ query }) {
         console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
         return error === true
       })
+
+      console.log(ban)
 
     return {
       props: { ban, error: false }

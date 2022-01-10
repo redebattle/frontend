@@ -10,7 +10,7 @@ import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import { useForm } from 'react-hook-form'
 import { useRouter } from 'next/router'
-export default function Punicoes({ bans, estatisticas }) {
+export default function Punicoes({ bans, estatisticas, notFound }) {
   const {
     register,
     handleSubmit,
@@ -19,7 +19,7 @@ export default function Punicoes({ bans, estatisticas }) {
   const router = useRouter()
 
   async function searchUser({ username }) {
-    router.push(`/punicoes/user/${username}`);
+    router.push(`/punicoes/user?name=${username}`);
   }
 
   return (
