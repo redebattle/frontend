@@ -8,7 +8,20 @@ import api from '../../service/api'
 import apiWay from '../../service/apiWay'
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
+import { useForm } from 'react-hook-form'
+import { useRouter } from 'next/router'
 export default function Punicoes({ bans, estatisticas }) {
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+  const router = useRouter()
+
+  async function searchUser({ username }) {
+    router.push(`/punicoes/user/${username}`);
+  }
+
   return (
     <>
       <title>Punições | Rede Battle</title>
@@ -49,30 +62,65 @@ export default function Punicoes({ bans, estatisticas }) {
                           <div class="collapse border rounded-box border-base-300 collapse-plus">
                             <input type="checkbox" />
                             <div class="collapse-title text-base font-medium flex items-center">
-                              <FaClock className='mr-2 text-sm' /> {hoursBan} <img src={`https://minotar.net/avatar/${ban.user.name}/25`} className='ml-5 mr-2 rounded-md'></img>{ban.user.name} foi banido por {ban.reason}
+                              <FaClock className='mr-2 text-sm' /> {hoursBan} <img src={`https://minotar.net/avatar/${ban.user.name}/25`} className='ml-5 mr-2 rounded-md'></img>{ban.user.name} foi banido por {ban.reason} (#{ban.id})
                             </div>
                             <div class="collapse-content flex flex-col">
-                              <div className='flex flex-row justify-between p-2'>
+                            {parseInt(ban.active.data) === 1 &&
+                              //PUNIÇÕES ATIVAS
+                              <div className='flex flex-row justify-between p-2 bg-red-600 bg-opacity-25 rounded-lg'>
                                 <p>Motivo: <br />{ban.reason}</p>
-                                <p>Término: <br />{ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                                <p>Término: <br />{ban.until < 0 && <span class="badge badge-outline text-red-400 font-bold">Permanente</span>}
                                   {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
                                 </p>
-                                <p>Status: <br />{parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-roxo">Expirado</span>}
-                                                {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600">Revogado</span>}
-                                                {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-lime-400">Ativo</span>}
+                                <p>Status: <br />{parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-lime-400 font-bold">Finalizado</span>}
+                                                {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600 font-bold">Revogado</span>}
+                                                {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 font-bold">Ativo</span>}
+                                                {parseInt(ban.ipban.data) === 1 && <span class="badge badge-outline text-dark ml-2 font-bold">IPBan</span>}
+                                                {parseInt(ban.silent.data) === 1 && <span class="badge badge-outline text-gray-500 ml-2 font-bold">Silenciado</span>}
                                 </p>
-                                <p>Autor: <br /><div className='flex justify-between'><img src={`https://minotar.net/avatar/${ban.banned_by_name}/25`} className='mr-2 rounded-md'></img>{ban.banned_by_name}</div></p>
-                                <p>Data: <br />{dataBan} às {hoursBan}</p>
+                                <p>Banido por: <br /><div className='flex justify-between'><img src={`https://minotar.net/avatar/${ban.banned_by_name}/25`} className='mr-2 rounded-md'></img>{ban.banned_by_name}</div></p>
+                                <p>Banido em: <br />{dataBan} às {hoursBan}</p>
+                              </div> || parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' &&
+                              //PUNIÇÕES FINALIZADAS
+                              <div className='flex flex-row justify-between p-2 bg-lime-600 bg-opacity-25 rounded-lg'>
+                                <p>Motivo: <br />{ban.reason}</p>
+                                <p>Término: <br />{ban.until < 0 && <span class="badge badge-outline text-red-400 font-bold">Permanente</span>}
+                                  {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
+                                </p>
+                                <p>Status: <br />{parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-lime-400 font-bold">Finalizado</span>}
+                                                {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600 font-bold">Revogado</span>}
+                                                {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 font-bold">Ativo</span>}
+                                                {parseInt(ban.ipban.data) === 1 && <span class="badge badge-outline text-dark ml-2 font-bold">IPBan</span>}
+                                                {parseInt(ban.silent.data) === 1 && <span class="badge badge-outline text-gray-500 ml-2 font-bold">Silenciado</span>}
+                                </p>
+                                <p>Banido por: <br /><div className='flex justify-between'><img src={`https://minotar.net/avatar/${ban.banned_by_name}/25`} className='mr-2 rounded-md'></img>{ban.banned_by_name}</div></p>
+                                <p>Banido em: <br />{dataBan} às {hoursBan}</p>
+                              </div> ||
+                              // PUNIÇÕES REVOGADAS
+                              <div className='flex flex-row justify-between p-2 bg-dark2 rounded-lg'>
+                              <p>Motivo: <br />{ban.reason}</p>
+                              <p>Término: <br />{ban.until < 0 && <span class="badge badge-outline text-red-400 font-bold">Permanente</span>}
+                                {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
+                              </p>
+                              <p>Status: <br />{parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-lime-400 font-bold">Finalizado</span>}
+                                              {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600 font-bold">Revogado</span>}
+                                              {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 font-bold">Ativo</span>}
+                                              {parseInt(ban.ipban.data) === 1 && <span class="badge badge-outline text-dark ml-2 font-bold">IPBan</span>}
+                                              {parseInt(ban.silent.data) === 1 && <span class="badge badge-outline text-gray-500 ml-2 font-bold">Silenciado</span>}
+                              </p>
+                              <p>Banido por: <br /><div className='flex justify-between'><img src={`https://minotar.net/avatar/${ban.banned_by_name}/25`} className='mr-2 rounded-md'></img>{ban.banned_by_name}</div></p>
+                              <p>Banido em: <br />{dataBan} às {hoursBan}</p>
                               </div>
-                              {parseInt(ban.active.data) !== 1 && ban.removed_by_name !== '#expired' && <div className='flex flex-row justify-between p-3 bg-lime-600 bg-opacity-25 rounded-lg'>
-                                {ban.removed_by_name !== '#expired' && <p>Revogado por: <br /> <div className='flex'><img src={`https://minotar.net/avatar/${ban.removed_by_name}/25`} className='mr-2 rounded-md'></img>{ban.removed_by_name}</div></p>}
-                                {ban.removed_by_name !== '#expired' && <p>Motivo: <br /> {ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>}
-                                {ban.removed_by_name !== '#expired' && <p>Data: <br /> {Intl.DateTimeFormat('pt-BR', {
+                              }
+                              { // REVOGAÇÃO
+                              parseInt(ban.active.data) !== 1 && ban.removed_by_name !== '#expired' &&
+                              <div className='flex flex-row justify-between p-3 bg-dark2 rounded-lg mt-2'>
+                                {ban.removed_by_name !== '#expired' && <p>Revogado por: <br /> <div className='flex'><img src={`https://minotar.net/avatar/${ban.removed_by_name ? ban.removed_by_name : 'herobrine'}/25`} className='mr-2 rounded-md'></img>{ban.removed_by_name ? ban.removed_by_name : 'Não informado.'}</div></p>}
+                                {ban.removed_by_name !== '#expired' && <p>Motivo da revogação: <br /> {ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>}
+                                {ban.removed_by_name !== '#expired' && <p>Revogado em: <br /> {Intl.DateTimeFormat('pt-BR', {
                                   day: '2-digit',
                                   month: '2-digit',
                                   year: 'numeric',
-                                  hour: '2-digit',
-                                  minute: '2-digit',
                                 }).format(new Date(ban.removed_by_date))} às {Intl.DateTimeFormat('pt-BR', {
                                   hour: '2-digit',
                                   minute: '2-digit',
@@ -91,20 +139,24 @@ export default function Punicoes({ bans, estatisticas }) {
           <div className="Sidebar">
             <div className="max-w-md">
               <div className="COMECA AQUI p-3">
-                <div className="flex items-center justify-center">
-                  <div className="flex">
-                    <input
-                      type="text"
-                      className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-none rounded-l-lg"
-                      placeholder="Buscar usuário..."
-                    />
-                    <Link href="?user=">
-                      <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 rounded-r-lg border-none">
-                        <FaSearch className="text-gray-200" />
-                      </button>
-                    </Link>
+                <form
+                  onSubmit={handleSubmit(searchUser)}
+                >
+                  <div className="flex items-center justify-center">
+                    <div className="flex">
+                        <input
+                          {...register('username', { required: true})}
+                          type="text"
+                          id="username"
+                          className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-none rounded-l-lg"
+                          placeholder="Buscar usuário..."
+                        />
+                        <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 rounded-r-lg border-none">
+                          <FaSearch className="text-gray-200" />
+                        </button>
+                    </div>
                   </div>
-                </div>
+                </form>
               </div>
               <div className="COMECA AQUI p-3">
                 <div className="justify-center">

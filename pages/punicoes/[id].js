@@ -32,7 +32,7 @@ export default function Punicoes({ ban, error }) {
   }, [dataBan])
   return (
     <>
-      <title>Punições | Rede Battle</title>
+      <title>Punição #{ban.id} - {ban.user.name} | Rede Battle</title>
       <Header />
       <div className="INDEX">
         <div className="flex grid grid-rows-1 mt-4 md:mt-8 px-12">
@@ -46,45 +46,117 @@ export default function Punicoes({ ban, error }) {
                     </h1>
                   </div>
                 )) || (
-                  <table className="bg-dark2 border-b-4 border-black border-opacity-60 table-auto w-full justify-center align-middle items-center">
-                    <thead>
-                      <tr className="bg-purple-600 text-white font-medium text-xl border-b-4 border-purple-700">
-                        <th className="pl-2 pt-3 pb-3">Jogador</th>
-                        <th className="pr-3 pt-3 pb-3">Motivo</th>
-                        <th className="pr-3 pt-3 pb-3">Autor</th>
-                        <th className="pr-3 pt-3 pb-3">Data</th>
-                        <th className="pr-3 pt-3 pb-3">Duração</th>
-                        <th className="pr-3 pt-3 pb-3">Status</th>
-                      </tr>
-                    </thead>
-                    <tbody className="">
-                      <tr key={ban?.id} className="">
-                        <td className="p-3 text-gray-300">
-                          <div className="flex items-center">
-                            <img
-                              src={`https://cravatar.eu/helmavatar/${ban?.user?.name}/40`}
-                              className="p-2"
-                            />
-                            {ban?.user?.name}
+                  <div className='w-full h-auto'>
+                    <div className='bg-dark2 p-4 rounded-lg m-4'>
+                      <h1 className='font-bold'>Banimento #{ban.id} {parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-lime-400 ml-2">Finalizado</span>}
+                                                {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600 ml-2">Revogado</span>}
+                                                {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 ml-2">Ativo</span>}
+                                                {parseInt(ban.ipban.data) === 1 && <span class="badge badge-outline text-dark ml-2">IPBan</span>}
+                                                {parseInt(ban.silent.data) === 1 && <span class="badge badge-outline text-gray-500 ml-2">Silenciado</span>}
+
+                      </h1>
+                    </div>
+                    <div className='flex flex-row'>
+                      <div className='flex flex-col'>
+                        <div className='bg-dark2 p-4 rounded-lg m-4 h-auto w-48'>
+                          <div className='flex flex-col items-center justify-center'>
+                            <img className='p-1' src={`https://minotar.net/armor/bust/${ban.user.name}/120`}></img>
+                            <h1 className='p-2 text-2xl'>{ban.user.name}</h1>
                           </div>
-                        </td>
-                        <td className="p-3 text-gray-300">{ban?.reason}</td>
-                        <td className="p-3 text-gray-300">
-                          {ban?.banned_by_name}
-                        </td>
-                        <td className="p-3 text-gray-300">{dataBan}</td>
-                        <td className="p-3 text-gray-300">
-                          {ban?.until < 0 && 'Permanente'}{' '}
-                          {ban?.until > 0 &&
-                            new Date(ban.until * 1).toLocaleDateString('pt-BR')}
-                        </td>
-                        <td className="p-3 text-gray-300">
-                          {ban?.active === 0 && 'Revogado'}
-                          {ban?.active !== 0 && 'Ativo'}
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
+                        </div>
+                        <div className='bg-dark2 p-4 rounded-lg m-4 h-auto w-48'>
+                          <div className='flex flex-col justify-center items-center'>
+                            <h1 className='p-2'>Banido por:</h1>
+                            <img className='p-1' src={`https://minotar.net/armor/bust/${ban.banned_by_name}/120`}></img>
+                            <p className='text-2xl p-1'>{ban.banned_by_name}</p>
+                          </div>
+                        </div>
+                      </div>
+                      <div className='flex flex-col w-full p-3'>
+                        {parseInt(ban.active.data) !== 0 && ban.removed_by_name !== '#expired' &&
+                        <div className='bg-red-400 bg-opacity-25 p-4 rounded-lg m-4 w-auto h-auto'>
+                          <div className='flex flex-row justify-between items-center h-36 p-5 mr-12 ml-6'>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Banido em:</h1>
+                              <p className='text-2xl'>{Intl.DateTimeFormat('pt-BR', {
+                                      day: '2-digit',
+                                      month: '2-digit',
+                                      year: 'numeric',
+                                    }).format(new Date(ban.time))} às {Intl.DateTimeFormat('pt-BR', {
+                                      hour: '2-digit',
+                                      minute: '2-digit',
+                                    }).format(new Date(ban.time))}
+                              </p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Motivo do banimento:</h1>
+                              <p className='text-2xl'>{ban.reason}</p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Término:</h1>
+                              <p className='text-2xl'>
+                                {ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                                {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
+                              </p>
+                            </div>
+                          </div>
+                        </div> ||
+                        <div className='bg-lime-400 bg-opacity-25 p-4 rounded-lg m-4 w-auto h-auto'>
+                          <div className='flex flex-row justify-between items-center h-36 p-5 mr-12 ml-6'>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Banido em:</h1>
+                              <p className='text-2xl'>{Intl.DateTimeFormat('pt-BR', {
+                                      day: '2-digit',
+                                      month: '2-digit',
+                                      year: 'numeric',
+                                    }).format(new Date(ban.time))} às {Intl.DateTimeFormat('pt-BR', {
+                                      hour: '2-digit',
+                                      minute: '2-digit',
+                                    }).format(new Date(ban.time))}
+                              </p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Motivo do banimento:</h1>
+                              <p className='text-2xl'>{ban.reason}</p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Término:</h1>
+                              <p className='text-2xl'>
+                                {ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                                {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
+                              </p>
+                            </div>
+                          </div>
+                        </div>}
+                        {parseInt(ban.active.data) !== 1 && ban.removed_by_name !== '#expired' &&
+                        <div className='bg-dark2 p-4 rounded-lg m-4 w-auto h-auto'>
+                          <div className='flex flex-row justify-between items-center h-36 p-5 mr-12 ml-6'>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Revogado em:</h1>
+                              <p className='text-2xl'>{Intl.DateTimeFormat('pt-BR', {
+                                      day: '2-digit',
+                                      month: '2-digit',
+                                      year: 'numeric',
+                                    }).format(new Date(ban.removed_by_date))} às {Intl.DateTimeFormat('pt-BR', {
+                                      hour: '2-digit',
+                                      minute: '2-digit',
+                                    }).format(new Date(ban.removed_by_date))}
+                              </p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <h1>Motivo da revogação:</h1>
+                              <p className='text-2xl'>{ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>
+                            </div>
+                            <div className='flex flex-col justify-center items-center'>
+                              <img src={`https://minotar.net/armor/bust/${ban.removed_by_name}/80`}></img>
+                              <h1 className='pt-2 -mb-1'>Revogado por:</h1>
+                              <p className='text-2xl'>{ban.removed_by_name}</p>
+                            </div>
+                          </div>
+                        </div>}
+                      </div>
+                    </div>
+                  </div>
                 )}
               </div>
             </div>
