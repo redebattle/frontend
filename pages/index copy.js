@@ -161,46 +161,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
       <Header />
       <div className="INDEX">
         <title>Rede Battle</title>
-        <div className="flex justify-center p-8 lg:flex-row sm:flex-col">
-          <div className='w-full sm:mb-2'>
-            {(postsInfo.obs.rows.length === 0 && (
-              <div className="bg-dark2 p-10 text-center rounded-lg">
-                <h1 className="text-gray-300 text-xl font-medium">
-                  Ainda não há postagens 😞
-                </h1>
-              </div>
-            )) ||
-              posts.map(post => {
-                let linkOrSlug = null
-                let link = false
-                if (post.link == null) {
-                  linkOrSlug = post.slug
-                } else {
-                  linkOrSlug = post.link
-                  link = true
-                }
-                return (
-                  <PostComponent
-                    key={post.id}
-                    id={post.id}
-                    titulo={post.titulo}
-                    categoria={post.categoria.descricao}
-                    autor={post.autor.nome}
-                    data={post.createdAt}
-                    imgSrc={post.header}
-                    conteudo={post.conteudo}
-                    isLink={link}
-                    link={linkOrSlug}
-                    acessos={post.acessos}
-                  />
-                )
-              })}
-          </div>
-          <div className=''>
-            <IndexSidebar />
-          </div>
-        </div>
-        {/* <div className="flex grid grid-flow-row auto-rows-auto grid-cols-3 gap-4 mt-8 px-6">
+        <ScrollToTheTopButton />
+        <div className="flex grid grid-flow-row auto-rows-auto grid-cols-3 gap-4 mt-8 px-6">
           <div className="pb-4 col-span-2">
             {(postsInfo.obs.rows.length === 0 && (
               <div className="bg-dark2 p-10 text-center rounded-lg">
@@ -269,7 +231,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
             )}
           </div>
           <IndexSidebar />
-        </div> */}
+        </div>
       </div>
       <Footer />
     </>

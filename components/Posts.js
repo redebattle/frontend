@@ -19,9 +19,9 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
   }, [dataPost])
   return (
     <>
-      <div key={id} className="flex flex-col items-center justify-center p-8">
+      <div key={id} className="flex flex-col items-center w-full px-4 lg:px-6 sm:px-0">
         <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
-          <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full">
+          <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -34,7 +34,7 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
               />
               ||
               <img
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14"
+                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-12 sm:mb-2 lg:h-14"
                 src={`https://cravatar.eu/helmavatar/${autor}/96`}
                 alt={autor}
               />}
@@ -42,13 +42,13 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
 
             <div className="text-center space-y-2 sm:text-left">
               <div className="space-y-0.5">
-                <p className="text-lg text-gray-300 font-medium">
+                <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left">
                   Postado por {autor}
                 </p>
-                <p className="text-gray-300 font-extralight text-xs">
-                  {data}
+                <p className="text-gray-300 font-extralight lg:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
+                  {dataPost}
                 </p>
-                <p className='text-gray-300 font-extralight text-sm flex flex-row items-center'>{acessos} <FaEye className='ml-2' /></p>
+                <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{acessos} <FaEye className='ml-2' /></p>
               </div>
             </div>
           </div>
@@ -60,20 +60,20 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
         {/* CATEGORIA */}
         <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
           <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-            <div class="badge">{categoria}</div>
+            <div class="badge text-sm sm:text-xs">{categoria}</div>
           </h1>
-          <h1 className="text-white font-semibold text-3xl sm:text-xl tracking-tight">
+          <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
             {titulo}
           </h1>
         </div>
         {/* POST */}
-        <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-3 w-full">
-          <p
+        <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-16 w-full">
+          <div
             className="px-3 py-5 border-current sm:text-sm text-gray-300"
             dangerouslySetInnerHTML={{ __html: conteudo }}
           />
         </div>
-        <div className="flex justify-center pb-5 tracking-tight -mt-6">
+        <div className="flex justify-center pb-5 tracking-tight -mt-14">
           {!isLink && (
             <Link
               href={{
@@ -87,7 +87,7 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
                 whileTap={{ scale: 0.9 }}
               >
                 <button
-                  onClick={() => handlePostClick(id)}
+                  onClick={() => {}}
                   className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white"
                 >
                   Continuar lendo

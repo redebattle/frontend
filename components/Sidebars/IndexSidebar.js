@@ -21,10 +21,10 @@ export default function IndexSidebar() {
   }
   return (
     <div className="Sidebar">
-      <div className="pl-10">
+      <div className="">
         {/* INFO IP */}
-        <div className="justify-center">
-          <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+        <div className="flex justify-center">
+          <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg w-full">
             <h1 className="pt-5 font-medium text-gray-200 text-center text-xl tracking-tight">
               Nosso IP 😗
             </h1>
@@ -51,9 +51,9 @@ export default function IndexSidebar() {
         {/* DISCORD */}
         <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
           <iframe
-            className='sm:w-64'
+            className='lg:w-full sm:w-full'
             src="https://discordapp.com/widget?id=762534744969052181&theme=dark"
-            width="350"
+            width="460"
             height="500"
             frameBorder="0"
             sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"

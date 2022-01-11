@@ -85,7 +85,7 @@ export default function Noticias({ post, manutencao }) {
         </div>
         {/* POST */}
         <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-3 w-full">
-          <p
+          <div
             className="px-3 py-5 border-current sm:text-sm text-gray-300"
             dangerouslySetInnerHTML={{ __html: post.conteudo }}
           />
