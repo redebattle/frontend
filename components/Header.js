@@ -1,10 +1,6 @@
-/* eslint-disable handle-callback-err */
-/* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
-import { GetServerSideProps } from 'next'
-import Link from 'next/link'
-import { useEffect, useRef, useState } from 'react'
-import { FaHome, FaShoppingCart, FaUserAlt, FaCookie, FaDiscord, FaBan, FaClipboard, FaUsers, FaFile, FaSignInAlt } from 'react-icons/fa'
+import { useEffect, useState } from 'react'
+import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt } from 'react-icons/fa'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 
@@ -170,25 +166,25 @@ export default function Header({ online }) {
           <div class="hidden w-full md:block md:w-auto" id="mobile-menu">
             <ul class="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700" aria-current="page"><div className="flex flex-row items-center"><FaHome className='mr-1' />INÍCIO</div></a>
+                <a href="/" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black" aria-current="page"><div className="flex flex-row items-center"><FaHome className='mr-1' />INÍCIO</div></a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />LOJA</div></a>
+                <a href="/loja" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />LOJA</div></a>
               </li>
               <li>
-              <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaDiscord className='mr-1' />DISCORD</div></a>
+              <a href="/discord" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaDiscord className='mr-1' />DISCORD</div></a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaUsers className='mr-1' />EQUIPE</div></a>
+                <a href="/equipe" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaUsers className='mr-1' />EQUIPE</div></a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaBan className='mr-1' />PUNIÇÕES</div></a>
+                <a href="/punicoes" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaBan className='mr-1' />PUNIÇÕES</div></a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaFile className='mr-1' />CHANGELOG</div></a>
+                <a href="/changelog" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaFile className='mr-1' />CHANGELOG</div></a>
               </li>
               <li>
-                <a href="#" class="block py-2 pr-4 pl-3 text-white font-bold bg-blue-700 rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent dark:border-gray-700"><div className="flex flex-row items-center"><FaSignInAlt className='mr-1' />ENTRAR</div></a>
+                <a href="/entrar" class="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaSignInAlt className='mr-1' />ENTRAR</div></a>
               </li>
             </ul>
           </div>

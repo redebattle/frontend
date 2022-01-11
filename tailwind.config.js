@@ -25,7 +25,7 @@ module.exports = {
         'minecraft-dark': "url('/img/bg-minecraft-dark.png')"
       }),
       fontFamily: {
-        sans: ['Inter', 'ui-sans-serif']
+        sans: ['Roboto', 'Inter', 'ui-sans-serif']
       },
       colors: {
         facebook: '#1877F2',
@@ -58,6 +58,10 @@ module.exports = {
   },
   plugins: [
     require('tailwind-scrollbar'),
-    require('daisyui')
+    require('daisyui'),
+    require('@themesberg/flowbite/plugin')
+  ],
+  content: [
+    "./node_modules/@themesberg/flowbite/**/*.js"
   ]
 }

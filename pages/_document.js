@@ -51,6 +51,10 @@ class MyDocument extends Document {
           />
           <link href="https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap" rel="stylesheet"></link>
 
+          {/* SCRIPTS */}
+          <script src="../path/to/@themesberg/flowbite/dist/flowbite.bundle.js"></script>
+          <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
+
           {/* Google Adsense */}
           <script data-ad-client="ca-pub-4583572814077870" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
 
