@@ -32,7 +32,7 @@ export default function Custom404() {
               </button>
             </motion.div>
           </a>
-      </div>
+        </div>
 
         {/* <div className='sm:flex sm:flex-col w-a'>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>

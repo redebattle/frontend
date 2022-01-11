@@ -31,15 +31,14 @@ export default function Loja({error, manutencao }) {
         <div className="flex mt-8 px-6">
           <div className='flex flex-col h-auto'>
             <div className='w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
-                <h1 className='p-3 text-xl flex flex-row items-center'>Meta mensal <FaChartLine className='ml-2' /></h1>
-                <div className='flex flex-row justify-between items-center'>
-                  <h1 className='text-xl'>R$ 1,00 / R$ 10,00</h1>
-                  <div class="badge ml-2 bg-roxo">10%</div>
-                </div>
-                <div class="-mt-4 p-6 space-y-2 artboard phone">
-                  <progress class="progress progress-primary" value="10" max="100"></progress>
-                </div>
+              <h1 className='p-3 text-xl flex flex-row items-center'>Meta mensal <FaChartLine className='ml-2' /></h1>
+              <div className='flex flex-row justify-between items-center mb-3 -mt-2'>
+                <h1 className='text-xl'>R$ 1,00 / R$ 10,00</h1>
               </div>
+              <div className="w-72 bg-gray-200 rounded-full dark:bg-dark3 mb-6">
+                <div className="bg-purple-600 text-xs font-medium text-blue-100 text-center p-0.5 leading-none rounded-full space-y-2" style={{width: '10%'}}> 10%</div>
+              </div>
+            </div>
             <div className='mt-2 w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
               <h1 className='p-3 text-xl'>Selecione o servidor</h1>
               <div className='flex flex-col p-3 mb-3'>

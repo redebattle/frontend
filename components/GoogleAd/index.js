@@ -11,7 +11,7 @@ export default function GoogleAd() {
   return (
     <>
       <ins
-        class="adsbygoogle"
+        className="adsbygoogle"
         style={{display: 'block'}}
         data-ad-client={process.env.NEXT_PUBLIC_GOOGLE_ADSENSE}
         data-ad-slot="1900828931"
