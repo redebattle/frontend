@@ -7,6 +7,7 @@ import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import UserAvatar from 'react-user-avatar'
 import { FaEye } from 'react-icons/fa'
+import Metadata from '../../components/Metadata'
 
 export default function Noticias({ post, manutencao }) {
   const [dataPost, setDataPost] = useState(post.createdAt)
@@ -36,6 +37,8 @@ export default function Noticias({ post, manutencao }) {
     <>
       <Header />
       <title>{post.titulo} - Rede Battle</title>
+      {/* ADICIONA METADATA */}
+      <Metadata title={post.titulo} description={'Nova postagem da Rede Battle!'} imgURL={post.header} />
       <div key={post.id} className="flex flex-col items-center justify-center p-8">
         <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
           <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full">

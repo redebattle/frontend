@@ -35,7 +35,7 @@ const Footer = () => {
             Copyright © Rede Battle. Todos direitos reservados.
           </div> */}
           <div className="mt-2 sm:p-2 sm:mb-2">
-            <h1 className='font-medium'>© Rede Battle 2022 - Todos os direitos reservados.</h1>
+            <h1 className='font-medium'>© 2022 Rede Battle - Todos os direitos reservados.</h1>
             <p className='text-xs'>Esse site não é afiliado à Mojang, AB e/ou Microsoft. "Minecraft" é
             uma marca comercial da Mojang Synergies AB</p>
           </div>
