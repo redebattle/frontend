@@ -1,3 +1,5 @@
+import * as Sentry from '@sentry/nextjs'
+
 function Error({ statusCode }) {
   return (
     // eslint-disable-next-line react/react-in-jsx-scope
@@ -10,7 +12,8 @@ function Error({ statusCode }) {
 }
 
 Error.getInitialProps = ({ res, err }) => {
-  const statusCode = res ? res.statusCode : err ? err.statusCode : 404
+  const statusCode = res ? res.statusCode : err ? err.statusCode : 400
+  Sentry.captureException(err);
   return { statusCode }
 }
 

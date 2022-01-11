@@ -6,6 +6,7 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import UserAvatar from 'react-user-avatar'
+import { FaEye } from 'react-icons/fa'
 
 export default function Noticias({ post, manutencao }) {
   const [dataPost, setDataPost] = useState(post.createdAt)
@@ -37,7 +38,7 @@ export default function Noticias({ post, manutencao }) {
       <title>{post.titulo} - Rede Battle</title>
 
       <div key="TheMito" className="p-20">
-        <div className="justify-center shadow-md sm:w-full bg-dark2 border border-dark3">
+        <div className="justify-center shadow-md sm:w-full bg-dark2 rounded-lg">
           <div className="py-5 px-5 space-y-2 sm:space-x-3 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full">
             <motion.button
               whileHover={{ scale: 1.1 }}
@@ -66,6 +67,7 @@ export default function Noticias({ post, manutencao }) {
                 <p className="text-gray-300 font-extralight text-sm">
                   {dataPost}
                 </p>
+                <p className='text-gray-300 font-extralight text-sm flex flex-row items-center'>{post.acessos} <FaEye className='ml-2' /></p>
               </div>
             </div>
           </div>
@@ -74,13 +76,13 @@ export default function Noticias({ post, manutencao }) {
           </div>
           <div className="bg-purple-600 border-b-4 border-purple-700 p-5">
             <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              {post.categoria.descricao}
+              <div class="badge">{post.categoria.descricao}</div>
             </h1>
             <h1 className="text-white font-semibold text-3xl sm:text-xl tracking-tight">
               {post.titulo}
             </h1>
           </div>
-          <div className="bg-dark2 tracking-tight border border-dark3 align-middle items-center pb-3">
+          <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-3">
             <p
               className="px-3 py-5 border-current sm:text-sm text-gray-300"
               dangerouslySetInnerHTML={{ __html: post.conteudo }}

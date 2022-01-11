@@ -19,7 +19,10 @@ module.exports = {
     },
     extend: {
       backgroundImage: theme => ({
-        'header-image': "url('/img/header.jpg')"
+        'header-image': "url('/img/header.jpg')",
+        'top-donator-image': "url('/img/top-donator-bg.jpg')",
+        'recent-donations-image': "url('/img/last-purchases-bg.jpg')",
+        'minecraft-dark': "url('/img/bg-minecraft-dark.png')"
       }),
       fontFamily: {
         sans: ['Inter', 'ui-sans-serif']

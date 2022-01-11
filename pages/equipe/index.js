@@ -16,7 +16,7 @@ import Manutencao from '../../components/Manutencao'
 import api from '../../service/api'
 const Equipe = ({ nome, twitter, discord, cor }) => {
   return (
-    <div className="p-4 mx-6 bg-dark2 border border-b-4 border-black rounded-lg">
+    <div className="p-4 mx-6 bg-dark3 border-b-4 border-black rounded-lg">
       <div>
         <img
           src={`https://minotar.net/bust/${nome}/120.png`}
@@ -65,7 +65,7 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
 const Cargo = ({ nome, totalCargo, equipe, cor }) => {
   return (
     <div id="equipe">
-      <div className='bg-dark2 p-2 rounded-lg pl-3 border border-b-4 border-black border-opacity-60'>
+      <div className='bg-dark3 p-2 rounded-lg pl-3 border-b-4 border-black border-opacity-60'>
         <h1 style={{ color: cor }} className="text-lg font-bold">
           {nome || (
             <SkeletonTheme
@@ -144,11 +144,11 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
                   moderando todas as plataformas, como servidor, fórum, e Discord,
                   e aplicando punições quando identificam que uma regra foi quebrada.
                   Eles também colaboram com testes de atualizações e novos projetos.</p>
-                  <button className="mt-3 bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                  <button className="mt-3 bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 rounded-lg text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline">
                     Saiba como aplicar para a equipe
                   </button>
               </div>
-              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
+              <div className="bg-minecraft-dark border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
                 {cargos.length === 0 && (
                   <h1 className="text-gray-300 text-xl text-center">
                     Não há equipe cadastrada.

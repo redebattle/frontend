@@ -11,6 +11,7 @@ import ErrorAPI from '../components/ErrorAPI'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import IndexSidebar from '../components/Sidebars/IndexSidebar'
+import { FaEye } from 'react-icons/fa'
 const News = ({
   autor,
   imgSrc,
@@ -20,7 +21,8 @@ const News = ({
   categoria,
   data,
   link,
-  isLink
+  isLink,
+  acessos
 }) => {
   function handlePostClick(id) {
     console.log('Clicou!')
@@ -64,6 +66,7 @@ const News = ({
               Postado por {autor}
             </p>
             <p className="text-gray-300 font-extralight text-sm">{dataPost}</p>
+            <p className='text-gray-300 font-extralight text-sm flex flex-row items-center'>{acessos} <FaEye className='ml-2' /></p>
           </div>
         </div>
       </div>
@@ -99,7 +102,7 @@ const News = ({
               >
                 <button
                   onClick={() => handlePostClick(id)}
-                  className="bg-purple-600 border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white"
+                  className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white"
                 >
                   Continuar lendo
                 </button>
@@ -115,7 +118,7 @@ const News = ({
               >
                 <button
                   onClick={() => handlePostClick(id)}
-                  className="bg-purple-600 border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white"
+                  className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white"
                 >
                   Continuar lendo
                 </button>
@@ -189,6 +192,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                     conteudo={post.conteudo}
                     isLink={link}
                     link={linkOrSlug}
+                    acessos={post.acessos}
                   />
                 )
               })}
@@ -196,7 +200,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
               <div className="pt-4">
                 <center>
                   <button
-                    className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded m-2"
+                    className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg m-2"
                     onClick={() => Router.push(`/?pagina=${query.pagina - 1}`)}
                     disabled={query.pagina <= 1}
                   >
@@ -205,7 +209,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
 
                   {query.pagina && (
                     <button
-                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded"
+                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
                       onClick={() => Router.push(`/?pagina=${query.pagina++}`)}
                       disabled={query.pagina > total}
                     >
@@ -215,7 +219,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
 
                   {!query.pagina && (
                     <button
-                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded"
+                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
                       onClick={() => Router.push('/?pagina=2')}
                       disabled={query.pagina > total}
                     >

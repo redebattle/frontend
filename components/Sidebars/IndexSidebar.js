@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Script from 'next/script'
 import { useToasts } from 'react-toast-notifications'
 import { Timeline } from 'react-twitter-widgets'
 
@@ -35,7 +36,7 @@ export default function IndexSidebar() {
                   whileTap={{ scale: 0.9 }}
                   onClick={copyToClipboard}
                 >
-                  <button className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-normal text-center w-42 p-4 tracking-tight focus:outline-none">
+                  <button className="bg-purple-600 rounded-lg border-b-4 border-purple-700 hover:bg-purple-700 text-white font-normal text-center w-42 p-4 tracking-tight focus:outline-none">
                     REDEBATTLE.COM.BR
                   </button>
                 </motion.button>
