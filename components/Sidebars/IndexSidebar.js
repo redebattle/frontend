@@ -2,6 +2,7 @@ import { motion } from 'framer-motion'
 import Script from 'next/script'
 import { useToasts } from 'react-toast-notifications'
 import { Timeline } from 'react-twitter-widgets'
+import GoogleAd from '../GoogleAd'
 
 export default function IndexSidebar() {
   const { addToast } = useToasts()
@@ -62,6 +63,9 @@ export default function IndexSidebar() {
         <div className="COMECA AQUI">
           <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
               <p className='text-gray-300'>Publicidade</p>
+              <div>
+                <GoogleAd />
+              </div>
           </div>
         </div>
         <div className="COMECA AQUI">
