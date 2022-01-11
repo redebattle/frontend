@@ -11,8 +11,30 @@ export default function Custom404() {
     <>
       <Header />
       <title>404 - Página não encontrada | Rede Battle</title>
-      <div className="flex items-center justify-between pt-10 pl-60 pr-60">
-        <div>
+      <div className="flex items-center justify-center p-8">
+        <div className="p-6 max-w-3xl bg-white rounded-lg border-gray-200 shadow-md dark:bg-dark2 dark:border-b-4 dark:border-black">
+          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <h1 className="text-9xl font-bold text-gray-300 text-center">
+              404
+            </h1>
+          </motion.div>
+          <h1 className="text-3xl text-gray-300 font-medium text-center">
+            Página não encontrada
+          </h1>
+          <h1 className="text-gray-300 text-center p-2">
+            A página que você procura não existe ou não está disponível no
+            momento.
+          </h1>
+          <a href='/'>
+            <motion.div className='flex justify-center items-center p-2' whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+              <button className="flex flex-row items-center justify-center bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 h-10 w-40 sm:text-sm font-medium text-white">
+                Voltar ao início  <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+              </button>
+            </motion.div>
+          </a>
+      </div>
+
+        {/* <div className='sm:flex sm:flex-col w-a'>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <h1 className="text-9xl font-bold text-gray-300 text-center">
               404
@@ -25,7 +47,7 @@ export default function Custom404() {
             A página que você procura não existe ou não está disponível no
             momento.
           </h1>
-          <center>
+          <div className='flex items-center justify-center mt-4'>
             <br />
             <Link href="/">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -34,13 +56,13 @@ export default function Custom404() {
                 </button>
               </motion.div>
             </Link>
-          </center>
-        </div>
-        <div>
+          </div>
+        </div> */}
+        {/* <div className=''>
           <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
             <motion.img src="/img/error404.png" alt="logo" width="300" />
           </motion.div>
-        </div>
+        </div> */}
       </div>
       <Footer />
     </>
