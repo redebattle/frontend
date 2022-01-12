@@ -8,22 +8,42 @@ import Manutencao from '../../components/Manutencao'
 import UserAvatar from 'react-user-avatar'
 import { FaEye } from 'react-icons/fa'
 import Metadata from '../../components/Metadata'
+import ErrorAPI from '../../components/ErrorAPI'
 
-export default function Noticias({ post, manutencao }) {
-  const [dataPost, setDataPost] = useState(post.createdAt)
-  useEffect(() => {
-    api.get('').then(response =>
-      setDataPost(
+export default function Noticias({ post, manutencao, error }) {
+  const [dataPost, setDataPost] = useState(null)
+  const [hourPost, setHourPost] = useState(null)
+
+  if (post?.createdAt) {
+    useEffect(async () => {
+      await setDataPost(
         Intl.DateTimeFormat('pt-BR', {
           hour: '2-digit',
           minute: '2-digit',
           day: '2-digit',
           month: 'long',
           year: 'numeric'
-        }).format(new Date(post.createdAt))
+        }).format(new Date(post?.createdAt))
       )
+    }, [dataPost])
+  }
+
+  if (post?.createdAt) {
+    useEffect(async () => {
+      await setHourPost(
+        Intl.DateTimeFormat('pt-BR', {
+          hour: '2-digit',
+          minute: '2-digit',
+        }).format(new Date(post?.createdAt))
+      )
+    }, [hourPost])
+  }
+
+  if (error) {
+    return (
+      <ErrorAPI />
     )
-  }, [dataPost])
+  }
 
   if (manutencao) {
     return (
@@ -41,7 +61,7 @@ export default function Noticias({ post, manutencao }) {
       <Metadata title={post.titulo} description={'Nova postagem da Rede Battle!'} imgURL={post.header} />
       <div key={post.id} className="flex flex-col items-center justify-center p-8">
         <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
-          <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full">
+        <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -54,7 +74,7 @@ export default function Noticias({ post, manutencao }) {
               />
               ||
               <img
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14"
+              className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-12 sm:mb-2 lg:h-14"
                 src={`https://cravatar.eu/helmavatar/${post.autor.nome}/96`}
                 alt={post.autor.nome}
               />}
@@ -62,13 +82,13 @@ export default function Noticias({ post, manutencao }) {
 
             <div className="text-center space-y-2 sm:text-left">
               <div className="space-y-0.5">
-                <p className="text-lg text-gray-300 font-medium">
+              <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left">
                   Postado por {post.autor.nome}
                 </p>
-                <p className="text-gray-300 font-extralight text-xs">
-                  {dataPost}
+                <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
+                  {dataPost} às {hourPost}
                 </p>
-                <p className='text-gray-300 font-extralight text-sm flex flex-row items-center'>{post.acessos} <FaEye className='ml-2' /></p>
+                <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{post.acessos} <FaEye className='ml-2' /></p>
               </div>
             </div>
           </div>
@@ -80,9 +100,9 @@ export default function Noticias({ post, manutencao }) {
         {/* CATEGORIA */}
         <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
           <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-            <div class="badge">{post.categoria.descricao}</div>
+            <div class="badge text-sm sm:text-xs">{post.categoria.descricao}</div>
           </h1>
-          <h1 className="text-white font-semibold text-3xl sm:text-xl tracking-tight">
+          <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
             {post.titulo}
           </h1>
         </div>
@@ -154,29 +174,35 @@ export default function Noticias({ post, manutencao }) {
 }
 
 export async function getServerSideProps(context) {
-  const { id } = context.query
-  const post = await api
-    .get(`/postagens/slug/${id}`)
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de postagens', e)
-    })
+  try {
+    const { id } = context.query
+    const post = await api
+      .get(`/postagens/slug/${id}`)
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de postagens', e)
+      })
 
-  const manutencao = await api
-    .get('/configuracoes/manutencao/check')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-      return (error = true)
-    })
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        return (error = true)
+      })
 
-  if (!post) {
-    return {
-      notFound: true
+    if (!post) {
+      return {
+        notFound: true
+      }
     }
-  }
 
-  return {
-    props: { post, manutencao }
+    return {
+      props: { post, manutencao, error: false }
+    }
+  } catch (e) {
+    return {
+      props: { error: true }
+    }
   }
 }

@@ -4,6 +4,7 @@ import Manutencao from '../../components/Manutencao'
 import ErrorAPI from '../../components/ErrorAPI'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
+import Metadata from '../../components/Metadata'
 import { FaBarcode, FaCarAlt, FaCartPlus, FaCcMastercard, FaCcVisa, FaChartLine, FaQrcode, FaQuestion, FaQuestionCircle, FaShoppingCart, FaStar } from 'react-icons/fa'
 import Payments from '../../components/Payments'
 
@@ -28,6 +29,8 @@ export default function Loja({error, manutencao }) {
       <Header />
       <div className="INDEX">
         <title>Loja | Rede Battle</title>
+        {/* METADATA */}
+        <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
         <div className="flex mt-8 px-6">
           <div className='flex flex-col h-auto'>
             <div className='w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
@@ -124,7 +127,9 @@ export default function Loja({error, manutencao }) {
           </div>
         </div>
       </div>
-      <Payments />
+      <div className='mx-6 p-4 sm:mx-1 sm:p-2'>
+        <Payments />
+      </div>
       <Footer />
     </>
   )

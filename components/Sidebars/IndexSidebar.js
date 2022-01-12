@@ -51,6 +51,7 @@ export default function IndexSidebar() {
         {/* DISCORD */}
         <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
           <iframe
+            title='Twitter'
             className='lg:w-full sm:w-full'
             src="https://discordapp.com/widget?id=762534744969052181&theme=dark"
             width="460"

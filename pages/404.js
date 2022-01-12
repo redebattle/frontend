@@ -13,11 +13,12 @@ export default function Custom404() {
       <title>404 - Página não encontrada | Rede Battle</title>
       <div className="flex items-center justify-center p-8">
         <div className="p-6 max-w-3xl bg-white rounded-lg border-gray-200 shadow-md dark:bg-dark2 dark:border-b-4 dark:border-black">
-          <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-            <h1 className="text-9xl font-bold text-gray-300 text-center">
-              404
+          <h1 className="text-9xl font-bold text-gray-300 text-center">
+            404
+          </h1>
+          <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight flex items-center justify-center">
+              <div class="badge bg-youtube lg:text-lg sm:text-xs -mt-32 font-bold">ERRO</div>
             </h1>
-          </motion.div>
           <h1 className="text-3xl text-gray-300 font-medium text-center">
             Página não encontrada
           </h1>

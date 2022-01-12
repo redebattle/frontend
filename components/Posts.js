@@ -5,18 +5,27 @@ import { FaEye } from 'react-icons/fa'
 
 export default function PostComponent({id, titulo, categoria, autor, data, imgSrc, conteudo, isLink, link, acessos, avatarId}) {
   const [dataPost, setDataPost] = useState(data)
+  const [hourPost, setHourPost] = useState(data)
 
-  useEffect(() => {
-    setDataPost(
+  useEffect(async () => {
+    await setDataPost(
       Intl.DateTimeFormat('pt-BR', {
-        hour: '2-digit',
-        minute: '2-digit',
         day: '2-digit',
         month: 'long',
         year: 'numeric'
       }).format(new Date(data))
     )
   }, [dataPost])
+
+  useEffect(async () => {
+    await setHourPost(
+      Intl.DateTimeFormat('pt-BR', {
+        hour: '2-digit',
+        minute: '2-digit',
+      }).format(new Date(data))
+    )
+  }, [hourPost])
+
   return (
     <>
       <div key={id} className="flex flex-col items-center w-full px-4 lg:px-6 sm:px-0">
@@ -45,8 +54,8 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
                 <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left">
                   Postado por {autor}
                 </p>
-                <p className="text-gray-300 font-extralight lg:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
-                  {dataPost}
+                <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
+                  {dataPost} às {hourPost}
                 </p>
                 <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{acessos} <FaEye className='ml-2' /></p>
               </div>

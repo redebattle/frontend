@@ -24,7 +24,7 @@ export default function Header({ online }) {
     api
       .get('/api/server')
       .then(response => {
-        setplayersOnline(response?.data?.players?.online ? response?.data?.players?.online : 'Error')
+        setplayersOnline(response?.data?.players?.online ? response?.data?.players?.online : '-/-')
       })
       .catch(e => {
         setplayersOnline(null)
@@ -36,7 +36,7 @@ export default function Header({ online }) {
     api
       .get('/api/discord')
       .then(response => {
-        setdiscordOnline(response?.data?.presence_count ? response?.data?.presence_count : '0')
+        setdiscordOnline(response?.data?.presence_count ? response?.data?.presence_count : '-/-')
       })
       .catch(e => {
         setdiscordOnline(null)
