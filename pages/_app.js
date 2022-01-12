@@ -10,6 +10,7 @@ import { ToastProvider } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import ScrollToTheTopButton from '../components/ScrollToTheTopButton'
+import 'next-pagination/dist/index.css'
 
 const ViewportMetaLink = () => (
   <meta

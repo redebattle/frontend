@@ -19,21 +19,10 @@ export default function Manutencao() {
   }, [mensagem])
 
   return (
-    <div className="h-screen flex flex-col justify-center">
+    <div className="h-full w-full flex items-center justify-center">
       <title>Manutenção | RedeBattle</title>
-
-      <div className="flex justify-evenly items-center">
-        <div>
-          <h1 className="text-red-600 text-3xl uppercase">
-            Site em <b>manutenção</b>
-          </h1>
-          <p
-            className="py-5 text-gray-300 text-lg"
-            dangerouslySetInnerHTML={{ __html: mensagem }}
-          ></p>
-        </div>
-
-        <div>
+      <div className="flex lg:flex-row sm:flex-col lg:justify-evenly sm:justify-center items-center">
+        <div className='sm:p-12'>
           <motion.div
             initial={{ scale: 0 }}
             animate={{ rotate: 0, scale: 1 }}
@@ -53,6 +42,15 @@ export default function Manutencao() {
               className="w-65 h-32"
             />
           </motion.div>
+        </div>
+        <div className='flex flex-col justify-center lg:items-start sm:items-center'>
+          <h1 className="text-red-600 lg:text-5xl sm:text-3xl md:text-5xl uppercase text-center">
+            Site em <b>manutenção</b>
+          </h1>
+          <div
+            className="p-5 text-gray-300 lg:text-lg sm:text-base"
+            dangerouslySetInnerHTML={{ __html: mensagem }}
+          />
         </div>
       </div>
     </div>

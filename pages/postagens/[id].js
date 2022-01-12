@@ -1,18 +1,21 @@
-/* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import api from '../../service/api'
 import { useState, useEffect } from 'react'
+import { motion } from 'framer-motion'
+import UserAvatar from 'react-user-avatar'
+import { FaEye } from 'react-icons/fa'
+import { useRouter } from 'next/router'
+
+import api from '../../service/api'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
-import UserAvatar from 'react-user-avatar'
-import { FaEye } from 'react-icons/fa'
 import Metadata from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
+
 
 export default function Noticias({ post, manutencao, error }) {
   const [dataPost, setDataPost] = useState(null)
   const [hourPost, setHourPost] = useState(null)
+  const router = useRouter();
 
   if (post?.createdAt) {
     useEffect(async () => {
@@ -60,8 +63,11 @@ export default function Noticias({ post, manutencao, error }) {
       {/* ADICIONA METADATA */}
       <Metadata title={post.titulo} description={'Nova postagem da Rede Battle!'} imgURL={post.header} />
       <div key={post.id} className="flex flex-col items-center justify-center p-8">
+        <button onClick={() => router.back()} className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white -mt-3 mb-3">
+          Voltar
+        </button>
         <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
-        <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
+          <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
             <motion.button
               whileHover={{ scale: 1.1 }}
               whileTap={{ scale: 0.9 }}
@@ -114,60 +120,6 @@ export default function Noticias({ post, manutencao, error }) {
           />
         </div>
       </div>
-
-      {/*<div key={post.id} className="p-20">
-        <div className="justify-center shadow-md sm:w-full bg-dark2 rounded-lg">
-          <div className="py-5 px-5 space-y-2 sm:space-x-3 sm:py-4 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              <UserAvatar
-                size="60"
-                name={post.autor.nome}
-                // className="flex items-center justify-center text-gray-300 p-2 text-xl"
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14 text-gray-300 text-xl"
-              />
-
-              {/* <img
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14"
-                src="/img/no-avatar.png"
-                // src={`https://cravatar.eu/helmavatar/${post.autor.nome}/96`}
-                alt={post.autor.nome}
-              /> */}
-            {/* </motion.button>
-
-            <div className="text-center space-y-2 sm:text-left">
-              <div className="space-y-0.5">
-                <p className="text-lg text-gray-300 font-medium">
-                  Postado por {post.autor.nome}
-                </p>
-                <p className="text-gray-300 font-extralight text-sm">
-                  {dataPost}
-                </p>
-                <p className='text-gray-300 font-extralight text-sm flex flex-row items-center'>{post.acessos} <FaEye className='ml-2' /></p>
-              </div>
-            </div>
-          </div>
-          <div className="HeaderIMG">
-            <motion.img src={post.header} alt="" className="w-full max-h-60" />
-          </div>
-          <div className="bg-purple-600 border-b-4 border-purple-700 p-5">
-            <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              <div class="badge">{post.categoria.descricao}</div>
-            </h1>
-            <h1 className="text-white font-semibold text-3xl sm:text-xl tracking-tight">
-              {post.titulo}
-            </h1>
-          </div>
-          <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-3">
-            <p
-              className="px-3 py-5 border-current sm:text-sm text-gray-300"
-              dangerouslySetInnerHTML={{ __html: post.conteudo }}
-            ></p>
-          </div>
-        </div>
-      </div> */}
       <Footer />
     </>
   )

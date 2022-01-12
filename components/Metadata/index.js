@@ -1,4 +1,4 @@
-export default function Metadata({title, description, imgURL}) {
+export default function MetadataComponent({title, description, imgURL}) {
   return (
     <>
       {/* fb & Whatsapp */}

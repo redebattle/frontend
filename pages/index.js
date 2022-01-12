@@ -1,11 +1,11 @@
 import api from '../service/api'
 import Manutencao from '../components/Manutencao'
+import Metadata from '../components/Metadata'
 import ErrorAPI from '../components/ErrorAPI'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import IndexSidebar from '../components/Sidebars/IndexSidebar'
 import PostComponent from '../components/Posts'
-import { array, arrayOf } from 'prop-types'
 import ReactPaginate from 'react-paginate'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
@@ -59,7 +59,6 @@ const Pagination = styled(ReactPaginate).attrs({
 `;
 
 export default function Home({ posts, postsInfo, query, error, manutencao }) {
-
   const router = useRouter()
 
   if (error) {
@@ -77,19 +76,19 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
   }
 
   let page = query.pagina || 1
-  const totalPage = postsInfo.total / 10
+  const totalPage = Math.ceil(postsInfo.total / 5)
+  console.log(totalPage)
 
   const pagginationHandler = async (pagina) => {
     const currentPath = router.pathname;
     const currentQuery = { ...router.query };
     currentQuery.pagina = pagina.selected + 1;
 
-    await router.push({
+    router.push({
         pathname: currentPath,
         query: currentQuery,
-    });
-
-};
+    })
+  };
 
   return (
     <>
@@ -148,76 +147,6 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
             <IndexSidebar />
           </div>
         </div>
-        {/* <div className="flex grid grid-flow-row auto-rows-auto grid-cols-3 gap-4 mt-8 px-6">
-          <div className="pb-4 col-span-2">
-            {(postsInfo.obs.rows.length === 0 && (
-              <div className="bg-dark2 p-10 text-center rounded-lg">
-                <h1 className="text-gray-300 text-xl font-medium">
-                  Ainda não há postagens 😞
-                </h1>
-              </div>
-            )) ||
-              posts.map(post => {
-                let linkOrSlug = null
-                let link = false
-                if (post.link == null) {
-                  linkOrSlug = post.slug
-                } else {
-                  linkOrSlug = post.link
-                  link = true
-                }
-                return (
-                  <PostComponent
-                    key={post.id}
-                    id={post.id}
-                    titulo={post.titulo}
-                    categoria={post.categoria.descricao}
-                    autor={post.autor.nome}
-                    data={post.createdAt}
-                    imgSrc={post.header}
-                    conteudo={post.conteudo}
-                    isLink={link}
-                    link={linkOrSlug}
-                    acessos={post.acessos}
-                  />
-                )
-              })}
-            {(postsInfo.obs.rows.length === 0 && ' ') || (
-              <div className="pt-4">
-                <center>
-                  <button
-                    className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg m-2"
-                    onClick={() => Router.push(`/?pagina=${query.pagina - 1}`)}
-                    disabled={query.pagina <= 1}
-                  >
-                    Anterior
-                  </button>
-
-                  {query.pagina && (
-                    <button
-                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
-                      onClick={() => Router.push(`/?pagina=${query.pagina++}`)}
-                      disabled={query.pagina > total}
-                    >
-                      Próxima
-                    </button>
-                  )}
-
-                  {!query.pagina && (
-                    <button
-                      className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-lg"
-                      onClick={() => Router.push('/?pagina=2')}
-                      disabled={query.pagina > total}
-                    >
-                      Próximo
-                    </button>
-                  )}
-                </center>
-              </div>
-            )}
-          </div>
-          <IndexSidebar />
-        </div> */}
       </div>
       <Footer />
     </>
@@ -234,7 +163,7 @@ export async function getServerSideProps({ query }) {
     //     console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
     //   })
     const postsInfo = await api
-      .get(`/postagens/list?page=${pagina ? pagina : 1}&itens=10&sort=createdAt&order=desc`)
+      .get(`/postagens/list?page=${pagina ? pagina : 1}&itens=5&sort=createdAt&order=desc`)
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
