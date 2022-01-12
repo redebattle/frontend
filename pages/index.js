@@ -77,7 +77,6 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
 
   let page = query.pagina || 1
   const totalPage = Math.ceil(postsInfo.total / 5)
-  console.log(totalPage)
 
   const pagginationHandler = async (pagina) => {
     const currentPath = router.pathname;

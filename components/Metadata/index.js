@@ -1,4 +1,4 @@
-export default function MetadataComponent({title, description, imgURL}) {
+export default function MetadataComponent({title, description, imgURL, url}) {
   return (
     <>
       {/* fb & Whatsapp */}
@@ -20,7 +20,8 @@ export default function MetadataComponent({title, description, imgURL}) {
       <meta property="og:image:height" content="300" />
 
       {/* Website to visit when clicked in fb or WhatsApp */}
-      <meta property="og:url" content="https://www.redebattle.com.br" />
+      <meta property="og:url" content={url ? url : 'https://redebattle.com.br'} />
+      <meta property="og:type" content="website" />
     </>
   )
 }

@@ -28,6 +28,7 @@ class MyDocument extends Document {
         <Head>
           {/* HTML */}
           <html lang="pt"></html>
+          <meta charSet="utf-8"></meta>
 
           {/* ICON */}
           <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />

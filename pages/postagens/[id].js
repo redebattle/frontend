@@ -61,7 +61,7 @@ export default function Noticias({ post, manutencao, error }) {
       <Header />
       <title>{post.titulo} - Rede Battle</title>
       {/* ADICIONA METADATA */}
-      <Metadata title={post.titulo} description={'Nova postagem da Rede Battle!'} imgURL={post.header} />
+      <Metadata title={`${post.titulo} - Rede Battle`} description={`Nova postagem da Rede Battle! Leia mais sobre: ${post.titulo}`} imgURL={post.header} url={post.link ? post.link : `https://redebattle.com.br/postagens/${post.slug}`} />
       <div key={post.id} className="flex flex-col items-center justify-center p-8">
         <button onClick={() => router.back()} className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white -mt-3 mb-3">
           Voltar
