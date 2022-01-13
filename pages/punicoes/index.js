@@ -21,8 +21,8 @@ export default function Punicoes({ bans, estatisticas }) {
             <div className="rounded-xl">
               <div className="mb-3 py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg border-b-4 border-black">
                 <div className='flex flex-col items-center justify-center'>
-                  <h1 className='uppercase font-bold text-4xl p-1 text-gray-300'>Punições</h1>
-                  <p className='pb-1 text-gray-300'>REGISTRO GERAL DE PUNIÇÕES</p>
+                  <h1 className='uppercase font-bold lg:text-4xl p-1 text-gray-300 sm:text-xl'>Punições</h1>
+                  <p className='pb-1 text-gray-300 sm:text-sm lg:text-base'>REGISTRO GERAL DE PUNIÇÕES</p>
                 </div>
               </div>
               <div className="py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg border-b-4 border-black">

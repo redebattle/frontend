@@ -21,8 +21,19 @@ return (
   <div className='p-1'>
     <div class="collapse border rounded-box border-base-300 collapse-plus border-b-2 border-dark">
       <input type="checkbox" />
-      <div class="collapse-title lg:text-base sm:text-xs font-medium flex items-center">
-        <FaClock className='mr-2 text-sm' /> {data} <img src={`https://minotar.net/avatar/${nome}/25`} className='ml-5 mr-2 rounded-md'></img>{nome} foi banido por {motivo} (#{id})
+      <div class="collapse-title lg:text-base sm:text-xs font-medium flex lg:items-center sm:items-start lg:flex-row sm:flex-col">
+        <div className="m-2 flex flex-row items-center justify-center">
+          <FaClock className='mr-2 lg:text-sm sm:hidden lg:block' /> {data}
+        </div>
+        <div>
+          <img src={`https://minotar.net/avatar/${nome}/25`} className='lg:block sm:hidden ml-1 mr-2 rounded-md'></img>
+        </div>
+        <div>
+          <p>{nome} foi banido por {motivo}</p>
+        </div>
+        <div className="lg:block m-2 sm:hidden">
+          <p>(#{id})</p>
+        </div>
       </div>
       <div class="collapse-content flex flex-col">
       {parseInt(ativo) === 1 &&
