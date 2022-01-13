@@ -7,7 +7,7 @@ export default function Payments() {
     <div className='p-4 flex flex-col items-center'>
       <FaQuestionCircle className='text-yellow-400 text-3xl mb-2' />
       <h1 className='text-xl text-yellow-400 text-center'>Precisa de ajuda? <br /> Clique aqui.</h1>
-      <p className='mt-3 text-justify'>
+      <p className='mt-3 text-center'>
         Aceitamos várias formas de pagamento, incluindo as principais bandeiras de cartão de crédito, boleto bancário, Pix, MercadoPago e PayPal.
       </p>
     </div>

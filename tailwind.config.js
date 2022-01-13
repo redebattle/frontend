@@ -47,6 +47,8 @@ module.exports = {
         youtube: '#ff0000',
         discord: '#404EED',
         whatsapp: '#25d366',
+        mercadopago: '#00AEEF',
+        mercadopago2: '#243E8C',
         dark: '#121212',
         dark2: '#212121',
         dark3: '#303030',
@@ -56,12 +58,16 @@ module.exports = {
     }
   },
   variants: {
+    outline: ["focus"],
     extend: {}
+  },
+  corePlugins: {
+   outline: false,
   },
   plugins: [
     require('tailwind-scrollbar'),
     require('daisyui'),
-    require('@themesberg/flowbite/plugin')
+    require('@themesberg/flowbite/plugin'),
   ],
   content: [
     "./node_modules/@themesberg/flowbite/**/*.js"

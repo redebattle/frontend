@@ -1,0 +1,49 @@
+A Rede Sky é uma rede de servidores de Minecraft, não relacionada à Mojang (empresa criadora do jogo), em que estão disponíveis modos de jogo alternativos internamente desenvolvidos. A Rede Sky não comercializa o jogo Minecraft e sim pacotes de vantagens para seus servidores próprios.
+
+Para finalizar um processo de compra ou participar de nossos servidores é necessário aceitar os termos e condições abaixo listados. Os termos são direcionados ao usuário final de nossos serviços, caso este seja maior de idade, ou ao seu responsável legal em hipótese contrária.
+
+I. ACESSO
+
+O acesso aos servidores da Rede Sky pode ser feito através da opção Multiplayer no software Minecraft. Basta adicionar à sua lista de servidores o endereço IP: redesky.com e se conectar. No primeiro acesso do cliente, será necessário criar uma conta e registrar uma senha segura. Na Rede Sky, cada conta é definida exclusivamente pelo nickname escolhido pelo jogador em seu primeiro acesso. Desta forma, a alteração do nickname implica diretamente na alteração da conta.
+
+Devido à forma como registramos contas, é impossível alterar seu nickname e manter suas informações. Por este motivo, não é possível transferir produtos entre contas. Caso uma conta permaneça inativa (sem acessos) por um período de 6 (seis) meses e não possua produtos adquiridos em nossa loja, torna-se disponível para que outro jogador a acesse e passe a ser seu detentor.
+
+II. REGRAS
+
+Todos os jogadores devem seguir regras de conduta previamente estabelecidas e disponíveis para visualização através da Página de Regras (skygo.me/regras) estando sujeito o jogador que descumprir as regras ao bloqueio de seu acesso de forma temporária ou permanente.
+
+III. SEGURANÇA
+
+ Rede Sky responsabiliza-se pela segurança sistêmica dos dados de acesso e cadastro de seus clientes através de criptografia. Oferecemos um sistema de recuperação de contas por meio do registro de um e-mail de segurança (este registro pode ser efetuado em nosso site e se torna obrigatório a partir do momento em que o usuário adquire um pacote VIP).
+
+Na impossibilidade de acesso à uma conta através de sua senha e também da recuperação via e-mail, o usuário deve entrar em contato através do e-mail ajuda@redesky.com  para que seja orientado. Contudo, não há outra forma de recuperação se não pelo e-mail registrado. Demais medidas de segurança dependem exclusivamente do usuário. Confira clicando aqui nossa página sobre segurança de sua conta.
+
+Na impossibilidade de recuperação através dos métodos supracitados, não há outra forma de recuperação de acesso devido à necessidade de comprovação de titularidade.
+
+IV. COMPRAS, PRIVILÉGIOS E REEMBOLSOS
+
+Intangibilidade: Ao adquirir quaisquer produtos em nossa loja o cliente concorda em adquirir produtos virtuais, intangíveis e consumíveis em que a devolução ou reembolso só pode ocorrer caso o jogador não receba ou não utilize o produto, respeitando o prazo legal para compras fora do estabelecimento comercial.
+
+Duração: Todos os produtos têm duração efetiva enquanto o servidor em que foi adquirido existir, tendo garantidos 2 meses de duração mínima. Caso o servidor em que você adquiriu um produto de duração “Eterno” se encerre antes deste prazo mínimo, você poderá entrar em contato e pedir a transferência de seu produto para outro servidor ou a conversão deste em outro produto de igual valor.
+
+Reembolso: Devido a intangibilidade de nossos produtos, só serão fornecidos reembolsos de produtos não recebidos em um prazo de até 7 dias úteis após aquisição. Jogadores que requisitarem reembolso junto à plataforma de pagamento ou operadora de cartão sem contato conosco terão seu acesso permanentemente bloqueado ao servidor bem como o de todas as contas associadas ao IP usado na compra.
+
+Suporte: A Rede Sky se compromete em oferecer suporte aos seus usuários e clientes através dos Chats disponíveis no canto inferior direito de nosso site (redesky.com) e loja (loja.redesky.com) bem como através do e-mail ajuda@redesky.com. O prazo mínimo para resposta é de 2 dias úteis.
+
+Benefícios: A Rede Sky se reserva ao direito de fazer mudanças nos benefícios de grupos VIP para atualizações de balanceamento e regulação.
+
+V. POLÍTICA DE PRIVACIDADE
+
+A Rede Sky se compromete com a segurança e privacidade de nossos usuários através da proteção de seus dados pessoais durante todo o processo de registro, utilização de sua conta e compras. Dados cadastrais dos usuários jamais serão vendidos, divulgados ou trocados sendo compartilhados apenas com as plataformas de pagamento em caso de necessidade.
+
+Informações públicas como: nickname, grupo no servidor, rankings e estatísticas gerais da comunidade poderão ser divulgadas em campanhas publicitárias.
+
+VI. ATUALIZAÇÕES E ALTERAÇÕES
+
+A Rede Sky se reserva ao direito de realizar alterações em seus produtos e serviços bem como nos presentes termos sem aviso prévio, comprometendo-se em notificar os clientes a respeito de alterações.
+
+VII. RESPEITO AOS TERMOS DE CONTRATO
+
+A utilização de nossos servidores, site e fórum da comunidade só é autorizada ao usuário, devidamente cadastrado, caso este aceite nossos termos de serviço, estando assim sujeito à sua aplicação integral. O desrespeito a qualquer termo ou regra estabelecida neste contrato pode acarretar no bloqueio de acesso ao usuário bem como a suspensão de quaisquer produtos adquiridos ativos. Os termos podem ser alterados a qualquer momento pela Rede Sky desde que seja feita a notificação desta mudança ao seus jogadores.
+
+Última Modificação: 24 de Junho de 2020

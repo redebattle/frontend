@@ -7,7 +7,7 @@ import { parseCookies } from 'nookies'
 import Layout from '../../../components/Layout'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
-import ContaSidebar from '../../../components/ContaSidebar'
+import ContaSidebar from '../../../components/Conta/ContaSidebar'
 
 export default function ContaPerfilIndex() {
   return (

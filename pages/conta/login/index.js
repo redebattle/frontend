@@ -30,10 +30,10 @@ export default function ContaLogin() {
 
       <title>Logar | Rede Battle</title>
       <center>
-        <div className="w-full max-w-xs pt-10 pl-3">
+        <div className="w-full max-w-xs pt-10">
           <form
             onSubmit={logar}
-            className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded-lg px-8 pt-6 pb-8 mb-4"
+            className="bg-dark2 border-b-4 border-black rounded-lg px-8 pt-6 pb-8 mb-4"
           >
             <div className="pb-2">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
@@ -45,7 +45,7 @@ export default function ContaLogin() {
                 Nick usado no servidor
               </label>
               <input
-                className="shadow bg-dark appearance-none border rounded w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
                 id="nick"
                 type="text"
                 placeholder="Nick"
@@ -58,7 +58,7 @@ export default function ContaLogin() {
                 Senha usada no servidor
               </label>
               <input
-                className="shadow bg-dark appearance-none border rounded w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
                 id="senha"
                 type="password"
                 placeholder="******"
@@ -68,7 +68,7 @@ export default function ContaLogin() {
             <div className="flex items-center justify-between">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <button
-                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 hover:border-purple-700 text-white font-bold py-2 px-4 rounded-lg focus:outline-none focus:shadow-outline"
                   type="submit"
                 >
                   Entrar

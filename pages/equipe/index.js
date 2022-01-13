@@ -14,9 +14,10 @@ import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import api from '../../service/api'
+import EquipeFacaParteComponent from '../../components/Equipe/FacaParte'
 const Equipe = ({ nome, twitter, discord, cor }) => {
   return (
-    <div className="p-4 mx-6 bg-dark3 border-b-4 border-black rounded-lg">
+    <div className="flex flex-col items-center justify-center p-4 mx-4 bg-dark3 border-b-4 border-black rounded-lg w-36 lg:h-60 sm:h-auto mb-3">
       <div>
         <img
           src={`https://minotar.net/bust/${nome}/120.png`}
@@ -80,7 +81,7 @@ const Cargo = ({ nome, totalCargo, equipe, cor }) => {
           ({totalCargo})
         </h1>
       </div>
-      <div className="p-4 flex">
+      <div className="flex p-6 lg:flex-row sm:flex-col lg:justify-start sm:justify-center lg:items-start sm:items-center">
         {equipe.map(staff => {
           if (staff?.cargos?.nome === nome) {
             return (
@@ -129,70 +130,36 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
   // }
   return (
     <>
-      <Header />
       <title>Equipe | Rede Battle</title>
+      <Header />
+      <div className="flex flex-col w-full mt-8 px-4">
+        <EquipeFacaParteComponent />
+        <div className="lg:bg-minecraft-dark sm:bg-dark2 border-b-4 border-black border-opacity-60 mt-8 px-4 p-10 rounded-lg mx-2">
+          {cargos.length === 0 && (
+            <h1 className="text-gray-300 text-xl text-center">
+              Não há equipe cadastrada.
+            </h1>
+          )}
+          {cargos.map(cargo => {
+            const [groupCount, setGroupCount] = useState('0')
+            api
+              .get(`/equipe/count/${cargo.id}`)
+              .then(res => res.data.count)
+              .then(res => setGroupCount(res))
 
-      <div className="container">
-        <div className="content">
-          <div className="flex flex-row w-full">
-            <div className="flex flex-col w-full">
-              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
-                <h1 className='text-gray-300 font-bold text-xl pb-4'>Faça parte da nossa equipe!</h1>
-                <p className='text-gray-300 pb-3'>
-                  A equipe de moderação da Rede Battle é composta por <u>ajudantes</u>, <u>moderadores</u> e <u>administradores</u>.
-                  São voluntários responsáveis por manter a segurança da nossa comunidade,
-                  moderando todas as plataformas, como servidor, fórum, e Discord,
-                  e aplicando punições quando identificam que uma regra foi quebrada.
-                  Eles também colaboram com testes de atualizações e novos projetos.</p>
-                  <button className="mt-3 bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-700 rounded-lg text-white font-bold py-2 px-4 focus:outline-none focus:shadow-outline">
-                    Saiba como aplicar para a equipe
-                  </button>
-              </div>
-              <div className="bg-minecraft-dark border-b-4 border-black border-opacity-60 mt-5 ml-10 p-10 rounded-lg">
-                {cargos.length === 0 && (
-                  <h1 className="text-gray-300 text-xl text-center">
-                    Não há equipe cadastrada.
-                  </h1>
-                )}
-                {cargos.map(cargo => {
-                  const [groupCount, setGroupCount] = useState('0')
-                  api
-                    .get(`/equipe/count/${cargo.id}`)
-                    .then(res => res.data.count)
-                    .then(res => setGroupCount(res))
-
-                  return (
-                    <Cargo
-                      key={cargo.id}
-                      id={cargo.id}
-                      nome={cargo.nome}
-                      cor={cargo.cor}
-                      equipe={equipe}
-                      totalCargo={groupCount}
-                    />
-                  )
-                })}
-              </div>
-            </div>
-            {/* <div className="flex flex-col ">
-              <div className="bg-dark2 border-b-4 border-black border-opacity-60 mt-5 ml-8">
-                <div className="flex items-center justify-center p-4">
-                  <center>
-                    <h1 className="text-gray-300 text-3xl uppercase">
-                      Entre para
-                      <div className="font-semibold">nossa equipe!</div>
-                    </h1>
-                    <button className="mt-3 bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-                      Fazer teste
-                    </button>
-                  </center>
-                </div>
-              </div>
-            </div> */}
-          </div>
+            return (
+              <Cargo
+                key={cargo.id}
+                id={cargo.id}
+                nome={cargo.nome}
+                cor={cargo.cor}
+                equipe={equipe}
+                totalCargo={groupCount}
+              />
+            )
+          })}
         </div>
       </div>
-
       <Footer />
     </>
   )

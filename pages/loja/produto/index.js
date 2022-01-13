@@ -5,6 +5,11 @@ import ErrorAPI from '../../../components/ErrorAPI'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import { FaQuestionCircle, FaShoppingCart, FaStar } from 'react-icons/fa'
+import Payments from '../../../components/Loja/Payments'
+import ServidorCategoria from '../servidor/categoria'
+import LojaServidorComponent from '../../../components/Loja/Servidor'
+import LojaMetaComponent from '../../../components/Loja/Meta'
+import LojaCategoriaComponent from '../../../components/Loja/Categoria'
 
 export default function LojaProdutos({error, manutencao }) {
 
@@ -27,51 +32,17 @@ export default function LojaProdutos({error, manutencao }) {
       <Header />
       <div className="INDEX">
         <title>Loja | Rede Battle</title>
-        <div className="flex mt-8 px-6">
+        <div className="flex lg:flex-row sm:flex-col mt-8 px-6">
           <div className='flex flex-col h-auto'>
-            <div className='w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
-                <h1 className='p-3 text-xl'>Meta mensal</h1>
-                <h1 className='text-xl'>10%</h1>
-                <div class="-mt-4 p-6 space-y-2 artboard phone">
-                  <progress class="progress progress-primary bg-gray-300" value="10" max="100"></progress>
-                </div>
-              </div>
-            <div className='mt-2 w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center pb-2'>
-              <h1 className='p-3 text-xl'>Selecione um servidor</h1>
-              <div className='flex flex-col p-3'>
-                <button className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white">
-                  RankUP
-                </button>
-                <button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white">
-                  RankUP
-                </button>
-              </div>
-            </div>
-            <div className='mt-2 w-80 bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center pb-2'>
-              <h1 className='p-3 text-xl'>Selecione uma categoria</h1>
-              <div className='flex flex-col p-3'>
-                <button className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white">
-                  RankUP
-                </button>
-                <button className="mt-4 bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white">
-                  RankUP
-                </button>
-              </div>
-            </div>
-            <div className='bg-top-donator-image bg-opacity-25 rounded-lg border-b-4 border-black flex flex-col items-center justify-center mt-2 p-4'>
-              <FaStar className='text-yellow-400 text-4xl' />
-              <h1 className='p-1 text-xl uppercase font-bold'>Jogador em destaque</h1>
-              <p className='text-sm -mt-1'>Este é o jogador que mais contribuiu neste mês.</p>
-              <p className='text-sm pt-2'>TheMito</p>
-              <img className='pb-4' src='https://mc-heads.net/body/TheMito/100' />
-            </div>
+            <LojaCategoriaComponent />
+            <LojaServidorComponent />
           </div>
           <div className='flex flex-col mr-6 w-full'>
-            <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-4 ml-5'>
+            <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
               <h1 className='flex flex-row items-center text-xl font-bold'>SERVIDOR: RANKUP</h1>
             </div>
-            <div className='mt-4 w-full bg-recent-donations-image backdrop-blur-md border-b-4 border-black rounded-lg p-4 ml-5'>
-              <div className='p-2'>
+            <div className='mt-4 w-full bg-recent-donations-image backdrop-blur-md border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
+              <div className='p-2 flex flex-col items-center justify-center'>
                 <h1 className='flex flex-row items-center text-xl font-bold'>VIPS</h1>
                 <p>Uma descrição para a categoria.</p>
               </div>
@@ -107,16 +78,8 @@ export default function LojaProdutos({error, manutencao }) {
           </div>
         </div>
       </div>
-      <div className='bg-dark2 border-b-4 border-black m-6 ml-4 p-4 rounded-lg'>
-        <div className='p-4'>
-          <h1 className='text-xl text-yellow-500 flex flex-row items-center'><FaQuestionCircle className='mr-2' />Precisa de ajuda? Clique aqui.</h1>
-          <p className='mt-3'>
-            Aceitamos várias formas de pagamento, incluindo as principais bandeiras de cartão de crédito, boleto bancário, Pix, MercadoPago e PayPal.
-          </p>
-        </div>
-        <div className='flex flex-row p-4 items-center justify-center'>
-          <img src="/img/payment_methods.png" alt="" />
-        </div>
+      <div className='mx-6 p-4 sm:mx-1 sm:p-2'>
+        <Payments />
       </div>
       <Footer />
     </>

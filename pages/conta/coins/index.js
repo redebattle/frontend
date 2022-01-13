@@ -9,23 +9,27 @@ import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import ContaSidebar from '../../../components/Conta/ContaSidebar'
 import { FaShoppingCart } from 'react-icons/fa'
+import ContaCoinsSidebar from '../../../components/Conta/CoinsSidebar'
 
-export default function ContaCompasIndex() {
+export default function ContaCoins() {
   return (
     <>
       <Header />
-      <title>Minhas Compras | Rede Battle</title>
+      <title>Battle Coins | Rede Battle</title>
       <div className="flex lg:flex-row sm:flex-col">
-        <ContaSidebar />
+        <ContaCoinsSidebar />
         <div className="flex flex-col w-full">
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-3 p-10">
             <div className='flex items-center justify-center flex-col'>
               <FaShoppingCart className='text-3xl' />
-              <h1 className="text-gray-300 text-3xl font-medium">Meus Pedidos</h1>
+              <h1 className="text-gray-300 lg:text-3xl sm:text-xl sm:text-center font-medium">Troque seus coins por produtos</h1>
             </div>
-            <div className='flex items-center justify-center'>
-              <h1 className="text-gray-300 text-sm mt-3">
-                Você ainda não teve nenhuma compra aprovada.
+            <div className='flex flex-col items-center justify-center'>
+              <h1 className="text-gray-300 text-2xl mt-3">
+                Opsssss...
+              </h1>
+              <h1 className="text-gray-300 text-lg mt-2">
+                Nenhum produto cadastrado.
               </h1>
             </div>
           </div>
