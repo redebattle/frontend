@@ -1,7 +1,7 @@
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useToasts } from 'react-toast-notifications'
-import { FaAd, FaBan, FaBullhorn, FaChartLine, FaClock, FaSearch } from 'react-icons/fa'
+import { FaBan, FaBullhorn, FaChartLine, FaSearch } from 'react-icons/fa'
 import Link from 'next/link'
 
 export default function PunicoesSidebar({estatisticas}) {
@@ -16,24 +16,23 @@ export default function PunicoesSidebar({estatisticas}) {
   async function searchUser({ username }) {
     router.push(`/punicoes/user?name=${username}`);
   }
-
   return (
     <div className="Sidebar">
-      <div className="max-w-md">
-        <div className="COMECA AQUI p-3">
+      <div className="lg:max-w-sm sm:w-full">
+        <div className="COMECA AQUI">
           <form
             onSubmit={handleSubmit(searchUser)}
           >
-            <div className="flex items-center justify-center border-b-4 border-black rounded-lg">
+            <div className="flex items-center justify-center">
               <div className="flex">
                   <input
                     {...register('username', { required: true})}
                     type="text"
                     id="username"
-                    className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-none rounded-l-lg"
+                    className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-b-4 border-black rounded-l-lg"
                     placeholder="Buscar usuário..."
                   />
-                  <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 rounded-r-lg border-none">
+                  <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 border-b-4 border-black rounded-r-lg">
                     <FaSearch className="text-gray-200" />
                   </button>
               </div>
@@ -42,7 +41,7 @@ export default function PunicoesSidebar({estatisticas}) {
         </div>
         <div className="COMECA AQUI p-3">
           <div className="justify-center">
-            <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+            <div className="bg-dark2 border-b-4 border-black rounded-lg">
               <div className='flex items-center justify-center pt-5 text-blue-500 text-7xl'>
                 <FaChartLine />
               </div>
@@ -63,7 +62,7 @@ export default function PunicoesSidebar({estatisticas}) {
         </div>
         <div className="COMECA AQUI p-3">
           <div className="justify-center">
-            <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+            <div className="bg-dark2 border-b-4 border-black rounded-lg">
               <div className='flex items-center justify-center pt-5 text-red-500 text-7xl'>
                 <FaBan />
               </div>
@@ -82,7 +81,7 @@ export default function PunicoesSidebar({estatisticas}) {
         </div>
         <div className="COMECA AQUI p-3">
           <div className="justify-center">
-            <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
+            <div className="bg-dark2 border-b-4 border-black rounded-lg">
               <div className='flex items-center justify-center pt-5 text-orange-500 text-7xl'>
                 <FaBullhorn />
               </div>

@@ -21,7 +21,7 @@ export default function IndexSidebar() {
   }
   return (
     <div className="Sidebar">
-      <div className="">
+      <div className="max-w-sm">
         {/* INFO IP */}
         <div className="flex justify-center">
           <div className="bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg w-full">

@@ -31,7 +31,7 @@ export default function Punicoes({ bans, name }) {
                 {bans.length === 0 &&
                 <div className='flex flex-col items-center justify-center'>
                   <h1 className='text-5xl font-bold p-2'>YEAH!</h1>
-                  <h1 className='text-xl pb-2'>"{name}" é um jogador exemplar e nunca foi punido!</h1>
+                  <h1 className='text-xl pb-2 sm:text-center'>"{name}" é um jogador exemplar e nunca foi punido!</h1>
                   <img className='p-2' src='/img/YEAH-punishments.png' />
                 </div>}
                 {bans.map(ban => {
