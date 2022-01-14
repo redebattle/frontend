@@ -18,7 +18,7 @@ export default function PunicoesSidebar({estatisticas}) {
   }
   return (
     <div className="Sidebar">
-      <div className="lg:max-w-sm sm:w-full">
+      <div className="lg:max-w-full xl:max-w-sm sm:w-full">
         <div className="COMECA AQUI">
           <form
             onSubmit={handleSubmit(searchUser)}
@@ -29,7 +29,7 @@ export default function PunicoesSidebar({estatisticas}) {
                     {...register('username', { required: true})}
                     type="text"
                     id="username"
-                    className="px-4 py-2 w-60 bg-dark2 text-gray-200 focus:outline-none border-b-4 border-black rounded-l-lg"
+                    className="px-4 py-2 bg-dark2 text-gray-200 focus:outline-none border-b-4 border-black rounded-l-lg"
                     placeholder="Buscar usuário..."
                   />
                   <button className="flex items-center justify-center px-4 border-l bg-purple-500 focus:outline-none hover:bg-purple-700 border-b-4 border-black rounded-r-lg">

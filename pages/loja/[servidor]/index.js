@@ -4,13 +4,13 @@ import Manutencao from '../../../components/Manutencao'
 import ErrorAPI from '../../../components/ErrorAPI'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
-import { FaQuestionCircle, FaShoppingCart, FaStar } from 'react-icons/fa'
 import LojaServidorComponent from '../../../components/Loja/Servidor'
 import LojaMetaComponent from '../../../components/Loja/Meta'
 import LojaJogadorDestaqueComponent from '../../../components/Loja/Destaque'
 import Payments from '../../../components/Loja/Payments'
+import { useRouter } from 'next/router'
 
-export default function ServidorCategoria({error, manutencao }) {
+export default function ServidorCategoria({error, manutencao, servidores, getServidor }) {
 
   if (error) {
     return (
@@ -33,13 +33,13 @@ export default function ServidorCategoria({error, manutencao }) {
         <title>Loja | Rede Battle</title>
         <div className="flex lg:flex-row sm:flex-col mt-8 px-6">
           <div className='flex flex-col h-auto'>
-            <LojaServidorComponent />
+            <LojaServidorComponent servidores={servidores} />
             <LojaMetaComponent />
             <LojaJogadorDestaqueComponent />
           </div>
           <div className='flex flex-col mr-6 w-full'>
             <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
-              <h1 className='flex flex-row items-center text-xl font-bold'>SERVIDOR: RANKUP</h1>
+              <h1 className='flex flex-row items-center text-xl font-bold uppercase'>SERVIDOR: {getServidor.nome}</h1>
             </div>
             <div className='mt-4 w-full bg-recent-donations-image backdrop-blur-md border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
               <div className='p-2 flex flex-col items-center justify-center'>
@@ -81,19 +81,49 @@ export default function ServidorCategoria({error, manutencao }) {
   )
 }
 
-export async function getServerSideProps({ query }) {
+export async function getServerSideProps(context) {
   try {
+    const { servidor } = context.query
+
     const manutencao = await api
-    .get('/configuracoes/manutencao/check')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-      return error === true
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        return error === true
     })
+
+    const servidores = await api
+      .get('/servidores/all')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getServidores', e)
+        return error === true
+    })
+
+    const getServidor = await api
+      .get(`/servidores?nome=${servidor}`)
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getServidores', e)
+        return error === true
+    })
+
+    if (!getServidor) {
+      return {
+        redirect: {
+          destination: '/loja/',
+          permanent: false
+        }
+      }
+    }
+
   return {
     props: {
       error: false,
-      manutencao
+      manutencao,
+      getServidor,
+      servidores
     }
   }
   } catch (e) {

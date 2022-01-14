@@ -16,7 +16,7 @@ export default function Punicoes({ bans, estatisticas }) {
       />
       <Header />
       <div className="INDEX">
-        <div className="flex lg:flex-row sm:flex-col mt-8 px-12 w-full justify-center w-full">
+        <div className="flex lg:flex-col xl:flex-row sm:flex-col mt-8 w-full justify-center w-full">
           <div className="pb-4 lg:mx-14">
             <div className="rounded-xl">
               <div className="mb-3 py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg border-b-4 border-black">

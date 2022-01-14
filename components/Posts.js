@@ -69,7 +69,7 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
         {/* CATEGORIA */}
         <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
           <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-            <div class="badge text-sm sm:text-xs">{categoria}</div>
+            <div className="badge text-sm sm:text-xs">{categoria}</div>
           </h1>
           <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
             {titulo}

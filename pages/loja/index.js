@@ -1,4 +1,5 @@
 import api from '../../service/api'
+import apiWay from '../../service/apiWay'
 
 import Manutencao from '../../components/Manutencao'
 import ErrorAPI from '../../components/ErrorAPI'
@@ -13,7 +14,7 @@ import LojaJogadorDestaque from '../../components/Loja/Destaque'
 import LojaJogadorDestaqueComponent from '../../components/Loja/Destaque'
 import LojaServidorComponent from '../../components/Loja/Servidor'
 
-export default function Loja({error, manutencao }) {
+export default function Loja({error, manutencao, servidores }) {
 
   if (error) {
     return (
@@ -38,7 +39,7 @@ export default function Loja({error, manutencao }) {
         <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
         <div className="flex lg:flex-row sm:flex-col mt-8 px-6">
           <div className='flex flex-col h-auto'>
-            <LojaServidorComponent />
+            <LojaServidorComponent servidores={servidores}/>
             <LojaMetaComponent />
             <LojaJogadorDestaqueComponent />
           </div>
@@ -122,10 +123,20 @@ export async function getServerSideProps({ query }) {
       console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
       return error === true
     })
+
+    const servidores = await api
+    .get('/servidores/all')
+    .then(res => res.data)
+    .catch(e => {
+      console.log('Ocorreu um erro ao acessar a API de getServidores', e)
+      return error === true
+    })
+
   return {
     props: {
       error: false,
-      manutencao
+      manutencao,
+      servidores
     }
   }
   } catch (e) {
