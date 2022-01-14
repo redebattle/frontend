@@ -25,6 +25,7 @@ export default function Admin() {
     })
 
     const token = await reRef.current.executeAsync()
+    console.log(token)
     await signIn(data)
   }
 
