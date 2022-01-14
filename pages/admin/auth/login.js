@@ -24,9 +24,9 @@ export default function Admin() {
       autoDismiss: true
     })
 
-    const token = await reRef.current.executeAsync()
-    console.log(token)
-    await signIn(data)
+    const recaptchaToken = await reRef.current.executeAsync()
+    reRef.current.reset()
+    await signIn(data, recaptchaToken)
   }
 
   return (

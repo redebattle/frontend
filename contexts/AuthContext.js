@@ -18,7 +18,7 @@ export function AuthProvider({ children }) {
   const isAuthenticated = !!user
 
   useEffect(async () => {
-    const { 'cubeadmin.token': token } = parseCookies()
+    const { 'battleadmin.token': token } = parseCookies()
 
     if (token) {
       try {
@@ -29,7 +29,7 @@ export function AuthProvider({ children }) {
         const errorToString = JSON.stringify(e.toJSON().message)
         if (errorToString.indexOf('status code 401') >= 0) {
           console.log('Você não está autorizado a acessar o painel.')
-          await destroyCookie(null, 'cubeadmin.token')
+          await destroyCookie(null, 'battleadmin.token')
           Router.push('/admin/auth/login')
         } else {
           console.log('Ocorreu um erro ao acessar o painel.')
@@ -38,11 +38,12 @@ export function AuthProvider({ children }) {
     }
   }, [])
 
-  async function signIn({ email, senha }) {
+  async function signIn({ email, senha }, recaptchaToken) {
     try {
       const response = await api.post('/auth/login', {
         email,
-        senha
+        senha,
+        recaptchaToken
       })
 
       const resUser = response.data.user
@@ -53,7 +54,7 @@ export function AuthProvider({ children }) {
       })
       const resRoles = getRoles.data.permissoes
 
-      setCookie(undefined, 'cubeadmin.token', resToken, {
+      setCookie(undefined, 'battleadmin.token', resToken, {
         maxAge: 60 * 60 * 24, // 24 hours
         path: '/'
       })
@@ -90,7 +91,6 @@ export function AuthProvider({ children }) {
   }
 
   return (
-    // eslint-disable-next-line react/react-in-jsx-scope
     <AuthContext.Provider value={{ user, isAuthenticated, signIn, roles }}>
       {children}
     </AuthContext.Provider>

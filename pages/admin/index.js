@@ -118,7 +118,7 @@ export default function Dashboard({ getDashboard, error, possuiPermissao }) {
 }
 
 export const getServerSideProps = async ctx => {
-  const { 'cubeadmin.token': token } = await parseCookies(ctx)
+  const { 'battleadmin.token': token } = await parseCookies(ctx)
   let possuiPermissao = false
   let error = false
 
