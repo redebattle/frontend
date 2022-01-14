@@ -1,13 +1,15 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
 import { useForm } from 'react-hook-form'
-import { useContext } from 'react'
+import { useContext, useRef } from 'react'
 import { parseCookies } from 'nookies'
 import { useToasts } from 'react-toast-notifications'
 import { AuthContext } from '../../../contexts/AuthContext'
 import { FaCode, FaLock, FaHeart, FaCoffee } from 'react-icons/fa'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 export default function Admin() {
+  const reRef = useRef()
   const {
     register,
     handleSubmit,
@@ -22,6 +24,7 @@ export default function Admin() {
       autoDismiss: true
     })
 
+    const token = await reRef.current.executeAsync()
     await signIn(data)
   }
 
@@ -42,6 +45,11 @@ export default function Admin() {
           className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded px-8 pt-6 pb-8"
           onSubmit={handleSubmit(handleSignIn)}
         >
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            size='invisible'
+            ref={reRef}
+          />
           <div className="mb-4">
             <label
               className="block text-white text-sm font-bold mb-2"
