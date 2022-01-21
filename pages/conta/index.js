@@ -16,7 +16,7 @@ export default function ContaIndex() {
     <>
       <Header />
       <title>Minha Conta | Rede Battle</title>
-      <div className="flex lg:flex-row sm:flex-col">
+      <div className="flex lg:flex-col xl:flex-row sm:flex-col">
         <ContaSidebar />
         <div className="flex flex-col">
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-2 max-w-4xl p-10">

@@ -81,7 +81,7 @@ const Cargo = ({ nome, totalCargo, equipe, cor }) => {
           ({totalCargo})
         </h1>
       </div>
-      <div className="flex p-6 lg:flex-row sm:flex-col lg:justify-start sm:justify-center lg:items-start sm:items-center">
+      <div className="flex flex-wrap p-6">
         {equipe.map(staff => {
           if (staff?.cargos?.nome === nome) {
             return (

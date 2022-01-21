@@ -81,7 +81,6 @@ export default function Changelog({ changelogs, error, manutencao }) {
                         <div className="p-4 flex">{dataChangelog}</div>
                         <div className="p-4 flex">{changelog.categoria}</div>
                       </div>
-                      )
                     </div>
                   </div>
                 </div>

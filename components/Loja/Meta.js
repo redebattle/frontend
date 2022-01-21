@@ -2,7 +2,7 @@ import { FaChartLine } from "react-icons/fa";
 
 export default function LojaMetaComponent() {
   return (
-    <div className='bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center mt-2'>
+    <div className='bg-header-image border-b-4 border-black rounded-lg flex flex-col items-center justify-center mt-2'>
       <h1 className='p-3 text-xl flex flex-row items-center'>Meta mensal <FaChartLine className='ml-2' /></h1>
       <div className='flex flex-row justify-between items-center mb-3 -mt-2'>
         <h1 className='text-xl'>R$ 1,00 / R$ 10,00</h1>

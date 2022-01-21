@@ -26,24 +26,33 @@ const Pagination = styled(ReactPaginate).attrs({
     padding: 0.1rem 1rem;
     border: gray 1px solid;
     cursor: pointer;
+    background-color: #303030;
+    color: white;
+    border-color: transparent;
+    padding: 12px;
   }
   li.previous a,
   li.next a,
   li.break a {
-    border-color: white;
+    border-color: transparent;
+    background-color: #8b5cf6;
+    padding: 12px;
   }
   li.active a {
     background-color: #8b5cf6;
     border-color: transparent;
     color: white;
     min-width: 32px;
+    padding: 12px;
   }
   li.disabled a {
-    color: grey;
+    color: white;
+    background-color: #303030;
+    padding: 12px;
   }
   li.disable,
   li.disabled a {
-    cursor: default;
+    cursor: no-drop;
   }
   @media only screen and (max-width: 500px) {
     flex-direction: column;
@@ -137,8 +146,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                   pageCount={totalPage}
                   onPageChange={pagginationHandler}
                   breakLabel="..."
-                  previousLabel="«"
-                  nextLabel="»"
+                  previousLabel="« Página anterior"
+                  nextLabel="Próxima página »"
                 />
             </div>}
           </div>

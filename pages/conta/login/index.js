@@ -5,17 +5,21 @@ import Link from 'next/link'
 import { parseCookies } from 'nookies'
 
 import Layout from '../../../components/Layout'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
+import ReCAPTCHA from 'react-google-recaptcha'
 
 export default function ContaLogin() {
+  const reRef = useRef()
   const [nick, setNick] = useState('Steve')
 
-  const logar = event => {
+  const logar = async event => {
     event.preventDefault()
+    const recaptchaToken = await reRef.current.executeAsync()
+    reRef.current.reset()
     // const email = event.target.email.value
-    alert('Funciona!')
+    alert('Funciona! Token: ' + recaptchaToken)
   }
 
   // function handleChange(value) {
@@ -35,6 +39,13 @@ export default function ContaLogin() {
             onSubmit={logar}
             className="bg-dark2 border-b-4 border-black rounded-lg px-8 pt-6 pb-8 mb-4"
           >
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            size='invisible'
+            ref={reRef}
+
+            theme='dark'
+          />
             <div className="pb-2">
               <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
                 <img src={`https://cravatar.eu/helmavatar/${nick}/96`} className='rounded-lg' />
@@ -45,7 +56,7 @@ export default function ContaLogin() {
                 Nick usado no servidor
               </label>
               <input
-                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:border-black focus:ring-0 focus:shadow-outline "
                 id="nick"
                 type="text"
                 placeholder="Nick"
@@ -58,7 +69,7 @@ export default function ContaLogin() {
                 Senha usada no servidor
               </label>
               <input
-                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:shadow-outline"
+                className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:border-black focus:ring-0 focus:shadow-outline"
                 id="senha"
                 type="password"
                 placeholder="******"

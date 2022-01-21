@@ -2,6 +2,7 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import UserAvatar from 'react-user-avatar'
 import { FaArrowLeft, FaEye } from 'react-icons/fa'
+import { FcLike } from 'react-icons/fc'
 import { useRouter } from 'next/router'
 
 import api from '../../service/api'
@@ -10,6 +11,7 @@ import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import Metadata from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
+import { BsPatchCheckFill } from 'react-icons/bs'
 
 
 export default function Noticias({ post, manutencao, error }) {
@@ -54,6 +56,34 @@ export default function Noticias({ post, manutencao, error }) {
     )
   }
 
+  function getMedails(medails) {
+    return (
+      <div className="flex flex-wrap items-center justify-center bg-dark3 rounded-lg p-2 m-1">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Medalha">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093121757904927/7726_cs_master.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093123965157376/2850_DiscordStaff.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://media.discordapp.net/attachments/721741385870344232/794259132487827456/coronavirus.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/818901476721819648/vote.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093120416776192/5129_cs_platinum.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/828416274584961034/easter-egg_1.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/791447804807086090/oie_1Z1WwBrgElcu-min.png" alt="" />
+        </div>
+      </div>
+    );
+  }
+
   return (
     <>
       <Header />
@@ -83,14 +113,22 @@ export default function Noticias({ post, manutencao, error }) {
               </motion.button>
               <div className="flex flex-col w-full">
                 <div className='p-1 flex flex-col items-center justify-center'>
-                  <p className="lg:text-lg sm:text-sm text-gray-300 font-medium">
+                  <p className="lg:text-sm sm:text-sm text-gray-300 font-medium">
                     Postado por:
                   </p>
-                  <p className="lg:text-lg sm:text-sm text-gray-300 font-medium">
-                    {post.autor.nome}
+                  <p className="lg:text-2xl sm:text-sm text-gray-300 font-bold flex items-center justify-center">
+                    {post.autor.nome} <BsPatchCheckFill className='ml-1 lg:text-lg sm:text-xs text-facebook' />
                   </p>
                 </div>
-                <div className='flex flex-col justify-center items-center mb-2'>
+                <div className='flex flex-wrap lg:flex-row sm:flex-col items-center justify-center my-2'>
+                  <span class="badge badge-outline text-yellow-400 font-bold lg:mr-1">VIP CUBE</span>
+                  <span class="badge badge-outline text-cyan-400 font-bold lg:mr-1">VIP HYPE</span>
+                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
+                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
+                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
+                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
+                </div>
+                <div className='flex flex-col justify-center items-center my-2'>
                   <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs">
                     {dataPost}
                   </p>
@@ -101,6 +139,8 @@ export default function Noticias({ post, manutencao, error }) {
                 <div>
                   <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'>{post.acessos} <FaEye className='ml-2' /></p>
                 </div>
+                <h1 className='font-bold mt-2 text-center'>Medalhas</h1>
+                 {getMedails()}
               </div>
             </div>
             <div className='flex items-center justify-center'>
@@ -111,19 +151,19 @@ export default function Noticias({ post, manutencao, error }) {
           </div>
         </div>
         {/* DIV POST */}
-        <div key={post.id} className="flex flex-col items-center justify-center lg:my-4 sm:my-2 mr-6 w-full sm:p-4">
+        <div key={post.id} className="flex flex-col items-center lg:my-4 sm:my-2 mr-6 w-full sm:p-4">
           {/* IMAGE */}
           <div className="HeaderIMG w-full">
             <motion.img src={post.header} alt="" className="w-full max-h-60 rounded-t-lg" />
-          </div>
           {/* CATEGORIA */}
-          <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
-            <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              <div class="badge text-sm sm:text-xs">{post.categoria.descricao}</div>
-            </h1>
-            <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
-              {post.titulo}
-            </h1>
+            <div className="p-5 w-full -mt-28 drop-shadow-lg">
+              <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
+                <div class="badge text-sm sm:text-xs ">{post.categoria.descricao}</div>
+              </h1>
+              <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
+                {post.titulo}
+              </h1>
+            </div>
           </div>
           {/* POST */}
           <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-3 w-full">
@@ -131,9 +171,13 @@ export default function Noticias({ post, manutencao, error }) {
               className="px-3 py-5 border-current sm:text-sm text-gray-300"
               dangerouslySetInnerHTML={{ __html: post.conteudo }}
             />
+            <div className='flex justify-end mr-3'>
+              <h1 className='flex items-center justify-center'>10 <FcLike className='ml-2 text-2xl hover:text-3xl cursor-pointer' /></h1>
+            </div>
           </div>
         </div>
       </div>
+
       <Footer />
     </>
   )

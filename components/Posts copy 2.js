@@ -30,51 +30,51 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
   return (
     <>
       <div key={id} className="flex flex-col items-center w-full px-4 lg:px-6 sm:px-0 mb-4">
-        <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
-          <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
-            <motion.button
-              whileHover={{ scale: 1.1 }}
-              whileTap={{ scale: 0.9 }}
-            >
-              {avatarId && <UserAvatar
-                size="60"
-                name={autor}
-                // className="flex items-center justify-center text-gray-300 p-2 text-xl"
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14 text-gray-300 text-xl"
-              />
-              ||
-              <img
-                className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-12 sm:mb-2 lg:h-14"
-                src={`https://cravatar.eu/helmavatar/${autor}/96`}
-                alt={autor}
-              />}
-            </motion.button>
+        {/* IMAGE */}
+        <div className="HeaderIMG w-full">
+          <motion.img src={imgSrc} alt="" className="w-full max-h-60 rounded-t-lg" />
+          <div className="p-1 w-full bg-white border-gray-200 -mt-28">
+            <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
+              <motion.button
+                whileHover={{ scale: 1.1 }}
+                whileTap={{ scale: 0.9 }}
+              >
+                {avatarId && <UserAvatar
+                  size="60"
+                  name={autor}
+                  // className="flex items-center justify-center text-gray-300 p-2 text-xl"
+                  className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-14 text-gray-300 text-xl"
+                />
+                ||
+                <img
+                  className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-12 sm:mb-2 lg:h-14"
+                  src={`https://cravatar.eu/helmavatar/${autor}/96`}
+                  alt={autor}
+                />}
+              </motion.button>
 
-            <div className="text-center space-y-2 sm:text-left">
-              <div className="space-y-0.5">
-                <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center">
-                  Postado por {autor} <BsPatchCheckFill className='ml-1 lg:text-base sm:text-xs text-facebook' />
-                </p>
-                <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
-                  {dataPost} às {hourPost}
-                </p>
-                <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{acessos} <FaEye className='ml-2' /></p>
+              <div className="text-center space-y-2 sm:text-left">
+                <div className="space-y-0.5">
+                  <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center">
+                    Postado por {autor} <BsPatchCheckFill className='ml-1 lg:text-base sm:text-xs text-facebook' />
+                  </p>
+                  <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
+                    {dataPost} às {hourPost}
+                  </p>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{acessos} <FaEye className='ml-2' /></p>
+                </div>
               </div>
             </div>
           </div>
         </div>
-        {/* IMAGE */}
-        <div className="HeaderIMG w-full ">
-          <motion.img src={imgSrc} alt="" className="w-full max-h-60" />
         {/* CATEGORIA */}
-          <div className="p-5 w-full -mt-28 drop-shadow-lg">
-            <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              <div className="badge text-sm sm:text-xs">{categoria}</div>
-            </h1>
-            <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
-              {titulo}
-            </h1>
-          </div>
+        <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
+          <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
+            <div className="badge text-sm sm:text-xs">{categoria}</div>
+          </h1>
+          <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
+            {titulo}
+          </h1>
         </div>
         {/* POST */}
         <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-16 w-full">

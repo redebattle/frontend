@@ -112,7 +112,27 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                 <h1 className='p-1 text-xl uppercase font-bold flex items-center flex-row'><FaShoppingBasket className='mr-2' />Seus produtos</h1>
               </div>
               <div className='mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 lg:ml-5 mb-3 sm:ml-0 sm:mt-3'>
-                <div className='flex lg:flex-row sm:flex-col items-center lg:justify-evenly sm:justify-center'>
+                <table className='w-full table-compact border border-dark'>
+                  <thead className='text-base bg-dark rounded-lg'>
+                    <tr>
+                      <th>Produto</th>
+                      <th>Quantidade</th>
+                      <th>Valor unitário</th>
+                      <th>Total</th>
+                      <th>#</th>
+                    </tr>
+                  </thead>
+                  <tbody className='text-xl'>
+                  <tr class="">
+                      <td className=''>VIP 1 <br /> Servidor: RankUP</td>
+                      <td><input type='number' className='bg-dark border-none w-16  text-center' value={1}/></td>
+                      <td>R$ 10,00</td>
+                      <td>R$ 10,00</td>
+                      <td><FaTrashAlt className='hover:text-red-600 cursor-pointer' /></td>
+                    </tr>
+                  </tbody>
+                </table>
+                {/* <div className='flex lg:flex-row sm:flex-col items-center lg:justify-evenly sm:justify-center'>
                   <img className='w-20 h-20 rounded-lg' src="/img/sem-foto.png" />
                   <h1 className='text-xl sm:text-sm font-bold lg:m-0 sm:mt-2'>VIP 1</h1>
                   <h1 className='text-xl sm:text-sm font-bold p-1 lg:m-0 sm:mb-2'>R$ 10,00</h1>
@@ -122,7 +142,7 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                     <button className="bg-purple-600 hover:bg-purple-800 hover:border-purple-800 border-b-2 border-purple-700 rounded-full font-bold text-white lg:w-9 lg:h-9 sm:w-6 sm:h-6 ml-4">+</button>
                     <button className="bg-red-600 hover:bg-red-900 hover:border-red-900 border-b-2 border-red-700 rounded-full font-bold text-white lg:w-9 lg:h-9 sm:w-6 sm:h-6 ml-6 flex items-center justify-center"><FaTrashAlt /></button>
                   </div>
-                </div>
+                </div> */}
               </div>
               <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mt-3 lg:ml-5 sm:ml-0 sm:mt-0'>
                 <h1 className='p-1 text-xl uppercase font-bold flex flex-row items-center'><FaMoneyBillWave className='mr-2' />SEUS DADOS</h1>
@@ -559,7 +579,7 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                     }
                     {errors.pais?.type === 'required' && <label className='text-red-600 ml-1'>O pais é obrigatório.</label>}
                   </div>
-                  <div className='flex lg:flex-row sm:flex-col'>
+                  <div className='flex flex-wrap'>
                     <div className='flex flex-col mx-4'>
                       <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> CEP</label>
                       <ReactInputMask
@@ -777,21 +797,21 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
             </div>
             <div className='flex flex-col h-auto w-auto lg:ml-5 sm:ml-0 sm:mt-3'>
               <div className='bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
-                <h1 className='p-3 text-xl uppercase font-bold'>Detalhes</h1>
+                <h1 className='p-3 text-xl uppercase font-bold'>Resumo do pedido</h1>
               </div>
               <div className='bg-dark2 rounded-lg border-b-4 border-black flex flex-col items-center justify-center mt-2 p-4'>
                 <div className='flex flex-col items-center justify-between'>
-                  <div className='flex flex-col items-center justify-center'>
-                    <h1 className='font-bold text-lg'>Subtotal:</h1>
+                  <div className='flex flex-col items-center justify-center p-1'>
+                    <h1 className='font-bold text-md'>Subtotal:</h1>
                     <h1 className='font-bold text-2xl'>R$ 10,00</h1>
                   </div>
-                  <div className='flex flex-col items-center justify-center'>
-                    <h1 className='font-bold text-lg'>Desconto:</h1>
-                    <h1 className='font-bold text-2xl text-red-500'>- R$ 10,00</h1>
+                  <div className='flex flex-col items-center justify-center p-1'>
+                    <h1 className='font-bold text-md'>Descontos:</h1>
+                    <h1 className='font-bold text-2xl text-red-500'>- R$ 2,00</h1>
                   </div>
-                  <div className='flex flex-col items-center justify-center'>
-                    <h1 className='font-bold text-lg'>Valor total:</h1>
-                    <h1 className='font-bold text-2xl text-lime-500'>R$ 10,00</h1>
+                  <div className='flex flex-col items-center justify-center p-1'>
+                    <h1 className='font-bold text-md'>Valor total:</h1>
+                    <h1 className='font-bold text-2xl text-lime-500'>R$ 8,00</h1>
                   </div>
                 </div>
               </div>
@@ -899,7 +919,8 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                 id='mercadopago'
                 value='mercadopago'
                 onClick={handlePayment}
-                className={`my-6 bg-dark4 p-4 rounded-lg w-64 h-auto ${paymentMethod === 'mercadopago' && 'border-2 border-mercadopago bg-mercadopago bg-opacity-25'} cursor-pointer`}>
+                className={`my-6 bg-dark4 p-4 rounded-lg w-64 h-auto ${paymentMethod === 'mercadopago' && 'border-2 border-mercadopago bg-mercadopago bg-opacity-25'} cursor-pointer`}
+              >
                 <input
                   {...register('gateway')}
                   type="radio"
@@ -918,10 +939,11 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                   type="checkbox" className="mr-2 checkbox checkbox-primary focus:border-transparent focus:ring-0" />
                 Li e estou ciente dos <a className='font-bold text-roxo underline hover:text-purple-700' href='/loja/termos'>Termos de Compra</a> para os produtos que estou adquirindo.
               </div>
-              <div className='p-4 mt-4'>
+              <div className='p-4 mt-4 flex flex-col items-center justify-center'>
                 <button className="flex items-center justify-center px-4 bg-purple-500 focus:outline-none hover:bg-purple-700 border-b-4 border-black rounded-lg text-base w-64 h-12">
                   Finalizar pedido
                 </button>
+                <p className='text-sm mt-2 text-red-500'>Você precisa estar logado para continuar.</p>
               </div>
               <div className='text-xs'>
                 Seu IP {userIP ? userIP : ''} está sendo gravado por segurança.

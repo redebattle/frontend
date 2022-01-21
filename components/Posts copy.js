@@ -64,17 +64,17 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
           </div>
         </div>
         {/* IMAGE */}
-        <div className="HeaderIMG w-full ">
+        <div className="HeaderIMG w-full">
           <motion.img src={imgSrc} alt="" className="w-full max-h-60" />
+        </div>
         {/* CATEGORIA */}
-          <div className="p-5 w-full -mt-28 drop-shadow-lg">
-            <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              <div className="badge text-sm sm:text-xs">{categoria}</div>
-            </h1>
-            <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
-              {titulo}
-            </h1>
-          </div>
+        <div className="bg-purple-600 border-b-4 border-purple-700 p-5 w-full">
+          <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
+            <div className="badge text-sm sm:text-xs">{categoria}</div>
+          </h1>
+          <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
+            {titulo}
+          </h1>
         </div>
         {/* POST */}
         <div className="bg-dark2 tracking-tight border-b-4 border-black rounded-b-lg align-middle items-center pb-16 w-full">

@@ -10,7 +10,7 @@ import LojaJogadorDestaqueComponent from '../../../components/Loja/Destaque'
 import Payments from '../../../components/Loja/Payments'
 import { useRouter } from 'next/router'
 
-export default function ServidorCategoria({error, manutencao, servidores, getServidor }) {
+export default function LojaServidor({error, manutencao, servidores, getServidor }) {
 
   if (error) {
     return (
@@ -38,8 +38,12 @@ export default function ServidorCategoria({error, manutencao, servidores, getSer
             <LojaJogadorDestaqueComponent />
           </div>
           <div className='flex flex-col mr-6 w-full'>
-            <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
-              <h1 className='flex flex-row items-center text-xl font-bold uppercase'>SERVIDOR: {getServidor.nome}</h1>
+            <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-3 lg:ml-5 sm:ml-0 sm:mt-3 flex items-center'>
+              <img src="https://img.icons8.com/clouds/452/minecraft-logo.png" alt="icon" className='w-32 h-32 lg:block sm:hidden'/>
+              <div>
+                <h1 className='flex flex-row items-center lg:text-xl sm:text-sm font-normal uppercase'>Você está em:</h1>
+                <h1 className='flex flex-row items-center lg:text-6xl sm:text-xl font-bold uppercase'>{getServidor.nome}</h1>
+              </div>
             </div>
             <div className='mt-4 w-full bg-recent-donations-image backdrop-blur-md border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
               <div className='p-2 flex flex-col items-center justify-center'>

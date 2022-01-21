@@ -5,7 +5,15 @@ import Footer from '../../components/Footer'
 import PunicoesSidebar from '../../components/Punicoes/PunicoesSidebar'
 import PunicoesIndex from '../../components/Punicoes'
 import MetadataComponent from '../../components/Metadata'
-export default function Punicoes({ bans, estatisticas }) {
+import ErrorAPI from '../../components/ErrorAPI'
+export default function Punicoes({ bans, estatisticas, error }) {
+
+  if (error) {
+    return (
+      <ErrorAPI />
+    )
+  }
+
   return (
     <>
       <title>Punições | Rede Battle</title>
@@ -78,30 +86,38 @@ export default function Punicoes({ bans, estatisticas }) {
 }
 
 export async function getServerSideProps({ query }) {
-  const page = query.pagina || 1
+  try {
+    const page = query.pagina || 1
 
-  const bans = await apiWay
-    .get('https://way.redebattle.com.br/api/v1/banimentos/all')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
-    })
+    const bans = await apiWay
+      .get('https://way.redebattle.com.br/api/v1/banimentos/all')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
+        return (error = true)
+      })
 
-  const estatisticas = await apiWay
-    .get('https://way.redebattle.com.br/api/v1/banimentos/estatisticas')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de getEstatisticas', e)
-    })
+    const estatisticas = await apiWay
+      .get('https://way.redebattle.com.br/api/v1/banimentos/estatisticas')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getEstatisticas', e)
+        return (error = true)
+      })
 
-  if (!bans) {
-    return (
-      <div>
-        <h1>Nenhuma punição foi encontrado.</h1>
-      </div>
-    )
-  }
-  return {
-    props: { bans, estatisticas }
+    if (!bans) {
+      return (
+        <div>
+          <h1>Nenhuma punição foi encontrado.</h1>
+        </div>
+      )
+    }
+    return {
+      props: { bans, estatisticas, error: false }
+    }
+  } catch (e) {
+    return {
+      props: { error: true}
+    }
   }
 }

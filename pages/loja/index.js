@@ -45,6 +45,11 @@ export default function Loja({error, manutencao, servidores }) {
           </div>
           <div className='flex flex-col mr-6 w-full'>
             <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
+              <a href='###'>
+                <img className='rounded-lg' src="https://i.imgur.com/kg3htGc.png" alt="" />
+              </a>
+            </div>
+            <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-6 lg:ml-5 sm:ml-0 sm:mt-3'>
               <div class="alert alert-error mb-3">
                 <div class="flex-1">
                   <svg xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" class="w-6 h-6 mx-2 stroke-current">
