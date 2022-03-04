@@ -214,7 +214,7 @@ export default function AdminMyAccount({ profile }) {
   )
 }
 export const getServerSideProps = async ctx => {
-  const { 'cubeadmin.token': token } = await parseCookies(ctx)
+  const { 'battleadmin.token': token } = await parseCookies(ctx)
 
   if (!token) {
     return {

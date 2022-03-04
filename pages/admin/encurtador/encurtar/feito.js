@@ -143,7 +143,7 @@ export default function AdminEncurtadorCreate({ info, error, errorMessage }) {
   )
 }
 export const getServerSideProps = async ctx => {
-  const { 'cubeadmin.token': token } = parseCookies(ctx)
+  const { 'battleadmin.token': token } = parseCookies(ctx)
   let error = false
   let possuiPermissao = false
 

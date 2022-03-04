@@ -279,7 +279,7 @@ export default function AdminEncurtadorIndex({
   )
 }
 export const getServerSideProps = async ctx => {
-  const { 'cubeadmin.token': token } = parseCookies(ctx)
+  const { 'battleadmin.token': token } = parseCookies(ctx)
   let error = false
   let possuiPermissao = false
 
