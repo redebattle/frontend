@@ -6,7 +6,7 @@ import { useForm } from 'react-hook-form'
 
 import { useToasts } from 'react-toast-notifications'
 import { setCookie } from 'nookies'
-import { FaCode, FaHeart, FaCoffee } from 'react-icons/fa'
+import { FaCode, FaHeart, FaCoffee, FaArrowLeft } from 'react-icons/fa'
 
 import api from '../../../service/api'
 import router from 'next/router'
@@ -34,21 +34,32 @@ export default function AdminForgotPassword() {
 
       router.push('/admin/auth/check-email')
     } catch (e) {
-      return addToast(e.response.data.error, {
-        appearance: 'error',
-        autoDismiss: true
-      })
+      if (e.toJSON().message === 'Network Error') {
+        return addToast('Ocorreu um erro na conexão com a API', {
+          appearance: 'error',
+          autoDismiss: true
+        })
+      }
+      if (e.response.data.error) {
+        return addToast(e.response.data.error, {
+          appearance: 'error',
+          autoDismiss: true
+        })
+      }
     }
   }
 
   return (
     <>
       <title>Recuperação de Senha | Rede Battle</title>
-      <div className="bg-dark flex items-center justify-between w-full h-screen px-60">
+      <div className="bg-dark flex sm:flex-col lg:flex-row items-center lg:justify-evenly sm:justify-center w-full h-full p-2">
         <div className="">
-          <h1 className="text-5xl p-2 flex text-white">
+        <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             RECUPERE <br />
             SUA SENHA
+          </h1>
+          <h1 className="lg:hidden md:text-3xl sm:text-xl text-white font-bold mb-2">
+            RECUPERE SUA SENHA
           </h1>
           {/* <img src="/img/not-logged.jpg" /> */}
         </div>
@@ -87,23 +98,23 @@ export default function AdminForgotPassword() {
           </div>
           <div className="flex items-center justify-center">
             <Link href="/admin">
-              <button className=" text-purple-500 font-normal hover:text-white -mb-4">
-                Voltar
+              <button className="text-purple-500 font-normal hover:text-white -mb-4 flex flex-row items-center justify-center">
+                <FaArrowLeft className=' mr-1' /> Voltar
               </button>
             </Link>
           </div>
-          <div className="fixed  text-white text-xs mt-10 ml-28">
-            <div className="flex items-center justify-center">
-              <FaCode className="mr-1" />
-              Development by Filipe Moreno
-            </div>
-            <div className="flex items-center justify-center">
-              Feito com
-              <FaHeart className="text-red-500 mx-1" />
-              e <FaCoffee className="mx-1" />
-            </div>
-          </div>
         </form>
+      </div>
+      <div className="flex flex-col items-center justify-center text-white text-xs -mt-16">
+        <div className="flex items-center justify-center">
+          <FaCode className="mr-1" />
+          Development by Filipe Moreno
+        </div>
+        <div className="flex items-center justify-center">
+          Feito com
+          <FaHeart className="text-red-500 mx-1" />
+          e <FaCoffee className="mx-1" />
+        </div>
       </div>
     </>
   )

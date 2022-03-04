@@ -88,11 +88,14 @@ export default function AdminResetPassword() {
   return (
     <>
       <title>Redefina sua Senha | Rede Battle</title>
-      <div className="bg-dark flex items-center justify-between w-full h-screen px-60">
+      <div className="bg-dark flex lg:flex-row sm:flex-col items-center sm:justify-center lg:justify-evenly p-2 lg:w-full h-full">
         <div className="">
-          <h1 className="text-5xl p-2 flex text-white">
+          <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             REDEFINA <br />
             SUA SENHA!
+          </h1>
+          <h1 className="lg:hidden md:text-3xl sm:text-xl text-white font-bold mb-2">
+            REDEFINA SUA SENHA!
           </h1>
           {/* <img src="/img/not-logged.jpg" /> */}
         </div>
@@ -150,18 +153,18 @@ export default function AdminResetPassword() {
               Redefinir
             </button>
           </div>
-          <div className="fixed  text-white text-xs mt-10 ml-32">
-            <div className="flex items-center justify-center">
-              <FaCode className="mr-1" />
-              Development by Filipe Moreno
-            </div>
-            <div className="flex items-center justify-center">
-              Feito com
-              <FaHeart className="text-red-500 mx-1" />
-              e <FaCoffee className="mx-1" />
-            </div>
-          </div>
         </form>
+      </div>
+      <div className="flex flex-col items-center justify-center text-white text-xs -mt-20">
+        <div className="flex items-center justify-center">
+          <FaCode className="mr-1" />
+          Development by Filipe Moreno
+        </div>
+        <div className="flex items-center justify-center">
+          Feito com
+          <FaHeart className="text-red-500 mx-1" />
+          e <FaCoffee className="mx-1" />
+        </div>
       </div>
     </>
   )
