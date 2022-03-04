@@ -10,7 +10,7 @@ import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import Metadata from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
-import { BsPatchCheckFill, BsHeart, BsHeartFill } from 'react-icons/bs'
+import { BsPatchCheckFill, BsHeart, BsHeartFill, BsArrowReturnLeft } from 'react-icons/bs'
 
 
 export default function Noticias({ post, manutencao, error }) {
@@ -58,25 +58,25 @@ export default function Noticias({ post, manutencao, error }) {
   function getMedails(medails) {
     return (
       <div className="flex flex-wrap items-center justify-center bg-dark3 rounded-lg p-2 m-1">
-        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Medalha">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="VIP">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093121757904927/7726_cs_master.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Staff">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093123965157376/2850_DiscordStaff.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Sobrevivente">
           <img src="https://media.discordapp.net/attachments/721741385870344232/794259132487827456/coronavirus.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Eleitor">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/818901476721819648/vote.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="VIP">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093120416776192/5129_cs_platinum.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Evento de Pascoa">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/828416274584961034/easter-egg_1.png" alt="" />
         </div>
-        <div className="w-8 h-8 rounded-full m-2">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Evento de Natal">
           <img src="https://cdn.discordapp.com/attachments/656500951762337793/791447804807086090/oie_1Z1WwBrgElcu-min.png" alt="" />
         </div>
       </div>
@@ -144,7 +144,7 @@ export default function Noticias({ post, manutencao, error }) {
             </div>
             <div className='flex items-center justify-center'>
               <button onClick={() => router.back()} className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-10 w-40 sm:text-sm font-medium text-white mb-3">
-                <div className='flex flex-row items-center justify-center'><FaArrowLeft className='mr-1' /> Voltar</div>
+                <div className='flex flex-row items-center justify-center'><BsArrowReturnLeft className='mr-1' /> Voltar</div>
               </button>
             </div>
           </div>
