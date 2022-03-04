@@ -35,11 +35,11 @@ const Pagination = styled(ReactPaginate).attrs({
   li.next a,
   li.break a {
     border-color: transparent;
-    background-color: #8b5cf6;
+    background-color: rgb(126,58,242,1);
     padding: 12px;
   }
   li.active a {
-    background-color: #8b5cf6;
+    background-color: rgb(126,58,242,1);
     border-color: transparent;
     color: white;
     min-width: 32px;
@@ -47,7 +47,7 @@ const Pagination = styled(ReactPaginate).attrs({
   }
   li.disabled a {
     color: white;
-    background-color: #303030;
+    background-color: #696969;
     padding: 12px;
   }
   li.disable,
