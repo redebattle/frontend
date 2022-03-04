@@ -1,6 +1,6 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt} from 'react-icons/fa'
+import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt, FaShoppingBasket} from 'react-icons/fa'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 
@@ -169,7 +169,7 @@ export default function Header({ online }) {
                 <a href="/" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black" aria-current="page"><div className="flex flex-row items-center"><FaHome className='mr-1' />INÍCIO</div></a>
               </li>
               <li>
-                <a href="/loja" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />LOJA</div></a>
+                <a href="/loja" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingBasket className='mr-1' />LOJA</div></a>
               </li>
               <li>
               <a href="/discord" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaDiscord className='mr-1' />DISCORD</div></a>
@@ -182,6 +182,9 @@ export default function Header({ online }) {
               </li>
               <li>
                 <a href="/changelog" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaFile className='mr-1' />CHANGELOG</div></a>
+              </li>
+              <li>
+                <a href="/loja/carrinho" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />CARRINHO</div></a>
               </li>
               <li>
                 <a href="/conta" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaSignInAlt className='mr-1' />ENTRAR</div></a>

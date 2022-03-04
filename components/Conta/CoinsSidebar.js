@@ -6,10 +6,40 @@ import Link from 'next/link'
 import Router from 'next/router'
 
 export default function ContaCoinsSidebar() {
+
   async function handleSignOut() {
     await destroyCookie(null, 'redebattle.token', { path: '/' })
     Router.push('/conta/login')
   }
+
+  function getMedails(medails) {
+    return (
+      <div className="flex flex-wrap items-center justify-center bg-dark3 rounded-lg p-2 m-1">
+        <div className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open" data-tip="Medalha">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093121757904927/7726_cs_master.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093123965157376/2850_DiscordStaff.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://media.discordapp.net/attachments/721741385870344232/794259132487827456/coronavirus.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/818901476721819648/vote.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/786093120416776192/5129_cs_platinum.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/828416274584961034/easter-egg_1.png" alt="" />
+        </div>
+        <div className="w-8 h-8 rounded-full m-2">
+          <img src="https://cdn.discordapp.com/attachments/656500951762337793/791447804807086090/oie_1Z1WwBrgElcu-min.png" alt="" />
+        </div>
+      </div>
+    );
+  }
+
 
   return (
     <div className="flex flex-col max-w-sm">
@@ -21,15 +51,16 @@ export default function ContaCoinsSidebar() {
             className="rounded-lg"
           />
           <h1 className="text-gray-300 text-3xl pt-2 font-bold">TheMito</h1>
-          <div className='flex lg:flex-row sm:flex-col items-center justify-center mt-2'>
+          <div className='flex flex-wrap lg:flex-row sm:flex-col items-center justify-center mt-2'>
             <span class="badge badge-outline text-yellow-400 font-bold">VIP CUBE</span>
             <span class="badge badge-outline text-cyan-400 font-bold lg:mr-1 lg:ml-1 sm:mt-2 sm:mb-2">VIP HYPE</span>
             <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
           </div>
-          <h1 className='font-bold mt-2'>Medalhas:</h1>
-          <div className='flex lg:flex-row sm:flex-col items-center justify-center mt-2'>
-            <span class="badge badge-outline text-youtube font-bold">EM BREVE</span>
-          </div>
+          <h1 className='font-bold mt-2'>Medalhas</h1>
+          {getMedails()}
         </div>
       </div>
       <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 h-26 mx-3">

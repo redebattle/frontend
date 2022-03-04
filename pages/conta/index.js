@@ -28,7 +28,7 @@ export default function ContaIndex() {
                 Este é o seu painel. Aqui você pode visualizar todas as
                 compras efetuadas (sejam elas aprovadas, pendentes ou
                 recusadas). Tem alguma dúvida? Entre em contato conosco pelo
-                e-mail: <u>suporte@redebattle.com.br</u> ou criando um ticket no
+                e-mail: <u className='text-discord'>suporte@redebattle.com.br</u> ou criando um ticket no
                 <a href="https://redebattle.com.br/discord" className='ml-2 text-discord hover:text-opacity-60'><u>discord</u></a>.
               </h1>
             </div>

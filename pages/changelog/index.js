@@ -15,18 +15,14 @@ import Header from '../../components/Header'
 import api from '../../service/api'
 import ScrollUpButton from "react-scroll-up-button";
 import ScrollToTheTopButton from '../../components/ScrollToTheTopButton'
+import ErrorAPI from '../../components/ErrorAPI'
 export default function Changelog({ changelogs, error, manutencao }) {
   console.log(`Changelog: ${changelogs}`)
 
   if (error === true) {
     return (
       <>
-        <Header />
-        <Error
-          statusCode="503"
-          title="Não foi possível realizar a conexão com a API"
-        />
-        <Footer />
+        <ErrorAPI />
       </>
     )
   }

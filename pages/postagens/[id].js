@@ -2,7 +2,6 @@ import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import UserAvatar from 'react-user-avatar'
 import { FaArrowLeft, FaEye } from 'react-icons/fa'
-import { FcLike } from 'react-icons/fc'
 import { useRouter } from 'next/router'
 
 import api from '../../service/api'
@@ -11,7 +10,7 @@ import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import Metadata from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
-import { BsPatchCheckFill } from 'react-icons/bs'
+import { BsPatchCheckFill, BsHeart, BsHeartFill } from 'react-icons/bs'
 
 
 export default function Noticias({ post, manutencao, error }) {
@@ -171,8 +170,11 @@ export default function Noticias({ post, manutencao, error }) {
               className="px-3 py-5 border-current sm:text-sm text-gray-300"
               dangerouslySetInnerHTML={{ __html: post.conteudo }}
             />
-            <div className='flex justify-end mr-3'>
-              <h1 className='flex items-center justify-center'>10 <FcLike className='ml-2 text-2xl hover:text-3xl cursor-pointer' /></h1>
+            <div className='flex justify-end mr-3 items-center text-gray-500'>
+              <BsHeart className='mr-2 text-2xl cursor-pointer font-bold' /><h1 className='flex items-center justify-center text-xl font-bold'>10</h1>
+            </div>
+            <div className='flex justify-end mr-3 items-center text-red-500'>
+              <BsHeartFill className='mr-2 text-2xl cursor-pointer font-bold' /><h1 className='flex items-center justify-center text-xl font-bold'>11</h1>
             </div>
           </div>
         </div>

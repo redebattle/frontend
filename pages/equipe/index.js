@@ -15,6 +15,7 @@ import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import api from '../../service/api'
 import EquipeFacaParteComponent from '../../components/Equipe/FacaParte'
+import ErrorAPI from '../../components/ErrorAPI'
 const Equipe = ({ nome, twitter, discord, cor }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 mx-4 bg-dark3 border-b-4 border-black rounded-lg w-36 lg:h-60 sm:h-auto mb-3">
@@ -105,12 +106,7 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
   if (error === true) {
     return (
       <>
-        <Header />
-        <Error
-          statusCode="503"
-          title="Não foi possível realizar a conexão com a API"
-        />
-        <Footer />
+        <ErrorAPI />
       </>
     )
   }
