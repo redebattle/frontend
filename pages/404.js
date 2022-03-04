@@ -3,6 +3,7 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
 import Link from 'next/link'
+import { BsArrowReturnLeft } from 'react-icons/bs'
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 
@@ -29,7 +30,7 @@ export default function Custom404() {
           <a href='/'>
             <motion.div className='flex justify-center items-center p-2' whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <button className="flex flex-row items-center justify-center bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 h-10 w-40 sm:text-sm font-medium text-white">
-                Voltar ao início  <svg className="ml-2 -mr-1 w-4 h-4" fill="currentColor" viewBox="0 0 20 20" xmlns="http://www.w3.org/2000/svg"><path fill-rule="evenodd" d="M10.293 3.293a1 1 0 011.414 0l6 6a1 1 0 010 1.414l-6 6a1 1 0 01-1.414-1.414L14.586 11H3a1 1 0 110-2h11.586l-4.293-4.293a1 1 0 010-1.414z" clip-rule="evenodd"></path></svg>
+                <BsArrowReturnLeft className='mr-1 flex items-center' />Voltar ao início
               </button>
             </motion.div>
           </a>
