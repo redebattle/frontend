@@ -30,8 +30,8 @@ export function AuthProvider({ children }) {
         if (errorToString.indexOf('status code 401') >= 0) {
           console.log('Você não está autorizado a acessar o painel.')
           alert('Você não está autorizado a acessar o painel.')
-          // await destroyCookie(null, 'battleadmin.token')
-          // Router.push('/admin/auth/login')
+          await destroyCookie(null, 'battleadmin.token')
+          Router.push('/admin/auth/login')
         } else {
           console.log('Ocorreu um erro ao acessar o painel.')
         }
