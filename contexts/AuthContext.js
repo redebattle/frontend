@@ -87,7 +87,7 @@ export function AuthProvider({ children }) {
           autoDismiss: true
         })
       }
-      return addToast(e.response.data.message, {
+      return addToast(e.response.data.error, {
         appearance: 'error',
         autoDismiss: true
       })
