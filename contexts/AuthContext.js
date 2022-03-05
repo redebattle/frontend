@@ -29,6 +29,7 @@ export function AuthProvider({ children }) {
         const errorToString = JSON.stringify(e.toJSON().message)
         if (errorToString.indexOf('status code 401') >= 0) {
           console.log('Você não está autorizado a acessar o painel.')
+          alert('Você não está autorizado a acessar o painel.')
           await destroyCookie(null, 'battleadmin.token')
           Router.push('/admin/auth/login')
         } else {
@@ -55,7 +56,7 @@ export function AuthProvider({ children }) {
       const resRoles = getRoles.data.permissoes
 
       setCookie(undefined, 'battleadmin.token', resToken, {
-        maxAge: 60 * 60 * 24, // 24 hours
+        maxAge: 60 * 60 * 24 * 7, // 24 hours
         path: '/'
       })
 
