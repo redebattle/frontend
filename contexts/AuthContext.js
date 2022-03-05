@@ -22,14 +22,17 @@ export function AuthProvider({ children }) {
 
     if (token) {
       try {
-        const getUser = await api.get('/user/profile')
+        const getUser = await api.get('/user/profile', { headers: { Authorization: `Bearer ${token}` } })
         setUser(getUser.data.usuario)
         setRoles(getUser.data.permissoes.rows)
       } catch (e) {
         const errorToString = JSON.stringify(e.toJSON().message)
         if (errorToString.indexOf('status code 401') >= 0) {
           console.log('Você não está autorizado a acessar o painel.')
-          alert('Você não está autorizado a acessar o painel.')
+          addToast('Você não está autorizado a acessar o painel.', {
+            appearance: 'error',
+            autoDismiss: true
+          })
           await destroyCookie(null, 'battleadmin.token')
           Router.push('/admin/auth/login')
         } else {
