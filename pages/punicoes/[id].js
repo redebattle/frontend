@@ -79,36 +79,29 @@ export default function Punicoes({ ban, error }) {
                   <div className='bg-dark2 p-4 rounded-lg border-b-4 border-black'>
                     <h1 className='font-bold'>Banimento #{ban.id} {parseInt(ban.active.data) === 0 && ban.removed_by_name === '#expired' && <span class="badge badge-outline text-lime-400 ml-2">Finalizado</span>}
                       {parseInt(ban.active.data) === 0 && ban.removed_by_name !== '#expired' && <span class="badge badge-outline text-yellow-600 ml-2">Revogado</span>}
-                      {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 ml-2">Ativo</span>}
+                      {parseInt(ban.active.data) === 1 && <span class="badge badge-outline text-red-400 ml-2">Ativa</span>}
                       {parseInt(ban.ipban.data) === 1 && <span class="badge badge-outline text-dark ml-2">IPBan</span>}
                       {parseInt(ban.silent.data) === 1 && <span class="badge badge-outline text-gray-500 ml-2">Silenciado</span>}
                     </h1>
                   </div>
                   <div className='flex lg:flex-row lg:items-start sm:flex-col sm:justify-center sm:items-center'>
                     <div className='flex lg:flex-col sm:flex-row px-4'>
-                      <div className='bg-dark2 p-3 rounded-lg m-4 h-auto w-full border-b-4 border-black'>
+                      <div className='bg-dark2 p-6 rounded-lg m-6 h-auto w-full border-b-4 border-black'>
                         <div className='flex flex-col items-center justify-center'>
                           <h1 className='p-2 sm:text-sm'>Usuário punido:</h1>
                           <img className='p-1' src={`https://minotar.net/armor/bust/${ban.user.name}/120`}></img>
-                          <h1 className='p-2 text-2xl'>{ban.user.name}</h1>
-                        </div>
-                      </div>
-                      <div className='bg-dark2 p-4 rounded-lg m-4 h-auto w-full border-b-4 border-black'>
-                        <div className='flex flex-col justify-center items-center'>
-                          <h1 className='p-2'>Banido por:</h1>
-                          <img className='p-1' src={`https://minotar.net/armor/bust/${ban.banned_by_name}/120`}></img>
-                          <p className='text-2xl p-1'>{ban.banned_by_name}</p>
+                          <h1 className='p-2 text-2xl font-bold'>{ban.user.name}</h1>
                         </div>
                       </div>
                     </div>
                     <div className='flex flex-col w-full p-12 sm:p-1'>
-                      {parseInt(ban.active.data) !== 0 && ban.removed_by_name !== '#expired' &&
+                      {parseInt(ban.active.data) !== 0 && !ban.removed_by_name !== '#expired' &&
                       // ATIVA
                       <div className='bg-red-400 bg-opacity-25 p-4 rounded-lg m-4 ml-10 h-auto border-b-4 border-black'>
                         <div className='flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10'>
-                          <div className='flex flex-col justify-center items-center w-96'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1>Banido em:</h1>
-                            <p className='text-lg mb-2'>{Intl.DateTimeFormat('pt-BR', {
+                            <p className='text-lg font-bold'>{Intl.DateTimeFormat('pt-BR', {
                                     day: '2-digit',
                                     month: '2-digit',
                                     year: 'numeric',
@@ -118,25 +111,25 @@ export default function Punicoes({ ban, error }) {
                                   }).format(new Date(ban.time))}
                             </p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1>Motivo do banimento:</h1>
-                            <p className='text-2xl sm:text-lg mb-2'>{ban.reason}</p>
+                            <p className='text-2xl sm:text-lg font-bold'>{ban.reason}</p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1>Término:</h1>
-                            <p className='text-2xl sm:text-lg'>
-                              {ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                            <p className='text-2xl sm:text-lg font-bold'>
+                              {ban.until <= 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
                               {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
                             </p>
                           </div>
                         </div>
                       </div> ||
-                      // TERMINADA
+                      // FINALIZADAS
                       <div className='bg-lime-400 p-6 bg-opacity-25 p-4 rounded-lg m-4 ml-10 h-auto border-b-4 border-black'>
                         <div className='flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10'>
-                          <div className='flex flex-col justify-center items-center w-96'>
+                          <div className='flex flex-col justify-center items-center text-sm'>
                             <h1>Banido em:</h1>
-                            <p className='text-lg mb-2'>{Intl.DateTimeFormat('pt-BR', {
+                            <p className='text-lg font-bold'>{Intl.DateTimeFormat('pt-BR', {
                                     day: '2-digit',
                                     month: '2-digit',
                                     year: 'numeric',
@@ -146,14 +139,14 @@ export default function Punicoes({ ban, error }) {
                                   }).format(new Date(ban.time))}
                             </p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm'>
                             <h1>Motivo do banimento:</h1>
-                            <p className='text-lg mb-2'>{ban.reason}</p>
+                            <p className='text-lg font-bold'>{ban.reason}</p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm'>
                             <h1>Término:</h1>
-                            <p className='text-lg'>
-                              {ban.until < 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
+                            <p className='text-lg font-bold'>
+                              {ban.until <= 0 && <span class="badge badge-outline text-red-500">Permanente</span>}
                               {ban.until > 0 &&new Date(ban.until * 1).toLocaleDateString('pt-BR')}
                             </p>
                           </div>
@@ -163,9 +156,9 @@ export default function Punicoes({ ban, error }) {
                       // REVOGADA
                       <div className='bg-dark2 rounded-lg m-4 ml-10 w-auto h-auto border-b-4 border-black'>
                         <div className='flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10'>
-                          <div className='flex flex-col justify-center items-center w-96'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1>Revogado em:</h1>
-                            <p className='text-lg mb-2'>{Intl.DateTimeFormat('pt-BR', {
+                            <p className='text-lg font-bold'>{Intl.DateTimeFormat('pt-BR', {
                                     day: '2-digit',
                                     month: '2-digit',
                                     year: 'numeric',
@@ -175,17 +168,26 @@ export default function Punicoes({ ban, error }) {
                                   }).format(new Date(ban.removed_by_date))}
                             </p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1>Motivo da revogação:</h1>
-                            <p className='text-lg mb-2'>{ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>
+                            <p className='text-lg font-bold'>{ban.removed_by_reason ? ban.removed_by_reason : 'Não informado.'}</p>
                           </div>
-                          <div className='flex flex-col justify-center items-center'>
+                          <div className='flex flex-col justify-center items-center text-sm mx-3'>
                             <h1 className='pb-2'>Revogado por:</h1>
                             <img src={`https://minotar.net/armor/bust/${ban.removed_by_name}/80`}></img>
-                            <p className='text-lg'>{ban.removed_by_name}</p>
+                            <p className='text-lg font-bold'>{ban.removed_by_name}</p>
                           </div>
                         </div>
                       </div>}
+                    </div>
+                    <div className='flex lg:flex-col sm:flex-row px-4'>
+                      <div className='bg-dark2 p-6 rounded-lg m-6 h-auto w-full border-b-4 border-black'>
+                        <div className='flex flex-col justify-center items-center'>
+                          <h1 className='p-2'>Banido por:</h1>
+                          <img className='p-1' src={`https://minotar.net/armor/bust/${ban.banned_by_name}/120`}></img>
+                          <p className='text-2xl p-1 font-bold'>{ban.banned_by_name}</p>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </div>
