@@ -3,8 +3,8 @@ export default function PunicaoAtiva({cor, opacity, motivo, termino, ativo, revo
     <>
       <div className={`flex lg:flex-row sm:flex-col justify-between lg:items-center sm:items-start p-4 ${cor} ${opacity && 'bg-opacity-25'} rounded-lg border-b-2 border-black sm:text-xs lg:text-sm`}>
         <p className="sm:mb-3">Motivo: <br />{motivo}</p>
-        <p className="sm:mb-3">Término: <br />{termino < 0 && <span class="badge badge-outline text-red-400 font-bold">Permanente</span>}
-          {termino > 0 &&new Date(termino * 1).toLocaleDateString('pt-BR')}
+        <p className="sm:mb-3">Término: <br />{termino <= 0 && <span class="badge badge-outline text-red-400 font-bold">Permanente</span>}
+          {termino > 0 && new Date(termino * 1).toLocaleDateString('pt-BR')}
         </p>
         <p className="sm:mb-3">Status:
           <div className="flex sm:flex-col">
