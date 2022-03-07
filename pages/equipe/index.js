@@ -21,16 +21,32 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
     <div className="flex flex-col items-center justify-center p-4 mx-4 bg-dark3 border-b-4 border-black rounded-lg w-36 lg:h-60 sm:h-auto mb-3">
       <div>
         <img
+          // src={`https://photopass.appspot.com/3d.php?user=${nome}&vr=0&hr=12&hrh=-16&vrll=0&vrrl=-44&vrla=25&vrra=26&displayHair=true&headOnly=false&format=png&ratio=4&aa=true&layers=true`}
           src={`https://minotar.net/bust/${nome}/120.png`}
           className="rounded-md tool"
           data-tip
           data-for="equipe"
         />
         <p
-          className="flex items-center justify-center mt-3 text-xl font-medium"
+          className="flex items-center justify-center mt-3 text-xl font-bold"
           style={{ color: cor }}
         >
           {nome || (
+            <SkeletonTheme
+              color="rgba(33, 33, 33, 0.2)"
+              highlightColor="rgba(255, 255, 255, 0.3)"
+            >
+              <p>
+                <Skeleton count={1} />
+              </p>
+            </SkeletonTheme>
+          )}
+        </p>
+        <p
+          className="flex items-center justify-center font-thin text-xs"
+          style={{ color: cor }}
+        >
+          {'Ocupação' || (
             <SkeletonTheme
               color="rgba(33, 33, 33, 0.2)"
               highlightColor="rgba(255, 255, 255, 0.3)"
@@ -67,8 +83,8 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
 const Cargo = ({ nome, totalCargo, equipe, cor }) => {
   return (
     <div id="equipe">
-      <div className='bg-dark3 p-2 rounded-lg pl-3 border-b-4 border-black border-opacity-60'>
-        <h1 style={{ color: cor }} className="text-lg font-bold">
+      <div className={`bg-dark3 p-2 rounded-lg pl-3 border-b-4 border-[${cor}] border-opacity-60`}>
+        <h1 style={{ color: cor }} className="text-2xl font-bold uppercase">
           {nome || (
             <SkeletonTheme
               color="rgba(33, 33, 33, 0.2)"
@@ -130,7 +146,7 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
       <Header />
       <div className="flex flex-col w-full mt-8 px-4">
         <EquipeFacaParteComponent />
-        <div className="lg:bg-minecraft-dark sm:bg-dark2 border-b-4 border-black border-opacity-60 mt-8 px-4 p-10 rounded-lg mx-2">
+        <div className="lg:bg-dark sm:bg-dark2 mt-8 px-4 p-10 rounded-lg mx-2">
           {cargos.length === 0 && (
             <h1 className="text-gray-300 text-xl text-center">
               Não há equipe cadastrada.
