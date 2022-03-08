@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
 import { BsPatchCheckFill } from 'react-icons/bs'
-import { FaEye } from 'react-icons/fa'
+import { FaComment, FaCommentAlt, FaEye, FaHeart } from 'react-icons/fa'
 
 export default function PostComponent({id, titulo, categoria, autor, data, imgSrc, conteudo, isLink, link, acessos, avatarId}) {
   const [dataPost, setDataPost] = useState(data)
@@ -45,7 +45,7 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
               ||
               <img
                 className="block mx-auto h-16 rounded-xl sm:mx-0 sm:flex-shrink-0 sm:h-12 sm:mb-2 lg:h-14"
-                src={`https://cravatar.eu/helmavatar/${autor}/96`}
+                // src={`https://cravatar.eu/helmavatar/${autor}/96`}
                 alt={autor}
               />}
             </motion.button>
@@ -53,12 +53,16 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
             <div className="text-center space-y-2 sm:text-left">
               <div className="space-y-0.5">
                 <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center">
-                  Postado por {autor} <BsPatchCheckFill className='ml-1 lg:text-base sm:text-xs text-facebook' />
+                  Postado por {autor} <div data-tip='Membro verificado' class="tooltip tooltip-top"><BsPatchCheckFill className='ml-1 lg:text-base sm:text-xs text-facebook' data-tip='Membro verificado' /></div>
                 </p>
                 <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
                   {dataPost} às {hourPost}
                 </p>
-                <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'>{acessos} <FaEye className='ml-2' /></p>
+                <div className='flex flex-row sm:justify-center lg:justify-start items-center'>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'><FaEye className='mr-1 text-purple-500 text-lg' /> {acessos}</p>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'><FaCommentAlt className='mr-1 text-blue-500 ml-3 text-lg' /> {acessos}</p>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start'><FaHeart className='mr-1 ml-3 text-red-500 text-lg' /> {acessos}</p>
+                </div>
               </div>
             </div>
           </div>

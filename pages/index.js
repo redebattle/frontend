@@ -55,15 +55,21 @@ const Pagination = styled(ReactPaginate).attrs({
   li.disabled a {
     cursor: no-drop;
   }
-  @media only screen and (max-width: 500px) {
-    flex-direction: column;
+  @media only screen and (max-width: 700px) {
+    flex-direction: row;
     justify-content: center;
     align-items: center;
+    padding: 1rem;
+    li {
+      display: flex;
+      flex-direction: row;
+    }
     li a {
       border-radius: 7px;
       justify-content: space-between;
       border: gray 1px solid;
       cursor: pointer;
+      font-size: 12px;
     }
   }
 `;
@@ -108,7 +114,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
         {/* METADATA */}
         <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
         <StreamersIndex />
-        <div className="flex justify-center p-8 lg:flex-row sm:flex-col">
+        <div className="flex justify-center lg:p-8 sm:p-3 lg:flex-row sm:flex-col">
           <div className='w-full sm:mb-2'>
             {(postsInfo.obs.rows.length === 0 && (
               <div className="bg-dark2 p-10 text-center rounded-lg">
