@@ -52,9 +52,9 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
 
             <div className="text-center space-y-2 sm:text-left">
               <div className="space-y-0.5">
-                <p className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center">
+                <a href={`/postagens/autor/${autor}`} className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center">
                   Postado por {autor} <div data-tip='Membro verificado' class="tooltip tooltip-top"><BsPatchCheckFill className='ml-1 lg:text-base sm:text-xs text-facebook' data-tip='Membro verificado' /></div>
-                </p>
+                </a>
                 <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
                   {dataPost} às {hourPost}
                 </p>

@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import UserAvatar from 'react-user-avatar'
-import { FaArrowLeft, FaEye } from 'react-icons/fa'
+import { FaArrowLeft, FaCommentAlt, FaEye, FaHeart } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
 import api from '../../service/api'
@@ -41,17 +41,17 @@ export default function Noticias({ post, manutencao, error }) {
     }, [hourPost])
   }
 
-  if (error) {
-    return (
-      <ErrorAPI />
-    )
-  }
-
   if (manutencao) {
     return (
       <>
         <Manutencao />
       </>
+    )
+  }
+
+  if (error) {
+    return (
+      <ErrorAPI />
     )
   }
 
@@ -120,12 +120,7 @@ export default function Noticias({ post, manutencao, error }) {
                   </p>
                 </div>
                 <div className='flex flex-wrap lg:flex-row sm:flex-col items-center justify-center my-2'>
-                  <span class="badge badge-outline text-yellow-400 font-bold lg:mr-1">VIP CUBE</span>
-                  <span class="badge badge-outline text-cyan-400 font-bold lg:mr-1">VIP HYPE</span>
-                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
-                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
-                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
-                  <span class="badge badge-outline text-purple-400 font-bold lg:mr-1">VIP BATTLE</span>
+                  <span class="badge badge-outline text-yellow-400 font-bold lg:mr-1">CEO</span>
                 </div>
                 <div className='flex flex-col justify-center items-center my-2'>
                   <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs">
@@ -135,8 +130,11 @@ export default function Noticias({ post, manutencao, error }) {
                     às {hourPost}
                   </p>
                 </div>
-                <div>
-                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'>{post.acessos} <FaEye className='ml-2' /></p>
+                <div className='flex flex-row items-center justify-center'>
+                  {/* <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'>{post.acessos} <FaEye className='ml-2' /></p> */}
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'><FaEye className='mr-1 text-purple-500 text-lg' /> {post.acessos}</p>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'><FaCommentAlt className='mr-1 text-blue-500 ml-3 text-lg' /> {post.acessos}</p>
+                  <p className='text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center justify-center'><FaHeart className='mr-1 ml-3 text-red-500 text-lg' /> {post.acessos}</p>
                 </div>
                 <h1 className='font-bold mt-2 text-center'>Medalhas</h1>
                  {getMedails()}
