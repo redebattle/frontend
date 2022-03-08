@@ -9,6 +9,7 @@ import PostComponent from '../components/Posts'
 import ReactPaginate from 'react-paginate'
 import { useRouter } from 'next/router'
 import styled from 'styled-components'
+import StreamersIndex from '../components/StreamersIndex'
 
 const Pagination = styled(ReactPaginate).attrs({
   activeClassName: 'active',
@@ -70,12 +71,6 @@ const Pagination = styled(ReactPaginate).attrs({
 export default function Home({ posts, postsInfo, query, error, manutencao }) {
   const router = useRouter()
 
-  if (error) {
-    return (
-      <ErrorAPI />
-    )
-  }
-
   if (manutencao) {
     return (
       <>
@@ -83,6 +78,13 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
       </>
     )
   }
+
+  if (error) {
+    return (
+      <ErrorAPI />
+    )
+  }
+
 
   let page = query.pagina || 1
   const totalPage = Math.ceil(postsInfo.total / 5)
@@ -105,6 +107,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
         <title>Rede Battle</title>
         {/* METADATA */}
         <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
+        <StreamersIndex />
         <div className="flex justify-center p-8 lg:flex-row sm:flex-col">
           <div className='w-full sm:mb-2'>
             {(postsInfo.obs.rows.length === 0 && (
