@@ -28,8 +28,6 @@ module.exports = {
       }),
       fontFamily: {
         sans: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
-        display: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
-        body: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
       },
       colors: {
         facebook: '#1877F2',
@@ -67,7 +65,6 @@ module.exports = {
         otherColor: '#dd2476',
         verde: '#14DA94',
         textPrimary: '#cecece',
-        textSecondary: 'rgb(206, 206, 206)',
       }
     }
   },

@@ -43,7 +43,7 @@ function MyApp({ Component, pageProps }) {
   }, [router.events])
   return (
     <>
-      <ThemeProvider forcedTheme="dark">
+      {/* <ThemeProvider forcedTheme="dark"> */}
         <Layout>
           <ToastProvider>
             <AuthProvider>
@@ -54,7 +54,7 @@ function MyApp({ Component, pageProps }) {
             </AuthProvider>
           </ToastProvider>
         </Layout>
-      </ThemeProvider>
+      {/* </ThemeProvider> */}
     </>
   )
 }
