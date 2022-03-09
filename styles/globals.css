@@ -1,14 +1,10 @@
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
-
 html,
 body {
   padding: 0;
   margin: 0;
   font-family: 'Inter', sans-serif;
-  font-size: calc(16px + (17 - 16) * ((100vw - 300px) / (1600 - 300)));
-  @apply min-h-screen;
+  /* font-size: calc(16px + (17 - 16) * ((100vw - 300px) / (1600 - 300)));
+  @apply min-h-screen; */
 }
 
 a {
