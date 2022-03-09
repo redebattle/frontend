@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
-import Script from 'next/script'
 import { useToasts } from 'react-toast-notifications'
 import { Timeline } from 'react-twitter-widgets'
+
 import GoogleAd from '../GoogleAd'
 
 export default function IndexSidebar() {

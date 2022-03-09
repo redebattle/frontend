@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import Link from 'next/link'
 import { useEffect, useState } from 'react'
+
 import { BsPatchCheckFill } from 'react-icons/bs'
-import { FaComment, FaCommentAlt, FaEye, FaHeart } from 'react-icons/fa'
+import { FaCommentAlt, FaEye, FaHeart } from 'react-icons/fa'
 
 export default function PostComponent({id, titulo, categoria, autor, data, imgSrc, conteudo, isLink, link, acessos, avatarId}) {
   const [dataPost, setDataPost] = useState(data)

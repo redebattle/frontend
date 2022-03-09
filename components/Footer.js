@@ -1,17 +1,17 @@
 /* eslint-disable camelcase */
 /* eslint-disable react/react-in-jsx-scope */
+import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+
 import {
   FaFacebookF,
   FaTwitter,
   FaYoutube,
   FaInstagram,
   FaDiscord,
-  FaFacebook
 } from 'react-icons/fa'
-import Link from 'next/link'
-import { motion } from 'framer-motion'
+
 import api from '../service/api'
-import { useEffect, useState } from 'react'
 
 const Footer = () => {
   const [social, setSocial] = useState()

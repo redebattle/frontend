@@ -1,16 +1,20 @@
 /* eslint-disable react/react-in-jsx-scope */
-import * as gtag from '../lib/gtag'
-import '../styles/tailwind.css'
-import { AuthProvider } from '../contexts/AuthContext'
-import '../styles/globals.css'
-import Layout from '../components/Layout'
-import Analytics from '../components/Analytics'
 import { AnimateSharedLayout } from 'framer-motion'
 import { ToastProvider } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
-import ScrollToTheTopButton from '../components/ScrollToTheTopButton'
+
+import * as gtag from '../lib/gtag'
+
+import '../styles/tailwind.css'
+import '../styles/globals.css'
 import 'next-pagination/dist/index.css'
+
+import { AuthProvider } from '../contexts/AuthContext'
+
+import Layout from '../components/Layout'
+import Analytics from '../components/Analytics'
+import ScrollToTheTopButton from '../components/ScrollToTheTopButton'
 
 const ViewportMetaLink = () => (
   <meta

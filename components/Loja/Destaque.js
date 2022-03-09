@@ -1,4 +1,4 @@
-import { FaChartLine, FaStar } from "react-icons/fa";
+import { FaStar } from "react-icons/fa";
 
 export default function LojaJogadorDestaqueComponent() {
   return (

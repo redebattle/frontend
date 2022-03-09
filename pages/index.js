@@ -1,4 +1,9 @@
+import ReactPaginate from 'react-paginate'
+import { useRouter } from 'next/router'
+import styled from 'styled-components'
+
 import api from '../service/api'
+
 import Manutencao from '../components/Manutencao'
 import Metadata from '../components/Metadata'
 import ErrorAPI from '../components/ErrorAPI'
@@ -6,9 +11,6 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 import IndexSidebar from '../components/Sidebars/IndexSidebar'
 import PostComponent from '../components/Posts'
-import ReactPaginate from 'react-paginate'
-import { useRouter } from 'next/router'
-import styled from 'styled-components'
 import StreamersIndex from '../components/StreamersIndex'
 
 const Pagination = styled(ReactPaginate).attrs({

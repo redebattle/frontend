@@ -2,9 +2,9 @@ import { createContext, useState, useEffect } from 'react'
 import { setCookie, parseCookies, destroyCookie } from 'nookies'
 import Router from 'next/router'
 import { useToasts } from 'react-toast-notifications'
-import Error from 'next/error'
 
 import api from '../service/api'
+
 export const AuthContext = createContext({})
 
 export function AuthProvider({ children }) {

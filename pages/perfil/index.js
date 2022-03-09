@@ -1,16 +1,15 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-
-import { useEffect, useState } from 'react'
 import Error from 'next/error'
+import Image from 'next/image'
+
+import api from '../../service/api'
+
 import Manutencao from '../../components/Manutencao'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-
-import api from '../../service/api'
-import ScrollUpButton from "react-scroll-up-button";
 import ScrollToTheTopButton from '../../components/ScrollToTheTopButton'
-import Image from 'next/image'
+
 export default function Perfil({error, manutencao}) {
 
   if (error === true) {

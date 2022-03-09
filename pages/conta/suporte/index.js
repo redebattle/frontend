@@ -1,15 +1,12 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
-import Layout from '../../../components/Layout'
+import { useRouter } from 'next/router'
+import { FaQuestionCircle, FaPlus } from 'react-icons/fa'
+
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import ContaSidebar from '../../../components/Conta/ContaSidebar'
-import { FaQuestionCircle, FaPlus } from 'react-icons/fa'
-import { useRouter } from 'next/router'
 
 export default function ContaSuporteIndex() {
   const router = useRouter();

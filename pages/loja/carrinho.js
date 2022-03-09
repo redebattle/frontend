@@ -1,17 +1,18 @@
-import api from '../../service/api'
-import apiWay from '../../service/apiWay'
-import Manutencao from '../../components/Manutencao'
-import ErrorAPI from '../../components/ErrorAPI'
-import Footer from '../../components/Footer'
-import Header from '../../components/Header'
-import { FaGift, FaInfoCircle, FaMoneyBillWave, FaShoppingBasket, FaTag, FaTrashAlt } from 'react-icons/fa'
-import Payments from '../../components/Loja/Payments'
 import cep from 'cep-promise'
 import { useState } from 'react'
 import ReactInputMask from 'react-input-mask'
 import { useForm } from 'react-hook-form'
 import { cpf } from 'cpf-cnpj-validator';
-import axios from 'axios'
+
+import api from '../../service/api'
+import apiWay from '../../service/apiWay'
+
+import Manutencao from '../../components/Manutencao'
+import ErrorAPI from '../../components/ErrorAPI'
+import Footer from '../../components/Footer'
+import Header from '../../components/Header'
+import Payments from '../../components/Loja/Payments'
+import { FaGift, FaInfoCircle, FaMoneyBillWave, FaShoppingBasket, FaTag, FaTrashAlt } from 'react-icons/fa'
 
 export default function LojaCarrinho({error, manutencao, userIP }) {
   const [cityForm, setCityForm] = useState()

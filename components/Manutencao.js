@@ -1,7 +1,8 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
+import { motion } from 'framer-motion'
+
 import api from '../service/api'
 
 export default function Manutencao() {

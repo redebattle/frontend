@@ -1,22 +1,22 @@
 import { useState, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import UserAvatar from 'react-user-avatar'
-import { FaArrowLeft, FaCommentAlt, FaEye, FaHeart, FaInfo, FaShare, FaShareAlt } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
 import api from '../../service/api'
+
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
 import Metadata from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
+
 import { BsPatchCheckFill, BsHeart, BsHeartFill, BsArrowReturnLeft } from 'react-icons/bs'
 import { GoCommentDiscussion } from 'react-icons/go'
 import { BiCommentX, BiCommentAdd } from 'react-icons/bi'
 import { IoSend } from 'react-icons/io5'
 import { GoPrimitiveDot } from 'react-icons/go'
-import { Link } from 'react-router-dom'
-
+import { FaEye, FaShareAlt } from 'react-icons/fa'
 
 export default function Noticias({ post, manutencao, error }) {
   const [dataPost, setDataPost] = useState(null)

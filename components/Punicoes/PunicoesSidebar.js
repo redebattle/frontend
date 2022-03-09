@@ -1,8 +1,9 @@
+import Link from 'next/link'
 import { useRouter } from 'next/router'
 import { useForm } from 'react-hook-form'
 import { useToasts } from 'react-toast-notifications'
+
 import { FaBan, FaBullhorn, FaChartLine, FaSearch } from 'react-icons/fa'
-import Link from 'next/link'
 
 export default function PunicoesSidebar({estatisticas}) {
   const { addToast } = useToasts()

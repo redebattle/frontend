@@ -1,14 +1,12 @@
 import api from '../../../../service/api'
+import { FaBell } from 'react-icons/fa'
 
 import Manutencao from '../../../../components/Manutencao'
 import ErrorAPI from '../../../../components/ErrorAPI'
 import Footer from '../../../../components/Footer'
 import Header from '../../../../components/Header'
-import { FaBell, FaQuestionCircle, FaShoppingCart, FaStar } from 'react-icons/fa'
 import Payments from '../../../../components/Loja/Payments'
-import ServidorCategoria from '..'
 import LojaServidorComponent from '../../../../components/Loja/Servidor'
-import LojaMetaComponent from '../../../../components/Loja/Meta'
 import LojaCategoriaComponent from '../../../../components/Loja/Categoria'
 
 export default function LojaCategoria({error, manutencao, servidores }) {

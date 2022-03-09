@@ -1,8 +1,9 @@
-import { BsPatchCheckFill } from 'react-icons/bs'
-import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt, FaTrophy, FaCoins } from 'react-icons/fa'
 import { destroyCookie } from 'nookies'
 import Link from 'next/link'
 import Router from 'next/router'
+
+import { BsPatchCheckFill } from 'react-icons/bs'
+import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt, FaTrophy, FaCoins } from 'react-icons/fa'
 
 export default function ContaSidebar() {
 

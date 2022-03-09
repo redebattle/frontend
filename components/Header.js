@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
-import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt, FaShoppingBasket} from 'react-icons/fa'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
+
+import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt, FaShoppingBasket} from 'react-icons/fa'
 
 import api from '../service/api'
 

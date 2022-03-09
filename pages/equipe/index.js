@@ -1,21 +1,17 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-
-import { useEffect, useState } from 'react'
-import ptBR from 'date-fns/locale/pt-BR'
-import Error from 'next/error'
-import Link from 'next/link'
-import Router from 'next/router'
+import { useState } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import { FaTwitter, FaDiscord } from 'react-icons/fa'
+
+import api from '../../service/api'
 
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Manutencao from '../../components/Manutencao'
-import api from '../../service/api'
 import EquipeFacaParteComponent from '../../components/Equipe/FacaParte'
 import ErrorAPI from '../../components/ErrorAPI'
+
 const Equipe = ({ nome, twitter, discord, cor }) => {
   return (
     <div className="flex flex-col items-center justify-center p-4 mx-4 bg-dark3 border-b-4 border-black rounded-lg w-36 lg:h-60 sm:h-auto mb-3">

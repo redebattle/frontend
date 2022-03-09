@@ -2,8 +2,9 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+
 import { BsArrowReturnLeft } from 'react-icons/bs'
+
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 

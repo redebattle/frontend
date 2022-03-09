@@ -1,14 +1,31 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { useEffect, useState } from 'react'
+
 import api from '../../service/api'
 import apiWay from '../../service/apiWay'
+
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import ErrorAPI from '../../components/ErrorAPI'
 import MetadataComponent from '../../components/Metadata'
-export default function Punicoes({ ban, error }) {
+
+export default function Punicoes({ ban, error, manutencao }) {
+
+  if (manutencao) {
+    return (
+      <>
+        <Manutencao />
+      </>
+    )
+  }
+
+  if (error) {
+    return (
+      <>
+        <ErrorAPI />
+      </>
+    )
+  }
 
   if (!ban) {
     return (
@@ -37,14 +54,6 @@ export default function Punicoes({ ban, error }) {
           </div>
         </div>
         <Footer />
-      </>
-    )
-  }
-
-  if (error) {
-    return (
-      <>
-        <ErrorAPI />
       </>
     )
   }
@@ -214,8 +223,16 @@ export async function getServerSideProps({ query }) {
         return error === true
       })
 
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        return error === true
+      })
+
     return {
-      props: { ban, error: false }
+      props: { ban, error: false, manutencao }
     }
   } catch (e) {
     return {

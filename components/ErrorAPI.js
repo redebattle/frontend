@@ -1,8 +1,9 @@
 import { motion } from 'framer-motion'
-import Link from 'next/link'
+
+import { FaArrowLeft } from 'react-icons/fa'
+
 import Footer from '../components/Footer'
 import Header from '../components/Header'
-import { FaArrowLeft } from 'react-icons/fa'
 
 export default function ErrorAPI() {
   return (

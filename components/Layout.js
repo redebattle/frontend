@@ -1,6 +1,3 @@
-import Footer from './Footer'
-import Header from './Header'
-
 /* eslint-disable react/react-in-jsx-scope */
 const Layout = ({ children }) => {
   return (

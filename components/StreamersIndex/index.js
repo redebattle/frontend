@@ -1,5 +1,6 @@
-import { BsRecordFill } from "react-icons/bs";
 import { motion } from 'framer-motion'
+
+import { BsRecordFill } from "react-icons/bs";
 
 export default function StreamersIndex() {
   return (

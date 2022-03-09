@@ -1,12 +1,23 @@
 import { useEffect, useState } from 'react'
+
 import apiWay from '../../service/apiWay'
+
 import Header from '../../components/Header'
 import Footer from '../../components/Footer'
 import PunicoesSidebar from '../../components/Punicoes/PunicoesSidebar'
 import PunicoesIndex from '../../components/Punicoes'
 import MetadataComponent from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
-export default function Punicoes({ bans, estatisticas, error }) {
+
+export default function Punicoes({ bans, estatisticas, error, manutencao }) {
+
+  if (manutencao) {
+    return (
+      <>
+        <Manutencao />
+      </>
+    )
+  }
 
   if (error) {
     return (
@@ -103,6 +114,14 @@ export async function getServerSideProps({ query }) {
         return (error = true)
       })
 
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        return error === true
+      })
+
     if (!bans) {
       return (
         <div>
@@ -111,7 +130,7 @@ export async function getServerSideProps({ query }) {
       )
     }
     return {
-      props: { bans, estatisticas, error: false }
+      props: { bans, estatisticas, error: false, manutencao }
     }
   } catch (e) {
     return {

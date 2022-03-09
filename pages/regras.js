@@ -1,16 +1,10 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import UserAvatar from 'react-user-avatar'
-import { FaArrowLeft, FaEye } from 'react-icons/fa'
-import { useRouter } from 'next/router'
-
 import api from '../service/api'
+
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Manutencao from '../components/Manutencao'
 import Metadata from '../components/Metadata'
 import ErrorAPI from '../components/ErrorAPI'
-import { BsPatchCheckFill, BsHeart, BsHeartFill } from 'react-icons/bs'
 
 
 export default function Regras({ error, manutencao }) {

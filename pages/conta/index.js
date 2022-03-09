@@ -1,12 +1,8 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
-import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt } from 'react-icons/fa'
+import { FaShoppingCart } from 'react-icons/fa'
 
-import Layout from '../../components/Layout'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ContaSidebar from '../../components/Conta/ContaSidebar'

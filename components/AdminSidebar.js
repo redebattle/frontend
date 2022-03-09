@@ -4,14 +4,13 @@ import { destroyCookie } from 'nookies'
 import { useContext } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import UserAvatar from 'react-user-avatar'
-
 import Router from 'next/router'
 import Link from 'next/link'
+
 import {
   FaCode,
   FaCoffee,
   FaHeart,
-  FaShoppingBasket,
   FaBoxOpen,
   FaDatabase,
   FaCalculator,
@@ -29,11 +28,11 @@ import {
   FaPaperclip,
   FaMoneyCheckAlt,
   FaUserCog,
-  FaServer,
   FaHandPointRight
 } from 'react-icons/fa'
 
 import { AuthContext } from '../contexts/AuthContext'
+
 export default function AdminSidebar() {
   const { user, roles } = useContext(AuthContext)
 

@@ -1,16 +1,11 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { useEffect, useState } from 'react'
 import { parseCookies } from 'nookies'
-import Layout from '../../../components/Layout'
-import Footer from '../../../components/Footer'
-import Header from '../../../components/Header'
-import ContaSidebar from '../../../components/Conta/ContaSidebar'
-import { FaQuestionCircle } from 'react-icons/fa'
 import { BsArrowReturnLeft } from 'react-icons/bs'
 import { useRouter } from 'next/router'
+
+import Footer from '../../../components/Footer'
+import Header from '../../../components/Header'
 
 export default function VisualizarTicket() {
   const router = useRouter();

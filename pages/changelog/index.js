@@ -1,21 +1,14 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { motion } from 'framer-motion'
-import { format, intlFormat, isToday } from 'date-fns'
-import { useEffect, useState, useMemo } from 'react'
-import ptBR from 'date-fns/locale/pt-BR'
-import Error from 'next/error'
-import Link from 'next/link'
-import Router from 'next/router'
+import { useEffect, useState } from 'react'
+
+import api from '../../service/api'
 
 import Manutencao from '../../components/Manutencao'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-
-import api from '../../service/api'
-import ScrollUpButton from "react-scroll-up-button";
-import ScrollToTheTopButton from '../../components/ScrollToTheTopButton'
 import ErrorAPI from '../../components/ErrorAPI'
+
 export default function Changelog({ changelogs, error, manutencao }) {
   console.log(`Changelog: ${changelogs}`)
 
@@ -62,7 +55,6 @@ export default function Changelog({ changelogs, error, manutencao }) {
           return (
             // eslint-disable-next-line react/jsx-key
             <div className="container">
-              <ScrollToTheTopButton />
               <div className="content">
                 <div className="flex flex-row w-full">
                   <div className="flex flex-col w-full">

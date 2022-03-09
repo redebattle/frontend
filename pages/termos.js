@@ -1,16 +1,11 @@
-import { useState, useEffect } from 'react'
-import { motion } from 'framer-motion'
-import UserAvatar from 'react-user-avatar'
-import { FaArrowLeft, FaEye } from 'react-icons/fa'
-import { useRouter } from 'next/router'
-
 import api from '../service/api'
+
 import Footer from '../components/Footer'
 import Header from '../components/Header'
 import Manutencao from '../components/Manutencao'
 import Metadata from '../components/Metadata'
 import ErrorAPI from '../components/ErrorAPI'
-import { BsPatchCheckFill, BsHeart, BsHeartFill } from 'react-icons/bs'
+
 
 
 export default function Termos({ error, manutencao }) {
@@ -59,7 +54,6 @@ export default function Termos({ error, manutencao }) {
 
 export async function getServerSideProps(context) {
   try {
-
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)
@@ -67,7 +61,6 @@ export async function getServerSideProps(context) {
         console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
         return (error = true)
       })
-
 
     return {
       props: { manutencao, error: false }

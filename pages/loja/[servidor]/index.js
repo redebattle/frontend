@@ -8,7 +8,6 @@ import LojaServidorComponent from '../../../components/Loja/Servidor'
 import LojaMetaComponent from '../../../components/Loja/Meta'
 import LojaJogadorDestaqueComponent from '../../../components/Loja/Destaque'
 import Payments from '../../../components/Loja/Payments'
-import { useRouter } from 'next/router'
 
 export default function LojaServidor({error, manutencao, servidores, getServidor }) {
 

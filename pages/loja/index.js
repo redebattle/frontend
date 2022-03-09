@@ -1,18 +1,17 @@
 import api from '../../service/api'
-import apiWay from '../../service/apiWay'
 
 import Manutencao from '../../components/Manutencao'
 import ErrorAPI from '../../components/ErrorAPI'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Metadata from '../../components/Metadata'
-import { FaBarcode, FaCarAlt, FaCartPlus, FaCcMastercard, FaCcVisa, FaChartLine, FaQrcode, FaQuestion, FaQuestionCircle, FaShoppingCart, FaStar } from 'react-icons/fa'
 import Payments from '../../components/Loja/Payments'
 import MetaLoja from '../../components/Loja/Meta'
 import LojaMetaComponent from '../../components/Loja/Meta'
-import LojaJogadorDestaque from '../../components/Loja/Destaque'
 import LojaJogadorDestaqueComponent from '../../components/Loja/Destaque'
 import LojaServidorComponent from '../../components/Loja/Servidor'
+
+import { FaShoppingCart } from 'react-icons/fa'
 
 export default function Loja({error, manutencao, servidores }) {
 

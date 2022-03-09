@@ -1,9 +1,10 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
-import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt, FaTrophy, FaMoneyBill, FaMoneyBillAlt, FaMoneyBillWave, FaCoins, FaInfo, FaTable, FaSync, FaSmile, FaSmileWink, FaArrowRight } from 'react-icons/fa'
 import { destroyCookie } from 'nookies'
 import Link from 'next/link'
 import Router from 'next/router'
+
+import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt, FaTrophy, FaMoneyBill, FaMoneyBillAlt, FaMoneyBillWave, FaCoins, FaInfo, FaTable, FaSync, FaSmile, FaSmileWink, FaArrowRight } from 'react-icons/fa'
 
 export default function ContaCoinsSidebar() {
 

@@ -1,14 +1,12 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
-import Link from 'next/link'
 import { parseCookies, setCookie } from 'nookies'
+import { useRef, useState } from 'react'
+import ReCAPTCHA from 'react-google-recaptcha'
 
-import Layout from '../../../components/Layout'
-import { useEffect, useRef, useState } from 'react'
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
-import ReCAPTCHA from 'react-google-recaptcha'
 
 export default function ContaLogin() {
   const reRef = useRef()

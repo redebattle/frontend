@@ -1,16 +1,15 @@
-import { useState, useEffect } from 'react'
+import { useState } from 'react'
 import { motion } from 'framer-motion'
-import UserAvatar from 'react-user-avatar'
-import { FaArrowLeft, FaDiscord, FaEye, FaFacebook, FaFacebookF, FaInstagram, FaTwitch, FaTwitter, FaYoutube } from 'react-icons/fa'
+import { FaDiscord, FaFacebookF, FaInstagram, FaTwitter, FaYoutube } from 'react-icons/fa'
 import { useRouter } from 'next/router'
 
 import api from '../../../service/api'
+
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
 import Manutencao from '../../../components/Manutencao'
 import Metadata from '../../../components/Metadata'
 import ErrorAPI from '../../../components/ErrorAPI'
-import { BsPatchCheckFill, BsHeart, BsHeartFill, BsArrowReturnLeft } from 'react-icons/bs'
 
 
 export default function ShowPostsFromAuthor({ post, manutencao, error }) {
