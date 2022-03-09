@@ -30,7 +30,7 @@ export default function PostComponent({id, titulo, categoria, autor, data, imgSr
 
   return (
     <>
-      <div key={id} className="flex flex-col items-center w-full px-4 lg:px-6 sm:px-0 mb-4">
+      <div key={id} className="flex flex-col items-center w-full lg:px-6 sm:px-0 mb-4">
         <div className="p-1 w-full bg-white rounded-t-lg border-gray-200 dark:bg-dark2">
           <div className="p-5 space-y-2 sm:flex sm:items-center sm:space-y-0 sm:space-x-6 sm:w-full lg:flex-row sm:flex-col sm:p-2 lg:justify-start lg:p-4 sm:justify-center">
             <motion.button

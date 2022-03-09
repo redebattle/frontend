@@ -6,6 +6,7 @@ import CookieConsent, { Cookies } from 'react-cookie-consent'
 import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt, FaShoppingBasket} from 'react-icons/fa'
 
 import api from '../service/api'
+import Link from 'next/link'
 
 export default function Header({ online }) {
   const copyToClipboard = () => {
@@ -167,30 +168,49 @@ export default function Header({ online }) {
           <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
             <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
-                <a href="/" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black" aria-current="page"><div className="flex flex-row items-center"><FaHome className='mr-1' />INÍCIO</div></a>
+                <Link href="/">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black" aria-current="page"><div className="flex flex-row items-center"><FaHome className='mr-1' />INÍCIO</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/loja" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingBasket className='mr-1' />LOJA</div></a>
+                <Link href="/loja">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingBasket className='mr-1' />LOJA</div></a>
+                </Link>
               </li>
               <li>
-              <a href="/discord" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaDiscord className='mr-1' />DISCORD</div></a>
+                <Link href="/discord">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaDiscord className='mr-1' />DISCORD</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/equipe" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaUsers className='mr-1' />EQUIPE</div></a>
+                <Link href="/equipe">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaUsers className='mr-1' />EQUIPE</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/punicoes" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaBan className='mr-1' />PUNIÇÕES</div></a>
+                <Link href="/punicoes">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaBan className='mr-1' />PUNIÇÕES</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/changelog" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaFile className='mr-1' />CHANGELOG</div></a>
+                <Link href="/changelog">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaFile className='mr-1' />CHANGELOG</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/loja/carrinho" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />CARRINHO</div></a>
+                <Link href="/loja/carrinho">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaShoppingCart className='mr-1' />CARRINHO</div></a>
+                </Link>
               </li>
               <li>
-                <a href="/conta" className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaSignInAlt className='mr-1' />ENTRAR</div></a>
+                <Link href="/conta">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"><div className="flex flex-row items-center"><FaSignInAlt className='mr-1' />ENTRAR</div></a>
+                </Link>
               </li>
             </ul>
+            <div>
+
+            </div>
           </div>
         </div>
       </nav>

@@ -2,6 +2,8 @@
 /* eslint-disable handle-callback-err */
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
+import Router from 'next/router'
+import Link from 'next/link'
 
 import { BsArrowReturnLeft } from 'react-icons/bs'
 
@@ -9,6 +11,11 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 export default function Custom404() {
+
+  function handleReturnButton() {
+    Router.back();
+  }
+
   return (
     <>
       <Header />
@@ -28,10 +35,10 @@ export default function Custom404() {
             A página que você procura não existe ou não está disponível no
             momento.
           </h1>
-          <a href='/'>
+          <a onClick={() => Router.back()}>
             <motion.div className='flex justify-center items-center p-2' whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
               <button className="flex flex-row items-center justify-center bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 h-10 w-40 sm:text-sm font-medium text-white">
-                <BsArrowReturnLeft className='mr-1 flex items-center' />Voltar ao início
+                <BsArrowReturnLeft className='mr-1 flex items-center' />Voltar
               </button>
             </motion.div>
           </a>

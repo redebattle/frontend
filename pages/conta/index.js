@@ -87,6 +87,7 @@ export default function ContaIndex() {
 
 export const getServerSideProps = async ctx => {
   const { 'redebattle.token': token } = await parseCookies(ctx)
+
   if (!token) {
     return {
       redirect: {

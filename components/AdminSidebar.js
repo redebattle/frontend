@@ -37,7 +37,7 @@ export default function AdminSidebar() {
   const { user, roles } = useContext(AuthContext)
 
   async function handleSignOut() {
-    await destroyCookie(null, 'cubeadmin.token', {
+    await destroyCookie(null, 'battleadmin.token', {
       path: '/'
     })
     Router.push('/admin/auth/login')

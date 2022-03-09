@@ -1,11 +1,13 @@
 import { destroyCookie } from 'nookies'
 import Link from 'next/link'
-import Router from 'next/router'
+import Router, { useRouter } from 'next/router'
 
 import { BsPatchCheckFill } from 'react-icons/bs'
 import { FaUser, FaShoppingCart, FaHeadset, FaSignOutAlt, FaTrophy, FaCoins } from 'react-icons/fa'
 
 export default function ContaSidebar() {
+
+  const router = useRouter();
 
   function getMedails(medails) {
     return (
@@ -37,7 +39,7 @@ export default function ContaSidebar() {
 
   async function handleSignOut() {
     await destroyCookie(null, 'redebattle.token', { path: '/' })
-    Router.push('/conta/login')
+    router.push('/conta/login')
   }
 
   return (
@@ -88,7 +90,7 @@ export default function ContaSidebar() {
           </div>
           <div className="flex flex-row items-center justify-center cursor-pointer hover:text-red-500 p-1">
             <FaSignOutAlt />
-            <button onClick={handleSignOut} className="ml-2">
+            <button onClick={() => handleSignOut} className="ml-2">
               Sair
             </button>
           </div>

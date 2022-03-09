@@ -1,20 +1,22 @@
 /* eslint-disable react/react-in-jsx-scope */
-import { AnimateSharedLayout } from 'framer-motion'
 import { ToastProvider } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
+import { ThemeProvider } from 'next-themes'
 import { useEffect } from 'react'
+import NProgress from 'nprogress'
 
 import * as gtag from '../lib/gtag'
 
 import '../styles/tailwind.css'
 import '../styles/globals.css'
+import '../styles/nprogress.css'
 import 'next-pagination/dist/index.css'
 
 import { AuthProvider } from '../contexts/AuthContext'
 
 import Layout from '../components/Layout'
 import Analytics from '../components/Analytics'
-import ScrollToTheTopButton from '../components/ScrollToTheTopButton'
+import ScrollToTheTopButton from '../components/ScrollButton'
 
 const ViewportMetaLink = () => (
   <meta
@@ -31,25 +33,28 @@ function MyApp({ Component, pageProps }) {
     const handleRouteChange = url => {
       gtag.pageview(url)
     }
-    router.events.on('routeChangeComplete', handleRouteChange)
+
+    router.events.on('routeChangeStart', () => NProgress.start())
+    router.events.on('routeChangeComplete', () => NProgress.done(), handleRouteChange)
+    router.events.on('routeChangeError', () => NProgress.done())
     return () => {
       router.events.off('routeChangeComplete', handleRouteChange)
     }
   }, [router.events])
   return (
     <>
-      <AnimateSharedLayout>
+      <ThemeProvider forcedTheme="dark">
         <Layout>
           <ToastProvider>
             <AuthProvider>
               <ViewportMetaLink />
+              <ScrollToTheTopButton />
               <Component {...pageProps} />
               <Analytics />
-              <ScrollToTheTopButton />
             </AuthProvider>
           </ToastProvider>
         </Layout>
-      </AnimateSharedLayout>
+      </ThemeProvider>
     </>
   )
 }

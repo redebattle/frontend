@@ -27,7 +27,9 @@ module.exports = {
         'minecraft-dark': "url('/img/bg-minecraft-dark.png')"
       }),
       fontFamily: {
-        sans: ['Roboto', 'Inter', 'ui-sans-serif']
+        sans: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
+        display: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
+        body: ['Poppins', 'Roboto', 'Inter', 'ui-sans-serif'],
       },
       colors: {
         facebook: '#1877F2',
@@ -53,10 +55,19 @@ module.exports = {
         mercadopago: '#00AEEF',
         mercadopago2: '#243E8C',
         dark: '#121212',
-        dark2: '#212121',
-        dark3: '#303030',
-        dark4: '#424242',
-        roxo: '#8b5cf6'
+        dark2: '#1b1b1b',
+        dark3: '#212121',
+        dark4: '#303030',
+        dark5: '#424242',
+        roxo: '#8b5cf6',
+        colorPrimary: '#7e3af2',
+        colorSecondary: '#da145a',
+        colorTerciary: '#da3114',
+        colorQuartenary: '#da14bd',
+        otherColor: '#dd2476',
+        verde: '#14DA94',
+        textPrimary: '#cecece',
+        textSecondary: 'rgb(206, 206, 206)',
       }
     }
   },

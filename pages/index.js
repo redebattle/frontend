@@ -116,7 +116,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
         {/* METADATA */}
         <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
         <StreamersIndex />
-        <div className="flex justify-center lg:p-8 sm:p-3 lg:flex-row sm:flex-col">
+        <div className="flex justify-center lg:mr-6 sm:mr-0 sm:p-3 lg:flex-row sm:flex-col">
           <div className='w-full sm:mb-2'>
             {(postsInfo.obs.rows.length === 0 && (
               <div className="bg-dark2 p-10 text-center rounded-lg">
