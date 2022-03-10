@@ -8,8 +8,8 @@
   "extends": [
     "plugin:react/recommended",
     "standard",
-    "prettier/standard",
-    "prettier/react"
+    "prettier",
+    "plugin:prettier/recommended"
   ],
   "plugins": [
     "react",
