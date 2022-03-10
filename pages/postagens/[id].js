@@ -106,7 +106,7 @@ export default function Noticias({ post, manutencao, error }) {
       <div className='flex lg:flex-row sm:flex-col'>
         <div className="flex flex-col items-center mt-3 lg:p-4 sm:p-3 lg:mb-0 sm:-mb-8 lg:w-96 sm:w-full">
           <div className="p-1 w-full bg-white lg:rounded-lg sm:rounded-t-lg border-gray-200 dark:bg-dark2">
-            <div className="p-5 flex items-center flex-col p-4 justify-center">
+            <div className="p-5 flex items-center flex-col justify-center">
               <motion.button
                 whileHover={{ scale: 1.1 }}
                 whileTap={{ scale: 0.9 }}
@@ -249,7 +249,7 @@ export default function Noticias({ post, manutencao, error }) {
           <form className=''>
             <textarea
               placeholder='Sua resposta...'
-              className="px-4 py-2 bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-transparent focus:border-purple-500 rounded-lg lg:w-[1385px] sm:w-full"
+              className="px-4 py-2 bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-transparent focus:border-purple-500 rounded-lg w-full"
             />
             <div className='mt-4 flex items-center justify-center'>
               <button onClick={() => router.back()} className="bg-purple-600 hover:bg-purple-700 rounded-lg border-b-4 border-purple-700 h-12 w-40 sm:text-sm font-medium text-white mb-3">

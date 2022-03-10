@@ -12,13 +12,11 @@
   },
   "extends": [
     "eslint:recommended",
-    "prettier",
-    "next"
+    "prettier"
   ],
   "plugins": [
     "react",
-    "prettier",
-    "plugin:@next/next/recommended"
+    "prettier"
   ],
   "rules": {
     "prettier/prettier": "error",
