@@ -8,7 +8,7 @@ export default function LojaServidorComponent({servidores}) {
             <button onClick={() => {}} className="bg-purple-600 border-b-4 border-purple-700 rounded-lg h-16 w-56 sm:text-sm font-medium text-white my-2">
               <div className='flex flex-col items-center'>
                 {servidor?.nome}
-                <div class="badge bg-youtube font-bold">
+                <div className="badge bg-youtube font-bold">
                   10% OFF
                 </div>
               </div>

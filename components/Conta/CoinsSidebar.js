@@ -53,12 +53,12 @@ export default function ContaCoinsSidebar() {
           />
           <h1 className="text-gray-300 text-3xl pt-2 font-bold">TheMito</h1>
           <div className='flex flex-wrap lg:flex-row sm:flex-col items-center justify-center mt-2'>
-            <span class="badge badge-outline text-yellow-400 font-bold">VIP CUBE</span>
-            <span class="badge badge-outline text-cyan-400 font-bold lg:mr-1 lg:ml-1 sm:mt-2 sm:mb-2">VIP HYPE</span>
-            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
-            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
-            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
-            <span class="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span className="badge badge-outline text-yellow-400 font-bold">VIP CUBE</span>
+            <span className="badge badge-outline text-cyan-400 font-bold lg:mr-1 lg:ml-1 sm:mt-2 sm:mb-2">VIP HYPE</span>
+            <span className="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span className="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span className="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
+            <span className="badge badge-outline text-purple-400 font-bold">VIP BATTLE</span>
           </div>
           <h1 className='font-bold mt-2'>Medalhas</h1>
           {getMedails()}

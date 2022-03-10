@@ -19,9 +19,9 @@ export default function PunicoesIndex({
   }) {
 return (
   <div className='p-1'>
-    <div class="collapse border rounded-box border-base-300 collapse-plus border-b-2 border-dark">
+    <div className="collapse border rounded-box border-base-300 collapse-plus border-b-2 border-dark">
       <input type="checkbox" />
-      <div class="collapse-title lg:text-base sm:text-xs font-medium flex lg:items-center sm:items-start lg:flex-row sm:flex-col">
+      <div className="collapse-title lg:text-base sm:text-xs font-medium flex lg:items-center sm:items-start lg:flex-row sm:flex-col">
         <div className="m-2 flex flex-row items-center justify-center">
           <FaClock className='mr-2 lg:text-sm sm:hidden lg:block' /> {data}
         </div>
@@ -35,7 +35,7 @@ return (
           <p>(#{id})</p>
         </div>
       </div>
-      <div class="collapse-content flex flex-col">
+      <div className="collapse-content flex flex-col">
       {parseInt(ativo) === 1 &&
         //PUNIÇÕES ATIVAS
         <PunicaoInfo

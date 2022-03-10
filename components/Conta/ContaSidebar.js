@@ -53,7 +53,7 @@ export default function ContaSidebar() {
           />
           <h1 className="text-gray-300 text-3xl pt-2 font-bold flex items-center justify-center">TheMito <BsPatchCheckFill className='ml-1 text-lg text-facebook' /></h1>
           <div className='flex flex-wrap lg:flex-row sm:flex-col items-center justify-center mt-2'>
-            <span class="badge badge-outline text-yellow-400 font-bold p-4">MASTER</span>
+            <span className="badge badge-outline text-yellow-400 font-bold p-4">MASTER</span>
           </div>
           <h1 className='font-bold mt-2'>Medalhas</h1>
           {getMedails()}

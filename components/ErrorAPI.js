@@ -18,7 +18,7 @@ export default function ErrorAPI() {
               ERRO
             </h1>
             <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight flex items-center justify-center">
-              <div class="badge bg-youtube lg:text-lg sm:text-xs -mt-16 font-bold">503</div>
+              <div className="badge bg-youtube lg:text-lg sm:text-xs -mt-16 font-bold">503</div>
             </h1>
             <h1 className="text-3xl text-gray-300 font-medium text-center">
               PUTSSSS...

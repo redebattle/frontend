@@ -162,7 +162,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                 />
             </div>}
           </div>
-          <div className=''>
+          <div>
             <IndexSidebar />
           </div>
         </div>

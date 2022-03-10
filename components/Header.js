@@ -2,11 +2,11 @@ import { motion } from 'framer-motion'
 import { useEffect, useState } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
+import Link from 'next/link'
 
 import { FaHome, FaShoppingCart, FaDiscord, FaBan, FaUsers, FaFile, FaSignInAlt, FaShoppingBasket} from 'react-icons/fa'
 
 import api from '../service/api'
-import Link from 'next/link'
 
 export default function Header({ online }) {
   const copyToClipboard = () => {
@@ -208,9 +208,6 @@ export default function Header({ online }) {
                 </Link>
               </li>
             </ul>
-            <div>
-
-            </div>
           </div>
         </div>
       </nav>
