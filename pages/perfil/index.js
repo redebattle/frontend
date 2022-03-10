@@ -8,7 +8,6 @@ import api from '../../service/api'
 import Manutencao from '../../components/Manutencao'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
-import ScrollToTheTopButton from '../../components/ScrollToTheTopButton'
 
 export default function Perfil({error, manutencao}) {
 
@@ -37,7 +36,6 @@ export default function Perfil({error, manutencao}) {
     <>
       <Header />
       <title>Perfil | Rede Battle</title>
-      <ScrollToTheTopButton />
       <div>
         <div id="top-content">
           <div id="avatar-image">

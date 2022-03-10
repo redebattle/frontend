@@ -11,14 +11,14 @@
     }
   },
   "extends": [
-    "plugin:react/recommended",
     "eslint:recommended",
-    "standard",
-    "prettier"
+    "prettier",
+    "next"
   ],
   "plugins": [
     "react",
-    "prettier"
+    "prettier",
+    "plugin:@next/next/recommended"
   ],
   "rules": {
     "prettier/prettier": "error",
