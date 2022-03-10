@@ -8,7 +8,6 @@ module.exports = {
     "./service/**/*.{js,ts,jsx,tsx}",
     "./styles/**/*.{js,ts,jsx,tsx}",
   ],
-  darkMode: 'media', // or 'media' or 'class'
   theme: {
     screens: {
       sm: '300px',
