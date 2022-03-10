@@ -1,6 +1,6 @@
 const colors = require('tailwindcss/colors')
 module.exports = {
-  content: [
+  purge: [
     "./pages/**/*.{js,ts,jsx,tsx}",
     "./public/**/*.{js,ts,jsx,tsx}",
     "./components/**/*.{js,ts,jsx,tsx}",
@@ -53,10 +53,18 @@ module.exports = {
         mercadopago: '#00AEEF',
         mercadopago2: '#243E8C',
         dark: '#121212',
-        dark2: '#212121',
-        dark3: '#303030',
-        dark4: '#424242',
-        roxo: '#8b5cf6'
+        dark2: '#1b1b1b',
+        dark3: '#212121',
+        dark4: '#303030',
+        dark5: '#424242',
+        roxo: '#8b5cf6',
+        colorPrimary: '#7e3af2',
+        colorSecondary: '#da145a',
+        colorTerciary: '#da3114',
+        colorQuartenary: '#da14bd',
+        otherColor: '#dd2476',
+        verde: '#14DA94',
+        textPrimary: '#cecece'
       }
     }
   },

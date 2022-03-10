@@ -1,7 +1,6 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { ToastProvider } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
-import { ThemeProvider } from 'next-themes'
 import { useEffect } from 'react'
 import NProgress from 'nprogress'
 
@@ -17,6 +16,7 @@ import { AuthProvider } from '../contexts/AuthContext'
 import Layout from '../components/Layout'
 import Analytics from '../components/Analytics'
 import ScrollToTheTopButton from '../components/ScrollButton'
+import { AnimateSharedLayout } from 'framer-motion'
 
 const ViewportMetaLink = () => (
   <meta
@@ -43,18 +43,18 @@ function MyApp({ Component, pageProps }) {
   }, [router.events])
   return (
     <>
-      {/* <ThemeProvider forcedTheme="dark"> */}
+      <AnimateSharedLayout>
         <Layout>
           <ToastProvider>
             <AuthProvider>
               <ViewportMetaLink />
-              <ScrollToTheTopButton />
               <Component {...pageProps} />
               <Analytics />
+              <ScrollToTheTopButton />
             </AuthProvider>
           </ToastProvider>
         </Layout>
-      {/* </ThemeProvider> */}
+      </AnimateSharedLayout>
     </>
   )
 }
