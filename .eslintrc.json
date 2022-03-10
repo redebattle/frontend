@@ -5,11 +5,16 @@
     "node": true,
     "jest": true
   },
+  "parserOptions": {
+    "ecmaFeatures": {
+      "jsx": true
+    }
+  },
   "extends": [
     "plugin:react/recommended",
+    "eslint:recommended",
     "standard",
-    "prettier",
-    "plugin:prettier/recommended"
+    "prettier"
   ],
   "plugins": [
     "react",
