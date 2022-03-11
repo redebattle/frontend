@@ -7,7 +7,7 @@ import {
   Tooltip,
   Legend,
   BarChart,
-  AreaChart,
+  AreaChart
 } from 'recharts'
 import CustomTooltip from './CustomToolTips'
 
@@ -16,7 +16,7 @@ export default function Chart({
   children,
   height = 308,
   data,
-  dataKey = 'name',
+  dataKey = 'name'
 }) {
   const renderType = () => {
     switch (type) {
@@ -39,7 +39,7 @@ export default function Chart({
               top: 10,
               right: 30,
               left: 0,
-              bottom: 0,
+              bottom: 0
             }}
           >
             <CartesianGrid strokeDasharray="3 3" />
@@ -58,10 +58,13 @@ export default function Chart({
               top: 10,
               right: 30,
               left: 0,
-              bottom: 0,
+              bottom: 0
             }}
           >
-            <CartesianGrid strokeDasharray="2 2" stroke='rgba(206,206,206,0.3)' />
+            <CartesianGrid
+              strokeDasharray="2 2"
+              stroke="rgba(206,206,206,0.3)"
+            />
             <XAxis dataKey={dataKey} />
             <YAxis />
             <Tooltip content={<CustomTooltip />} />

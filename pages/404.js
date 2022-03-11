@@ -11,9 +11,8 @@ import Footer from '../components/Footer'
 import Header from '../components/Header'
 
 export default function Custom404() {
-
   function handleReturnButton() {
-    Router.back();
+    Router.back()
   }
 
   return (
@@ -22,12 +21,12 @@ export default function Custom404() {
       <title>404 - Página não encontrada | Rede Battle</title>
       <div className="flex items-center justify-center p-8">
         <div className="p-6 max-w-3xl bg-white rounded-lg border-gray-200 shadow-md dark:bg-dark2 dark:border-b-4 dark:border-black">
-          <h1 className="text-9xl font-bold text-gray-300 text-center">
-            404
-          </h1>
+          <h1 className="text-9xl font-bold text-gray-300 text-center">404</h1>
           <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight flex items-center justify-center">
-              <div class="badge bg-youtube lg:text-lg sm:text-xs -mt-32 font-bold">ERRO</div>
-            </h1>
+            <div class="badge bg-youtube lg:text-lg sm:text-xs -mt-32 font-bold">
+              ERRO
+            </div>
+          </h1>
           <h1 className="text-3xl text-gray-300 font-medium text-center">
             Página não encontrada
           </h1>
@@ -36,9 +35,14 @@ export default function Custom404() {
             momento.
           </h1>
           <a onClick={() => Router.back()}>
-            <motion.div className='flex justify-center items-center p-2' whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+            <motion.div
+              className="flex justify-center items-center p-2"
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+            >
               <button className="flex flex-row items-center justify-center bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 h-10 w-40 sm:text-sm font-medium text-white">
-                <BsArrowReturnLeft className='mr-1 flex items-center' />Voltar
+                <BsArrowReturnLeft className="mr-1 flex items-center" />
+                Voltar
               </button>
             </motion.div>
           </a>

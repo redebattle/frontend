@@ -9,8 +9,7 @@ import Manutencao from '../../components/Manutencao'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 
-export default function Perfil({error, manutencao}) {
-
+export default function Perfil({ error, manutencao }) {
   if (error === true) {
     return (
       <>
@@ -49,12 +48,8 @@ export default function Perfil({error, manutencao}) {
             />
           </div>
           <div id="infos">
-            <h1 className="nickname">
-              Nick aqui
-            </h1>
-            <h3 className="since">
-              No servidor desde muito tempo.
-            </h3>
+            <h1 className="nickname">Nick aqui</h1>
+            <h3 className="since">No servidor desde muito tempo.</h3>
           </div>
         </div>
         <div className="UserContainer">
@@ -68,17 +63,11 @@ export default function Perfil({error, manutencao}) {
                 <h2 className="xp-title">XP</h2>
                 <h3 className="xp-data">
                   200
-                  <span>
-                    /
-                    300
-                  </span>
+                  <span>/ 300</span>
                 </h3>
               </div>
               <div className="progress-bar">
-                <h3 className="percent">
-                  80
-                  %
-                </h3>
+                <h3 className="percent">80 %</h3>
                 <div className="progress" style={{ width: '80%' }} />
               </div>
             </div>
@@ -100,18 +89,13 @@ export default function Perfil({error, manutencao}) {
               <h2 className="last-orders-title">ÚLTIMAS COMPRAS</h2>
               <div className="last-orders-data">
                 <p className="reg">
-                  ・
-                  <i>Nenhuma compra</i>
+                  ・<i>Nenhuma compra</i>
                 </p>
               </div>
             </div>
           </div>
           <div className="votes">
-            <Image
-              src="/icons/VoteIconBig.svg"
-              width={150}
-              height={150}
-            />
+            <Image src="/icons/VoteIconBig.svg" width={150} height={150} />
             <div className="votes-data">
               <div className="votes-data-total">
                 <h2 className="votes-data-total-title">TOTAL</h2>
@@ -120,7 +104,7 @@ export default function Perfil({error, manutencao}) {
             </div>
           </div>
           <div className="messages">
-            <div msgs='300' />
+            <div msgs="300" />
           </div>
           <div className="medails">
             <h1 className="title">MEDALHAS</h1>
@@ -128,7 +112,12 @@ export default function Perfil({error, manutencao}) {
           </div>
           <div className="vips-boosters">
             <div className="booster-xp">
-              <Image src="/icons/BoosterXpIcon.svg" width={120} height={120} title="Multiplicador de XP" />
+              <Image
+                src="/icons/BoosterXpIcon.svg"
+                width={120}
+                height={120}
+                title="Multiplicador de XP"
+              />
               <div className="data">
                 <div className="active-plan">
                   <h2 className="active-plan-title">PLANO ATIVO</h2>
@@ -136,14 +125,17 @@ export default function Perfil({error, manutencao}) {
                 </div>
                 <div className="time-rem">
                   <h2 className="time-rem-title">TEMPO RESTANTE</h2>
-                  <h1 className="time-rem-data">
-                    30 dias
-                  </h1>
+                  <h1 className="time-rem-data">30 dias</h1>
                 </div>
               </div>
             </div>
             <div className="vip">
-              <Image src="/icons/VipIcon.svg" width={120} height={120} title="VIP" />
+              <Image
+                src="/icons/VipIcon.svg"
+                width={120}
+                height={120}
+                title="VIP"
+              />
               <div className="data">
                 <div className="active-plan">
                   <h2 className="active-plan-title">PLANO ATIVO</h2>
@@ -151,14 +143,17 @@ export default function Perfil({error, manutencao}) {
                 </div>
                 <div className="time-rem">
                   <h2 className="time-rem-title">TEMPO RESTANTE</h2>
-                  <h1 className="time-rem-data">
-                    12 dias
-                  </h1>
+                  <h1 className="time-rem-data">12 dias</h1>
                 </div>
               </div>
             </div>
             <div className="booster-atoms">
-              <Image src="/icons/BoosterAtomsIcon.svg" width={120} height={120} title="Multiplicador de Átomos" />
+              <Image
+                src="/icons/BoosterAtomsIcon.svg"
+                width={120}
+                height={120}
+                title="Multiplicador de Átomos"
+              />
               <div className="data">
                 <div className="active-plan">
                   <h2 className="active-plan-title">PLANO ATIVO</h2>
@@ -166,9 +161,7 @@ export default function Perfil({error, manutencao}) {
                 </div>
                 <div className="time-rem">
                   <h2 className="time-rem-title">TEMPO RESTANTE</h2>
-                  <h1 className="time-rem-data">
-                    65 dias
-                  </h1>
+                  <h1 className="time-rem-data">65 dias</h1>
                 </div>
               </div>
             </div>
@@ -182,6 +175,7 @@ export default function Perfil({error, manutencao}) {
 
 export async function getServerSideProps({ query }) {
   try {
+    let error
     const page = query.pagina || 1
 
     const changelogs = await api

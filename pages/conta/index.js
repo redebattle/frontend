@@ -21,11 +21,18 @@ export default function ContaIndex() {
             </div>
             <div>
               <h1 className="text-gray-300 text-lg mt-3">
-                Este é o seu painel. Aqui você pode visualizar todas as
-                compras efetuadas (sejam elas aprovadas, pendentes ou
-                recusadas). Tem alguma dúvida? Entre em contato conosco pelo
-                e-mail: <u className='text-discord'>suporte@redebattle.com.br</u> ou criando um ticket no
-                <a href="https://redebattle.com.br/discord" className='ml-2 text-discord hover:text-opacity-60'><u>discord</u></a>.
+                Este é o seu painel. Aqui você pode visualizar todas as compras
+                efetuadas (sejam elas aprovadas, pendentes ou recusadas). Tem
+                alguma dúvida? Entre em contato conosco pelo e-mail:{' '}
+                <u className="text-discord">suporte@redebattle.com.br</u> ou
+                criando um ticket no
+                <a
+                  href="https://redebattle.com.br/discord"
+                  className="ml-2 text-discord hover:text-opacity-60"
+                >
+                  <u>discord</u>
+                </a>
+                .
               </h1>
             </div>
             <div>
@@ -39,7 +46,7 @@ export default function ContaIndex() {
                 recuperada sem dificuldades posteriormente!
               </h1>
             </div>
-            <div className='flex lg:flex-row sm:flex-col'>
+            <div className="flex lg:flex-row sm:flex-col">
               <div>
                 <form>
                   <input
@@ -61,9 +68,9 @@ export default function ContaIndex() {
             </div>
           </div>
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-2 max-w-sm p-10">
-            <div className='flex flex-row items-center justify-center'>
-              <div className='bg-lime-600 p-6 rounded-lg'>
-                <FaShoppingCart className='text-4xl' />
+            <div className="flex flex-row items-center justify-center">
+              <div className="bg-lime-600 p-6 rounded-lg">
+                <FaShoppingCart className="text-4xl" />
               </div>
               <div>
                 <h1 className="text-gray-300 text-lg p-3">
@@ -72,9 +79,7 @@ export default function ContaIndex() {
                 <h1 className="text-gray-300 text-lg font-bold -mt-6 p-3">
                   R$ 0,00
                 </h1>
-                <h1 className="text-gray-300 text-sm -mt-6 p-3">
-                  0 doações
-                </h1>
+                <h1 className="text-gray-300 text-sm -mt-6 p-3">0 doações</h1>
               </div>
             </div>
           </div>

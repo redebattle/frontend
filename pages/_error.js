@@ -13,7 +13,7 @@ function Error({ statusCode }) {
 
 Error.getInitialProps = ({ res, err }) => {
   const statusCode = res ? res.statusCode : err ? err.statusCode : 400
-  Sentry.captureException(err);
+  Sentry.captureException(err)
   return { statusCode }
 }
 

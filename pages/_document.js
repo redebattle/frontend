@@ -1,22 +1,22 @@
 /* eslint-disable react/react-in-jsx-scope */
-import * as Sentry from '@sentry/nextjs';
+import * as Sentry from '@sentry/nextjs'
 import Document, { Html, Head, Main, NextScript } from 'next/document'
 import Analytics from '../components/Analytics'
 
-process.on('unhandledRejection', () => {
-  getSentryRelease.captureException(e);
-});
+process.on('unhandledRejection', e => {
+  Sentry.getSentryRelease.captureException(e)
+})
 
-process.on('uncaughtException', () => {
-  Sentry.captureException(e);
-});
+process.on('uncaughtException', e => {
+  Sentry.captureException(e)
+})
 
 class MyDocument extends Document {
   static async getInitialProps(ctx) {
     Sentry.addBreadcrumb({
       message: `Rendering _document`,
-      level: Sentry.Severity.Debug,
-    });
+      level: Sentry.Severity.Debug
+    })
 
     const initialProps = await Document.getInitialProps(ctx)
     return { ...initialProps }
@@ -31,19 +31,75 @@ class MyDocument extends Document {
           <meta charSet="utf-8"></meta>
 
           {/* ICON */}
-          <link rel="apple-touch-icon" sizes="57x57" href="/apple-icon-57x57.png" />
-          <link rel="apple-touch-icon" sizes="60x60" href="/apple-icon-60x60.png" />
-          <link rel="apple-touch-icon" sizes="72x72" href="/apple-icon-72x72.png" />
-          <link rel="apple-touch-icon" sizes="76x76" href="/apple-icon-76x76.png" />
-          <link rel="apple-touch-icon" sizes="114x114" href="/apple-icon-114x114.png" />
-          <link rel="apple-touch-icon" sizes="120x120" href="/apple-icon-120x120.png" />
-          <link rel="apple-touch-icon" sizes="144x144" href="/apple-icon-144x144.png" />
-          <link rel="apple-touch-icon" sizes="152x152" href="/apple-icon-152x152.png" />
-          <link rel="apple-touch-icon" sizes="180x180" href="/apple-icon-180x180.png" />
-          <link rel="icon" type="image/png" sizes="192x192"  href="/android-icon-192x192.png" />
-          <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-          <link rel="icon" type="image/png" sizes="96x96" href="/favicon-96x96.png" />
-          <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+          <link
+            rel="apple-touch-icon"
+            sizes="57x57"
+            href="/apple-icon-57x57.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="60x60"
+            href="/apple-icon-60x60.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="72x72"
+            href="/apple-icon-72x72.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="76x76"
+            href="/apple-icon-76x76.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="114x114"
+            href="/apple-icon-114x114.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="120x120"
+            href="/apple-icon-120x120.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="144x144"
+            href="/apple-icon-144x144.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="152x152"
+            href="/apple-icon-152x152.png"
+          />
+          <link
+            rel="apple-touch-icon"
+            sizes="180x180"
+            href="/apple-icon-180x180.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="192x192"
+            href="/android-icon-192x192.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="32x32"
+            href="/favicon-32x32.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="96x96"
+            href="/favicon-96x96.png"
+          />
+          <link
+            rel="icon"
+            type="image/png"
+            sizes="16x16"
+            href="/favicon-16x16.png"
+          />
           <link rel="manifest" href="/manifest.json" />
           <meta name="msapplication-TileColor" content="#ffffff" />
           <meta name="msapplication-TileImage" content="/ms-icon-144x144.png" />
@@ -70,7 +126,11 @@ class MyDocument extends Document {
           <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
 
           {/* Google Adsense */}
-          <script data-ad-client="ca-pub-4583572814077870" async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+          <script
+            data-ad-client="ca-pub-4583572814077870"
+            async
+            src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"
+          ></script>
 
           {/* <!-- Global site tag (gtag.js) - Google Analytics --> */}
           <Analytics />

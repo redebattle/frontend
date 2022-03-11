@@ -383,6 +383,7 @@ export default function AdminPostagensIndex({ posts, error, possuiPermissao }) {
 }
 
 export const getServerSideProps = async ctx => {
+  let error = false
   const { 'battleadmin.token': token } = await parseCookies(ctx)
   let possuiPermissao = false
 

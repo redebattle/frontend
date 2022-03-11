@@ -16,11 +16,13 @@ export default function ContaCompasIndex() {
         <ContaSidebar />
         <div className="flex flex-col w-full">
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-3 p-10">
-            <div className='flex items-center justify-center flex-col'>
-              <FaShoppingCart className='text-3xl' />
-              <h1 className="text-gray-300 text-3xl font-medium">Meus Pedidos</h1>
+            <div className="flex items-center justify-center flex-col">
+              <FaShoppingCart className="text-3xl" />
+              <h1 className="text-gray-300 text-3xl font-medium">
+                Meus Pedidos
+              </h1>
             </div>
-            <div className='flex items-center justify-center'>
+            <div className="flex items-center justify-center">
               <h1 className="text-gray-300 text-sm mt-3">
                 Você ainda não teve nenhuma compra aprovada.
               </h1>

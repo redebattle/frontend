@@ -6,10 +6,7 @@ import Manutencao from '../components/Manutencao'
 import Metadata from '../components/Metadata'
 import ErrorAPI from '../components/ErrorAPI'
 
-
-
 export default function Termos({ error, manutencao }) {
-
   // if (error) {
   //   return (
   //     <ErrorAPI />
@@ -29,19 +26,33 @@ export default function Termos({ error, manutencao }) {
       <Header />
       <title>Termos - Rede Battle</title>
       {/* ADICIONA METADATA */}
-      <Metadata title={`TERMOS E CONDIÇÕES - Rede Battle`} description={`Fique por dentro das regras do servidor.`} /*imgURL={post.header}*/ url={`https://redebattle.com.br/regras`} />
-      <div className='flex lg:flex-row sm:flex-col'>
-        <div className='bg-dark2 w-full p-4 m-6 rounded-lg border-b-4 border-black'>
-          <h1 className='font-bold text-2xl'>TERMOS E CONDIÇÕES</h1>
-          <div className='overflow-auto h-96 bg-dark3 p-4 m-4 rounded-lg border-b-4 border-black'>
-            <div className='p-4'>
-              <h1 className='text-2xl font-bold'>Abuso de Bugs</h1>
-              <p className='font-extralight'>Aproveitar-se de qualquer maneira de um erro em nossos sistemas para benefício próprio ou ter conhecimento de um erro e não reportá-lo.</p>
-              <p className='mt-2'><b>Exemplo:</b> Aproveitar-se de um erro de duplicação de itens.</p>
+      <Metadata
+        title={`TERMOS E CONDIÇÕES - Rede Battle`}
+        description={`Fique por dentro das regras do servidor.`}
+        /*imgURL={post.header}*/ url={`https://redebattle.com.br/regras`}
+      />
+      <div className="flex lg:flex-row sm:flex-col">
+        <div className="bg-dark2 w-full p-4 m-6 rounded-lg border-b-4 border-black">
+          <h1 className="font-bold text-2xl">TERMOS E CONDIÇÕES</h1>
+          <div className="overflow-auto h-96 bg-dark3 p-4 m-4 rounded-lg border-b-4 border-black">
+            <div className="p-4">
+              <h1 className="text-2xl font-bold">Abuso de Bugs</h1>
+              <p className="font-extralight">
+                Aproveitar-se de qualquer maneira de um erro em nossos sistemas
+                para benefício próprio ou ter conhecimento de um erro e não
+                reportá-lo.
+              </p>
+              <p className="mt-2">
+                <b>Exemplo:</b> Aproveitar-se de um erro de duplicação de itens.
+              </p>
             </div>
-            <div className='p-4 -mt-3'>
-              <h1 className='text-2xl font-bold'>Abuso de Bugs</h1>
-              <p className='font-extralight'>Aproveitar-se de qualquer maneira de um erro em nossos sistemas para benefício próprio ou ter conhecimento de um erro e não reportá-lo.</p>
+            <div className="p-4 -mt-3">
+              <h1 className="text-2xl font-bold">Abuso de Bugs</h1>
+              <p className="font-extralight">
+                Aproveitar-se de qualquer maneira de um erro em nossos sistemas
+                para benefício próprio ou ter conhecimento de um erro e não
+                reportá-lo.
+              </p>
             </div>
           </div>
         </div>
@@ -54,6 +65,7 @@ export default function Termos({ error, manutencao }) {
 
 export async function getServerSideProps(context) {
   try {
+    let error
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)

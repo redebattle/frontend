@@ -83,6 +83,7 @@ export default function Changelog({ changelogs, error, manutencao }) {
 
 export async function getServerSideProps({ query }) {
   try {
+    let error
     const page = query.pagina || 1
 
     const changelogs = await api

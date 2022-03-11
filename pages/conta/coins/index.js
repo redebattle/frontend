@@ -17,14 +17,14 @@ export default function ContaCoins() {
         <ContaCoinsSidebar />
         <div className="flex flex-col w-full">
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-3 p-10">
-            <div className='flex items-center justify-center flex-col'>
-              <FaShoppingCart className='text-3xl' />
-              <h1 className="text-gray-300 lg:text-3xl sm:text-xl sm:text-center font-medium">Troque seus coins por produtos</h1>
-            </div>
-            <div className='flex flex-col items-center justify-center'>
-              <h1 className="text-gray-300 text-2xl mt-3">
-                Opsssss...
+            <div className="flex items-center justify-center flex-col">
+              <FaShoppingCart className="text-3xl" />
+              <h1 className="text-gray-300 lg:text-3xl sm:text-xl sm:text-center font-medium">
+                Troque seus coins por produtos
               </h1>
+            </div>
+            <div className="flex flex-col items-center justify-center">
+              <h1 className="text-gray-300 text-2xl mt-3">Opsssss...</h1>
               <h1 className="text-gray-300 text-lg mt-2">
                 Nenhum produto cadastrado.
               </h1>

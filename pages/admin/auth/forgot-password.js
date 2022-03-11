@@ -54,7 +54,7 @@ export default function AdminForgotPassword() {
       <title>Recuperação de Senha | Rede Battle</title>
       <div className="bg-dark flex sm:flex-col lg:flex-row items-center lg:justify-evenly sm:justify-center w-full h-full p-2">
         <div className="">
-        <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
+          <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             RECUPERE <br />
             SUA SENHA
           </h1>
@@ -99,7 +99,7 @@ export default function AdminForgotPassword() {
           <div className="flex items-center justify-center">
             <Link href="/admin">
               <button className="text-purple-500 font-normal hover:text-white -mb-4 flex flex-row items-center justify-center">
-                <FaArrowLeft className=' mr-1' /> Voltar
+                <FaArrowLeft className=" mr-1" /> Voltar
               </button>
             </Link>
           </div>

@@ -10,7 +10,7 @@ const Wrapper = styled.div`
     align-items: center !important;
     justify-content: center !important;
     padding-bottom: 5px !important;
-    background-color: #9333EA !important;
+    background-color: #9333ea !important;
     outline: none !important;
     svg {
       height: 50% !important;

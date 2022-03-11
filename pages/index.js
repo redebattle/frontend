@@ -14,7 +14,7 @@ import PostComponent from '../components/Posts'
 import StreamersIndex from '../components/StreamersIndex'
 
 const Pagination = styled(ReactPaginate).attrs({
-  activeClassName: 'active',
+  activeClassName: 'active'
 })`
   margin-bottom: 2rem;
   display: flex;
@@ -38,11 +38,11 @@ const Pagination = styled(ReactPaginate).attrs({
   li.next a,
   li.break a {
     border-color: transparent;
-    background-color: rgb(126,58,242,1);
+    background-color: rgb(126, 58, 242, 1);
     padding: 12px;
   }
   li.active a {
-    background-color: rgb(126,58,242,1);
+    background-color: rgb(126, 58, 242, 1);
     border-color: transparent;
     color: white;
     min-width: 32px;
@@ -74,7 +74,7 @@ const Pagination = styled(ReactPaginate).attrs({
       font-size: 12px;
     }
   }
-`;
+`
 
 export default function Home({ posts, postsInfo, query, error, manutencao }) {
   const router = useRouter()
@@ -88,25 +88,22 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
   }
 
   if (error) {
-    return (
-      <ErrorAPI />
-    )
+    return <ErrorAPI />
   }
-
 
   let page = query.pagina || 1
   const totalPage = Math.ceil(postsInfo.total / 5)
 
-  const pagginationHandler = async (pagina) => {
-    const currentPath = router.pathname;
-    const currentQuery = { ...router.query };
-    currentQuery.pagina = pagina.selected + 1;
+  const pagginationHandler = async pagina => {
+    const currentPath = router.pathname
+    const currentQuery = { ...router.query }
+    currentQuery.pagina = pagina.selected + 1
 
     router.push({
-        pathname: currentPath,
-        query: currentQuery,
+      pathname: currentPath,
+      query: currentQuery
     })
-  };
+  }
 
   return (
     <>
@@ -114,10 +111,14 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
       <div className="INDEX">
         <title>Rede Battle</title>
         {/* METADATA */}
-        <Metadata title={'Rede Battle'} description={'Site oficial da Rede Battle!'} imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'} />
+        <Metadata
+          title={'Rede Battle'}
+          description={'Site oficial da Rede Battle!'}
+          imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'}
+        />
         <StreamersIndex />
         <div className="flex justify-center lg:mr-6 sm:mr-0 sm:p-3 lg:flex-row sm:flex-col">
-          <div className='w-full sm:mb-2'>
+          <div className="w-full sm:mb-2">
             {(postsInfo.obs.rows.length === 0 && (
               <div className="bg-dark2 p-10 text-center rounded-lg">
                 <h1 className="text-gray-300 text-xl font-medium">
@@ -149,9 +150,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                     acessos={post.acessos}
                   />
                 )
-              })
-            }
-            {totalPage > 1 &&
+              })}
+            {totalPage > 1 && (
               <div>
                 <Pagination
                   pageCount={totalPage}
@@ -160,7 +160,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
                   previousLabel="« Página anterior"
                   nextLabel="Próxima página »"
                 />
-            </div>}
+              </div>
+            )}
           </div>
           <div>
             <IndexSidebar />
@@ -174,6 +175,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
 
 export async function getServerSideProps({ query }) {
   try {
+    let error
     let { pagina } = query
     // const posts = await api
     //   .get(`/postagens/list?page=${page}&itens=1&sort=createdAt&order=desc`)
@@ -182,7 +184,11 @@ export async function getServerSideProps({ query }) {
     //     console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
     //   })
     const postsInfo = await api
-      .get(`/postagens/list?page=${pagina ? pagina : 1}&itens=5&sort=createdAt&order=desc`)
+      .get(
+        `/postagens/list?page=${
+          pagina ? pagina : 1
+        }&itens=5&sort=createdAt&order=desc`
+      )
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)

@@ -22,7 +22,9 @@ export function AuthProvider({ children }) {
 
     if (token) {
       try {
-        const getUser = await api.get('/user/profile', { headers: { Authorization: `Bearer ${token}` } })
+        const getUser = await api.get('/user/profile', {
+          headers: { Authorization: `Bearer ${token}` }
+        })
         setUser(getUser.data.usuario)
         setRoles(getUser.data.permissoes.rows)
       } catch (e) {

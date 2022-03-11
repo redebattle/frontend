@@ -41,10 +41,15 @@ export default function AdminAuthEmailSending() {
       <div className="bg-dark flex items-center justify-center w-full h-full p-2">
         <div className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded px-8 pt-6 pb-8">
           <div className="flex items-center justify-center">
-            <img src="/img/send-email.jpg" className="lg:h-60 sm:h-32 md:h-44 rounded-full" />
+            <img
+              src="/img/send-email.jpg"
+              className="lg:h-60 sm:h-32 md:h-44 rounded-full"
+            />
           </div>
           <div className="flex items-center justify-center">
-            <h1 className="lg:text-5xl sm:text-xl md:text-2xl p-6 text-white">Verifique seu Email!</h1>
+            <h1 className="lg:text-5xl sm:text-xl md:text-2xl p-6 text-white">
+              Verifique seu Email!
+            </h1>
           </div>
           <div className="flex items-center justify-center max-w-lg">
             <h1 className="text-gray-400 sm:text-xs md:text-sm lg:text-base">

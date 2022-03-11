@@ -79,7 +79,9 @@ const Equipe = ({ nome, twitter, discord, cor }) => {
 const Cargo = ({ nome, totalCargo, equipe, cor }) => {
   return (
     <div id="equipe">
-      <div className={`bg-dark3 p-2 rounded-lg pl-3 border-b-4 border-[${cor}] border-opacity-60`}>
+      <div
+        className={`bg-dark3 p-2 rounded-lg pl-3 border-b-4 border-[${cor}] border-opacity-60`}
+      >
         <h1 style={{ color: cor }} className="text-2xl font-bold uppercase">
           {nome || (
             <SkeletonTheme
@@ -175,6 +177,7 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
 
 export async function getServerSideProps() {
   try {
+    let error = false
     const equipe = await api
       .get('/equipe/all')
       .then(res => res.data)

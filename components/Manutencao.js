@@ -23,7 +23,7 @@ export default function Manutencao() {
     <div className="h-full w-full flex items-center justify-center">
       <title>Manutenção | RedeBattle</title>
       <div className="flex lg:flex-row sm:flex-col lg:justify-evenly sm:justify-center items-center">
-        <div className='sm:p-12'>
+        <div className="sm:p-12">
           <motion.div
             initial={{ scale: 0 }}
             animate={{ rotate: 0, scale: 1 }}
@@ -44,7 +44,7 @@ export default function Manutencao() {
             />
           </motion.div>
         </div>
-        <div className='flex flex-col justify-center lg:items-start sm:items-center'>
+        <div className="flex flex-col justify-center lg:items-start sm:items-center">
           <h1 className="text-red-600 lg:text-5xl sm:text-3xl md:text-5xl uppercase text-center">
             Site em <b>manutenção</b>
           </h1>

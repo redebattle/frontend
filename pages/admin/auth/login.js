@@ -34,8 +34,8 @@ export default function Admin() {
     <>
       <title>Login | Administração Rede Battle</title>
 
-      <div className='flex lg:flex-row md:flex-col sm:flex-col items-center lg:justify-evenly sm:justify-center w-full h-full p-2'>
-        <div className=''>
+      <div className="flex lg:flex-row md:flex-col sm:flex-col items-center lg:justify-evenly sm:justify-center w-full h-full p-2">
+        <div className="">
           <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             PAINEL <br />
             DE CONTROLE
@@ -52,7 +52,7 @@ export default function Admin() {
           >
             <ReCAPTCHA
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-              size='invisible'
+              size="invisible"
               ref={reRef}
             />
             <div className="mb-4">

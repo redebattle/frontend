@@ -8,11 +8,13 @@
   "parserOptions": {
     "ecmaFeatures": {
       "jsx": true
-    }
+    },
+    "sourceType": "module"
   },
   "extends": [
     "eslint:recommended",
-    "prettier"
+    "prettier",
+    "plugin:@next/next/recommended"
   ],
   "plugins": [
     "react",

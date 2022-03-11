@@ -39,15 +39,18 @@ export default function ContaLogin() {
           onSubmit={logar}
           className="bg-dark2 border-b-4 border-black rounded-lg px-8 pt-6 pb-8 mb-4"
         >
-        <ReCAPTCHA
-          sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
-          size='invisible'
-          ref={reRef}
-          theme='dark'
-        />
+          <ReCAPTCHA
+            sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
+            size="invisible"
+            ref={reRef}
+            theme="dark"
+          />
           <div className="pb-2 flex items-center justify-center">
             <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
-              <img src={`https://cravatar.eu/helmavatar/${nick}/96`} className='rounded-lg' />
+              <img
+                src={`https://cravatar.eu/helmavatar/${nick}/96`}
+                className="rounded-lg"
+              />
             </motion.div>
           </div>
           <div className="mb-4">

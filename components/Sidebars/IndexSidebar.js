@@ -51,8 +51,8 @@ export default function IndexSidebar() {
         {/* DISCORD */}
         <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
           <iframe
-            title='Twitter'
-            className='lg:w-full sm:w-full'
+            title="Twitter"
+            className="lg:w-full sm:w-full"
             src="https://discordapp.com/widget?id=762534744969052181&theme=dark"
             width="460"
             height="500"
@@ -62,7 +62,7 @@ export default function IndexSidebar() {
         </div>
         {/* PUBLICIDADE */}
         <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
-          <p className='text-gray-300'>Publicidade</p>
+          <p className="text-gray-300">Publicidade</p>
           <div>
             <GoogleAd />
           </div>
@@ -70,10 +70,10 @@ export default function IndexSidebar() {
         {/* TWITTER */}
         <div className="flex justify-center pt-5 pb-5 mt-2 mb-2 bg-dark2 border-b-4 border-black border-opacity-60 rounded-lg">
           <Timeline
-            dataSource={{ sourceType: "profile", screenName: "cubeboxoficial" }}
-            options={{ theme: "dark", width: "350", height: "600", lang: "pt" }}
+            dataSource={{ sourceType: 'profile', screenName: 'cubeboxoficial' }}
+            options={{ theme: 'dark', width: '350', height: '600', lang: 'pt' }}
             renderError={_err =>
-              "Deu um erro na Timeline do Twitter bro :( Arruma ae pow"
+              'Deu um erro na Timeline do Twitter bro :( Arruma ae pow'
             }
           />
         </div>

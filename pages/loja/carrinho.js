@@ -2,7 +2,7 @@ import cep from 'cep-promise'
 import { useState } from 'react'
 import ReactInputMask from 'react-input-mask'
 import { useForm } from 'react-hook-form'
-import { cpf } from 'cpf-cnpj-validator';
+import { cpf } from 'cpf-cnpj-validator'
 
 import api from '../../service/api'
 import apiWay from '../../service/apiWay'
@@ -12,9 +12,16 @@ import ErrorAPI from '../../components/ErrorAPI'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import Payments from '../../components/Loja/Payments'
-import { FaGift, FaInfoCircle, FaMoneyBillWave, FaShoppingBasket, FaTag, FaTrashAlt } from 'react-icons/fa'
+import {
+  FaGift,
+  FaInfoCircle,
+  FaMoneyBillWave,
+  FaShoppingBasket,
+  FaTag,
+  FaTrashAlt
+} from 'react-icons/fa'
 
-export default function LojaCarrinho({error, manutencao, userIP }) {
+export default function LojaCarrinho({ error, manutencao, userIP }) {
   const [cityForm, setCityForm] = useState()
   const [streetForm, setStreetForm] = useState()
   const [neighborhoodForm, setNeighborhoodForm] = useState()
@@ -44,22 +51,22 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
 
   async function handleCheckOut(data) {
     console.log('TESTE:::', neighborhoodForm)
-    console.log("NOME::: " + data.nome)
-    console.log("NASCIMENTO::: " + data.dtNascimento)
-    console.log("CELULAR::: " + data.telefone)
-    console.log("CPF::: " + data.cpf)
-    console.log("PAIS::: " + data.pais)
-    console.log("CEP::: " + data.cepForm)
-    console.log("RUA::: " + data.logradouro)
-    console.log("BAIRRO::: " + data.bairro)
-    console.log("NUMERO::: " + data.numero)
-    console.log("CIDADE::: " + data.cidade)
-    console.log("ESTADO::: " + data.uf)
-    console.log("CUPOM::: " + data.cupom)
-    console.log("PRESENTE::: " + data.presente)
-    console.log("TERMOS::: " + data.termos)
-    console.log("GATEWAY::: " + data.gateway)
-    console.log("IP::: " + userIP)
+    console.log('NOME::: ' + data.nome)
+    console.log('NASCIMENTO::: ' + data.dtNascimento)
+    console.log('CELULAR::: ' + data.telefone)
+    console.log('CPF::: ' + data.cpf)
+    console.log('PAIS::: ' + data.pais)
+    console.log('CEP::: ' + data.cepForm)
+    console.log('RUA::: ' + data.logradouro)
+    console.log('BAIRRO::: ' + data.bairro)
+    console.log('NUMERO::: ' + data.numero)
+    console.log('CIDADE::: ' + data.cidade)
+    console.log('ESTADO::: ' + data.uf)
+    console.log('CUPOM::: ' + data.cupom)
+    console.log('PRESENTE::: ' + data.presente)
+    console.log('TERMOS::: ' + data.termos)
+    console.log('GATEWAY::: ' + data.gateway)
+    console.log('IP::: ' + userIP)
   }
 
   async function limparCampos() {
@@ -75,7 +82,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
     let userCEP = e.target.value
     if (userCEP.length === 9) {
       await limparCampos()
-      const response = await cep(userCEP).then((res) => res).catch((res) => setCepError(res))
+      const response = await cep(userCEP)
+        .then(res => res)
+        .catch(res => setCepError(res))
       await setStateForm(response?.state)
       await setCityForm(response?.city)
       await setStreetForm(response?.street)
@@ -85,9 +94,7 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
   }
 
   if (error) {
-    return (
-      <ErrorAPI />
-    )
+    return <ErrorAPI />
   }
 
   if (manutencao) {
@@ -104,17 +111,22 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
       <form onSubmit={handleSubmit(handleCheckOut)}>
         <div className="INDEX">
           <title>Carrinho | Rede Battle</title>
-          <div className='bg-dark2 border-b-4 border-black rounded-lg mt-4 lg:mr-4 sm:mr-0 m-2 p-4'>
-            <h1 className='p-1 text-xl uppercase font-bold flex flex-row items-center'>CARRINHO DE COMPRA</h1>
+          <div className="bg-dark2 border-b-4 border-black rounded-lg mt-4 lg:mr-4 sm:mr-0 m-2 p-4">
+            <h1 className="p-1 text-xl uppercase font-bold flex flex-row items-center">
+              CARRINHO DE COMPRA
+            </h1>
           </div>
           <div className="flex sm:flex-col md:flex-col xl:flex-row mt-4 lg:mr-10 sm:m-2 xl:m-2">
-            <div className='flex flex-col w-full mr-6'>
-              <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-4 lg:ml-5 sm:ml-0 sm:mt-0'>
-                <h1 className='p-1 text-xl uppercase font-bold flex items-center flex-row'><FaShoppingBasket className='mr-2' />Seus produtos</h1>
+            <div className="flex flex-col w-full mr-6">
+              <div className="w-full bg-dark2 border-b-4 border-black rounded-lg p-4 lg:ml-5 sm:ml-0 sm:mt-0">
+                <h1 className="p-1 text-xl uppercase font-bold flex items-center flex-row">
+                  <FaShoppingBasket className="mr-2" />
+                  Seus produtos
+                </h1>
               </div>
-              <div className='mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 lg:ml-5 mb-3 sm:ml-0 sm:mt-3'>
-                <table className='w-full table-compact border border-dark'>
-                  <thead className='text-base bg-dark rounded-lg'>
+              <div className="mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 lg:ml-5 mb-3 sm:ml-0 sm:mt-3">
+                <table className="w-full table-compact border border-dark">
+                  <thead className="text-base bg-dark rounded-lg">
                     <tr>
                       <th>Produto</th>
                       <th>Quantidade</th>
@@ -123,13 +135,23 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                       <th>#</th>
                     </tr>
                   </thead>
-                  <tbody className='text-xl'>
-                  <tr class="">
-                      <td className=''>VIP 1 <br /> Servidor: RankUP</td>
-                      <td><input type='number' className='bg-dark border-none w-16  text-center' value={1}/></td>
+                  <tbody className="text-xl">
+                    <tr class="">
+                      <td className="">
+                        VIP 1 <br /> Servidor: RankUP
+                      </td>
+                      <td>
+                        <input
+                          type="number"
+                          className="bg-dark border-none w-16  text-center"
+                          value={1}
+                        />
+                      </td>
                       <td>R$ 10,00</td>
                       <td>R$ 10,00</td>
-                      <td><FaTrashAlt className='hover:text-red-600 cursor-pointer' /></td>
+                      <td>
+                        <FaTrashAlt className="hover:text-red-600 cursor-pointer" />
+                      </td>
                     </tr>
                   </tbody>
                 </table>
@@ -145,42 +167,59 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                   </div>
                 </div> */}
               </div>
-              <div className='w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mt-3 lg:ml-5 sm:ml-0 sm:mt-0'>
-                <h1 className='p-1 text-xl uppercase font-bold flex flex-row items-center'><FaMoneyBillWave className='mr-2' />SEUS DADOS</h1>
+              <div className="w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mt-3 lg:ml-5 sm:ml-0 sm:mt-0">
+                <h1 className="p-1 text-xl uppercase font-bold flex flex-row items-center">
+                  <FaMoneyBillWave className="mr-2" />
+                  SEUS DADOS
+                </h1>
               </div>
-              <div className='flex flex-col justify-center my-3 w-full bg-dark2 border-b-4 border-black rounded-lg lg:p-4 sm:p-0 lg:ml-5 sm:ml-0 sm:mt-3'>
-                <div className='flex flex-col lg:p-6 my-2 sm:p-0 text-normal'>
-                  <div className='flex lg:flex-row sm:flex-col'>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> NOME COMPLETO</label>
+              <div className="flex flex-col justify-center my-3 w-full bg-dark2 border-b-4 border-black rounded-lg lg:p-4 sm:p-0 lg:ml-5 sm:ml-0 sm:mt-3">
+                <div className="flex flex-col lg:p-6 my-2 sm:p-0 text-normal">
+                  <div className="flex lg:flex-row sm:flex-col">
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> NOME COMPLETO
+                      </label>
                       <input
-                        {...register("nome")}
+                        {...register('nome')}
                         type="text"
                         id="nome"
                         required
                         className="px-4 py-2 lg:w-96 sm:w-auto  bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors.nome?.type === 'required' && <label className='text-red-600 ml-1'>O nome é obrigatório.</label>}
+                      {errors.nome?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O nome é obrigatório.
+                        </label>
+                      )}
                     </div>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> DATA NASCIMENTO</label>
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> DATA NASCIMENTO
+                      </label>
                       <ReactInputMask
-                        {...register("dtNascimento")}
+                        {...register('dtNascimento')}
                         type="text"
-                        mask='99/99/9999'
-                        maskChar=''
+                        mask="99/99/9999"
+                        maskChar=""
                         id="dtNascimento"
                         required
                         className="px-4 py-2 lg:w-40 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors.dtNascimento?.type === 'required' && <label className='text-red-600 ml-1'>A data de nascimento é obrigatória.</label>}
+                      {errors.dtNascimento?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          A data de nascimento é obrigatória.
+                        </label>
+                      )}
                     </div>
                   </div>
-                  <div className='flex lg:flex-row sm:flex-col'>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> CELULAR</label>
+                  <div className="flex lg:flex-row sm:flex-col">
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> CELULAR
+                      </label>
                       <ReactInputMask
-                        {...register("telefone")}
+                        {...register('telefone')}
                         type="text"
                         mask="(99) 99999-9999"
                         maskChar=""
@@ -188,12 +227,18 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         required
                         className="px-4 py-2 lg:w-80 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors.telefone?.type === 'required' && <label className='text-red-600 ml-1'>O celular é obrigatório.</label>}
+                      {errors.telefone?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O celular é obrigatório.
+                        </label>
+                      )}
                     </div>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> CPF</label>
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> CPF
+                      </label>
                       <ReactInputMask
-                        {...register("cpf", { required: true })}
+                        {...register('cpf', { required: true })}
                         type="text"
                         mask="999.999.999-99"
                         maskChar=""
@@ -202,15 +247,25 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         required
                         className="px-4 py-2 lg:w-80 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors.cpf?.type === 'required' && <label className='text-red-600 ml-1'>O CPF é obrigatório.</label>}
-                      {!cpfValid && <label className='text-red-600 ml-1'>O CPF é inválido.</label>}
+                      {errors.cpf?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O CPF é obrigatório.
+                        </label>
+                      )}
+                      {!cpfValid && (
+                        <label className="text-red-600 ml-1">
+                          O CPF é inválido.
+                        </label>
+                      )}
                     </div>
                   </div>
-                  <div className='flex flex-col mx-4'>
-                    <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> PAÍS</label>
-                    {responseCEP &&
+                  <div className="flex flex-col mx-4">
+                    <label className="ml-1 mt-4 mb-1">
+                      <a className="text-youtube">*</a> PAÍS
+                    </label>
+                    {(responseCEP && (
                       <select
-                        {...register("pais")}
+                        {...register('pais')}
                         type="text"
                         id="pais"
                         value="Brasil"
@@ -240,7 +295,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Benin">Benin</option>
                         <option value="Bermudas">Bermudas</option>
                         <option value="Botsuana">Botsuana</option>
-                        <option value="Brasil" selected>Brasil</option>
+                        <option value="Brasil" selected>
+                          Brasil
+                        </option>
                         <option value="Brunei">Brunei</option>
                         <option value="Bulgária">Bulgária</option>
                         <option value="Burkina Fasso">Burkina Fasso</option>
@@ -253,7 +310,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Chade">Chade</option>
                         <option value="Chile">Chile</option>
                         <option value="China">China</option>
-                        <option value="Cidade do Vaticano">Cidade do Vaticano</option>
+                        <option value="Cidade do Vaticano">
+                          Cidade do Vaticano
+                        </option>
                         <option value="Colômbia">Colômbia</option>
                         <option value="Congo">Congo</option>
                         <option value="Coréia do Sul">Coréia do Sul</option>
@@ -302,10 +361,18 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Ilhas Cook">Ilhas Cook</option>
                         <option value="Ilhas Curaçao">Ilhas Curaçao</option>
                         <option value="Ilhas Marshall">Ilhas Marshall</option>
-                        <option value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
-                        <option value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
-                        <option value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
-                        <option value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+                        <option value="Ilhas Turks & Caicos">
+                          Ilhas Turks & Caicos
+                        </option>
+                        <option value="Ilhas Virgens (brit.)">
+                          Ilhas Virgens (brit.)
+                        </option>
+                        <option value="Ilhas Virgens(amer.)">
+                          Ilhas Virgens(amer.)
+                        </option>
+                        <option value="Ilhas Wallis e Futuna">
+                          Ilhas Wallis e Futuna
+                        </option>
                         <option value="Índia">Índia</option>
                         <option value="Indonésia">Indonésia</option>
                         <option value="Inglaterra">Inglaterra</option>
@@ -347,10 +414,14 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Omã">Omã</option>
                         <option value="Palau">Palau</option>
                         <option value="Panamá">Panamá</option>
-                        <option value="Papua-nova Guiné">Papua-nova Guiné</option>
+                        <option value="Papua-nova Guiné">
+                          Papua-nova Guiné
+                        </option>
                         <option value="Paquistão">Paquistão</option>
                         <option value="Peru">Peru</option>
-                        <option value="Polinésia Francesa">Polinésia Francesa</option>
+                        <option value="Polinésia Francesa">
+                          Polinésia Francesa
+                        </option>
                         <option value="Polônia">Polônia</option>
                         <option value="Porto Rico">Porto Rico</option>
                         <option value="Portugal">Portugal</option>
@@ -370,7 +441,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Singapura">Singapura</option>
                         <option value="Síria">Síria</option>
                         <option value="Sri Lanka">Sri Lanka</option>
-                        <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                        <option value="St. Kitts & Nevis">
+                          St. Kitts & Nevis
+                        </option>
                         <option value="St. Lúcia">St. Lúcia</option>
                         <option value="St. Vincent">St. Vincent</option>
                         <option value="Sudão">Sudão</option>
@@ -381,7 +454,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Taiwan">Taiwan</option>
                         <option value="Tanzânia">Tanzânia</option>
                         <option value="Togo">Togo</option>
-                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                        <option value="Trinidad & Tobago">
+                          Trinidad & Tobago
+                        </option>
                         <option value="Tunísia">Tunísia</option>
                         <option value="Turquia">Turquia</option>
                         <option value="Ucrânia">Ucrânia</option>
@@ -393,9 +468,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Zâmbia">Zâmbia</option>
                         <option value="Zimbábue">Zimbábue</option>
                       </select>
-                    ||
+                    )) || (
                       <select
-                        {...register("pais", { required: true })}
+                        {...register('pais', { required: true })}
                         type="text"
                         id="pais"
                         value="Brasil"
@@ -424,7 +499,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Benin">Benin</option>
                         <option value="Bermudas">Bermudas</option>
                         <option value="Botsuana">Botsuana</option>
-                        <option value="Brasil" selected>Brasil</option>
+                        <option value="Brasil" selected>
+                          Brasil
+                        </option>
                         <option value="Brunei">Brunei</option>
                         <option value="Bulgária">Bulgária</option>
                         <option value="Burkina Fasso">Burkina Fasso</option>
@@ -437,7 +514,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Chade">Chade</option>
                         <option value="Chile">Chile</option>
                         <option value="China">China</option>
-                        <option value="Cidade do Vaticano">Cidade do Vaticano</option>
+                        <option value="Cidade do Vaticano">
+                          Cidade do Vaticano
+                        </option>
                         <option value="Colômbia">Colômbia</option>
                         <option value="Congo">Congo</option>
                         <option value="Coréia do Sul">Coréia do Sul</option>
@@ -486,10 +565,18 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Ilhas Cook">Ilhas Cook</option>
                         <option value="Ilhas Curaçao">Ilhas Curaçao</option>
                         <option value="Ilhas Marshall">Ilhas Marshall</option>
-                        <option value="Ilhas Turks & Caicos">Ilhas Turks & Caicos</option>
-                        <option value="Ilhas Virgens (brit.)">Ilhas Virgens (brit.)</option>
-                        <option value="Ilhas Virgens(amer.)">Ilhas Virgens(amer.)</option>
-                        <option value="Ilhas Wallis e Futuna">Ilhas Wallis e Futuna</option>
+                        <option value="Ilhas Turks & Caicos">
+                          Ilhas Turks & Caicos
+                        </option>
+                        <option value="Ilhas Virgens (brit.)">
+                          Ilhas Virgens (brit.)
+                        </option>
+                        <option value="Ilhas Virgens(amer.)">
+                          Ilhas Virgens(amer.)
+                        </option>
+                        <option value="Ilhas Wallis e Futuna">
+                          Ilhas Wallis e Futuna
+                        </option>
                         <option value="Índia">Índia</option>
                         <option value="Indonésia">Indonésia</option>
                         <option value="Inglaterra">Inglaterra</option>
@@ -531,10 +618,14 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Omã">Omã</option>
                         <option value="Palau">Palau</option>
                         <option value="Panamá">Panamá</option>
-                        <option value="Papua-nova Guiné">Papua-nova Guiné</option>
+                        <option value="Papua-nova Guiné">
+                          Papua-nova Guiné
+                        </option>
                         <option value="Paquistão">Paquistão</option>
                         <option value="Peru">Peru</option>
-                        <option value="Polinésia Francesa">Polinésia Francesa</option>
+                        <option value="Polinésia Francesa">
+                          Polinésia Francesa
+                        </option>
                         <option value="Polônia">Polônia</option>
                         <option value="Porto Rico">Porto Rico</option>
                         <option value="Portugal">Portugal</option>
@@ -554,7 +645,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Singapura">Singapura</option>
                         <option value="Síria">Síria</option>
                         <option value="Sri Lanka">Sri Lanka</option>
-                        <option value="St. Kitts & Nevis">St. Kitts & Nevis</option>
+                        <option value="St. Kitts & Nevis">
+                          St. Kitts & Nevis
+                        </option>
                         <option value="St. Lúcia">St. Lúcia</option>
                         <option value="St. Vincent">St. Vincent</option>
                         <option value="Sudão">Sudão</option>
@@ -565,7 +658,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Taiwan">Taiwan</option>
                         <option value="Tanzânia">Tanzânia</option>
                         <option value="Togo">Togo</option>
-                        <option value="Trinidad & Tobago">Trinidad & Tobago</option>
+                        <option value="Trinidad & Tobago">
+                          Trinidad & Tobago
+                        </option>
                         <option value="Tunísia">Tunísia</option>
                         <option value="Turquia">Turquia</option>
                         <option value="Ucrânia">Ucrânia</option>
@@ -577,32 +672,48 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         <option value="Zâmbia">Zâmbia</option>
                         <option value="Zimbábue">Zimbábue</option>
                       </select>
-                    }
-                    {errors.pais?.type === 'required' && <label className='text-red-600 ml-1'>O pais é obrigatório.</label>}
+                    )}
+                    {errors.pais?.type === 'required' && (
+                      <label className="text-red-600 ml-1">
+                        O pais é obrigatório.
+                      </label>
+                    )}
                   </div>
-                  <div className='flex flex-wrap'>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> CEP</label>
+                  <div className="flex flex-wrap">
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> CEP
+                      </label>
                       <ReactInputMask
                         {...register('cepForm')}
-                        type='text'
-                        mask='99999-999'
-                        maskChar=''
-                        id='cep'
+                        type="text"
+                        mask="99999-999"
+                        maskChar=""
+                        id="cep"
                         required
                         onChange={handleCEPChange}
                         className="underline-0 px-4 py-2 lg:w-80 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors?.cep?.type === 'required' && <label className='text-red-600 ml-1'>O CEP é obrigatório.</label>}
-                      {cepError && <label className='text-red-600 ml-1'>O CEP é inválido.</label>}
+                      {errors?.cep?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O CEP é obrigatório.
+                        </label>
+                      )}
+                      {cepError && (
+                        <label className="text-red-600 ml-1">
+                          O CEP é inválido.
+                        </label>
+                      )}
                     </div>
                   </div>
-                  <div className='flex lg:flex-row sm:flex-col'>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> RUA/AVENIDA</label>
-                      {responseCEP &&
+                  <div className="flex lg:flex-row sm:flex-col">
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> RUA/AVENIDA
+                      </label>
+                      {(responseCEP && (
                         <input
-                          {...register("logradouro")}
+                          {...register('logradouro')}
                           type="text"
                           id="logradouro"
                           value={streetForm ? streetForm : null}
@@ -610,23 +721,29 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                           required
                           className="px-4 py-2 lg:w-72 sm:w-auto bg-dark4 text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg cursor-not-allowed"
                         />
-                      ||
+                      )) || (
                         <input
-                          {...register("logradouro")}
+                          {...register('logradouro')}
                           type="text"
                           id="logradouro"
                           value={streetForm ? streetForm : null}
                           required
                           className="px-4 py-2 lg:w-72 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                         />
-                      }
-                      {errors?.logradouro?.type === 'required' && <label className='text-red-600 ml-1'>A rua é obrigatório.</label>}
+                      )}
+                      {errors?.logradouro?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          A rua é obrigatório.
+                        </label>
+                      )}
                     </div>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> BAIRRO</label>
-                      {responseCEP &&
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> BAIRRO
+                      </label>
+                      {(responseCEP && (
                         <input
-                          {...register("bairro")}
+                          {...register('bairro')}
                           type="text"
                           id="bairro"
                           value={neighborhoodForm ? neighborhoodForm : null}
@@ -634,21 +751,23 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                           disabled
                           className="px-4 py-2 lg:w-72 sm:w-auto bg-dark4 text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg cursor-not-allowed"
                         />
-                      ||
+                      )) || (
                         <input
-                          {...register("bairro")}
+                          {...register('bairro')}
                           type="text"
                           id="bairro"
                           value={neighborhoodForm ? neighborhoodForm : null}
                           required
                           className="px-4 py-2 lg:w-72 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                         />
-                      }
+                      )}
                     </div>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> NÚMERO</label>
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> NÚMERO
+                      </label>
                       <ReactInputMask
-                        {...register("numero", { required: true })}
+                        {...register('numero', { required: true })}
                         type="text"
                         id="numero"
                         mask="999999"
@@ -656,15 +775,21 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                         required
                         className="px-4 py-2 lg:w-24 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                       />
-                      {errors.numero?.type === 'required' && <label className='text-red-600 ml-1'>O número é obrigatório.</label>}
+                      {errors.numero?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O número é obrigatório.
+                        </label>
+                      )}
                     </div>
                   </div>
-                  <div className='flex lg:flex-row sm:flex-col'>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> CIDADE</label>
-                      {responseCEP &&
+                  <div className="flex lg:flex-row sm:flex-col">
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> CIDADE
+                      </label>
+                      {(responseCEP && (
                         <input
-                          {...register("cidade")}
+                          {...register('cidade')}
                           type="text"
                           id="cidade"
                           value={cityForm ? cityForm : null}
@@ -672,23 +797,29 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                           disabled
                           className="px-4 py-2 lg:w-80 sm:w-auto bg-dark4 text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg cursor-not-allowed"
                         />
-                      ||
+                      )) || (
                         <input
-                          {...register("cidade", { required: true })}
+                          {...register('cidade', { required: true })}
                           type="text"
                           id="cidade"
                           value={cityForm ? cityForm : null}
                           required
                           className="px-4 py-2 lg:w-80 sm:w-auto bg-dark text-gray-200 focus:outline-none focus:border-transparent focus:ring-0 border-b-2 border-black rounded-lg"
                         />
-                      }
-                      {errors.cidade?.type === 'required' && <label className='text-red-600 ml-1'>A cidade é obrigatória.</label>}
+                      )}
+                      {errors.cidade?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          A cidade é obrigatória.
+                        </label>
+                      )}
                     </div>
-                    <div className='flex flex-col mx-4'>
-                      <label className='ml-1 mt-4 mb-1'><a className='text-youtube'>*</a> ESTADO</label>
-                      {responseCEP &&
+                    <div className="flex flex-col mx-4">
+                      <label className="ml-1 mt-4 mb-1">
+                        <a className="text-youtube">*</a> ESTADO
+                      </label>
+                      {(responseCEP && (
                         <select
-                          {...register("uf")}
+                          {...register('uf')}
                           id="uf"
                           value={stateForm ? stateForm : null}
                           required
@@ -724,9 +855,9 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                           <option value="SE">Sergipe</option>
                           <option value="TO">Tocantins</option>
                         </select>
-                      ||
+                      )) || (
                         <select
-                          {...register("uf", { required: true })}
+                          {...register('uf', { required: true })}
                           id="uf"
                           value={stateForm ? stateForm : null}
                           required
@@ -761,14 +892,19 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                           <option value="SE">Sergipe</option>
                           <option value="TO">Tocantins</option>
                         </select>
-                      }
-                      {errors.uf?.type === 'required' && <label className='text-red-600 ml-1'>O estado é obrigatória.</label>}
+                      )}
+                      {errors.uf?.type === 'required' && (
+                        <label className="text-red-600 ml-1">
+                          O estado é obrigatória.
+                        </label>
+                      )}
                     </div>
                   </div>
                 </div>
-                <div className='p-4 flex justify-between'>
-                  <div className='flex flex-row items-center justify-center'>
-                    <FaInfoCircle className='mr-2' /> Por que precisamos dessas informações?
+                <div className="p-4 flex justify-between">
+                  <div className="flex flex-row items-center justify-center">
+                    <FaInfoCircle className="mr-2" /> Por que precisamos dessas
+                    informações?
                   </div>
                 </div>
               </div>
@@ -796,34 +932,44 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                 </div>
               </div> */}
             </div>
-            <div className='flex flex-col h-auto w-auto lg:ml-5 sm:ml-0 sm:mt-3'>
-              <div className='bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center'>
-                <h1 className='p-3 text-xl uppercase font-bold'>Resumo do pedido</h1>
+            <div className="flex flex-col h-auto w-auto lg:ml-5 sm:ml-0 sm:mt-3">
+              <div className="bg-dark2 border-b-4 border-black rounded-lg flex flex-col items-center justify-center">
+                <h1 className="p-3 text-xl uppercase font-bold">
+                  Resumo do pedido
+                </h1>
               </div>
-              <div className='bg-dark2 rounded-lg border-b-4 border-black flex flex-col items-center justify-center mt-2 p-4'>
-                <div className='flex flex-col items-center justify-between'>
-                  <div className='flex flex-col items-center justify-center p-1'>
-                    <h1 className='font-bold text-md'>Subtotal:</h1>
-                    <h1 className='font-bold text-2xl'>R$ 10,00</h1>
+              <div className="bg-dark2 rounded-lg border-b-4 border-black flex flex-col items-center justify-center mt-2 p-4">
+                <div className="flex flex-col items-center justify-between">
+                  <div className="flex flex-col items-center justify-center p-1">
+                    <h1 className="font-bold text-md">Subtotal:</h1>
+                    <h1 className="font-bold text-2xl">R$ 10,00</h1>
                   </div>
-                  <div className='flex flex-col items-center justify-center p-1'>
-                    <h1 className='font-bold text-md'>Descontos:</h1>
-                    <h1 className='font-bold text-2xl text-red-500'>- R$ 2,00</h1>
+                  <div className="flex flex-col items-center justify-center p-1">
+                    <h1 className="font-bold text-md">Descontos:</h1>
+                    <h1 className="font-bold text-2xl text-red-500">
+                      - R$ 2,00
+                    </h1>
                   </div>
-                  <div className='flex flex-col items-center justify-center p-1'>
-                    <h1 className='font-bold text-md'>Valor total:</h1>
-                    <h1 className='font-bold text-2xl text-lime-500'>R$ 8,00</h1>
+                  <div className="flex flex-col items-center justify-center p-1">
+                    <h1 className="font-bold text-md">Valor total:</h1>
+                    <h1 className="font-bold text-2xl text-lime-500">
+                      R$ 8,00
+                    </h1>
                   </div>
                 </div>
               </div>
-              <div className='mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mr-5'>
-                <div className='flex flex-col items-center text-xl font-bold p-2'>
-                  <div className='flex flex-row items-center justify-center uppercase'>
-                    <FaTag className='mr-2' />
+              <div className="mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mr-5">
+                <div className="flex flex-col items-center text-xl font-bold p-2">
+                  <div className="flex flex-row items-center justify-center uppercase">
+                    <FaTag className="mr-2" />
                     <h1>Cupom de desconto</h1>
                   </div>
-                  <div className='flex items-center justify-center text-center p-3'>
-                    <p className='text-sm font-normal'>Possui um cupom? Informe-o abaixo para receber seu desconto.<br /> Caso contrário, deixe em branco.</p>
+                  <div className="flex items-center justify-center text-center p-3">
+                    <p className="text-sm font-normal">
+                      Possui um cupom? Informe-o abaixo para receber seu
+                      desconto.
+                      <br /> Caso contrário, deixe em branco.
+                    </p>
                   </div>
                   <div className="flex p-4">
                     <input
@@ -839,14 +985,17 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
                   </div>
                 </div>
               </div>
-              <div className='mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mr-5'>
-                <div className='flex flex-col items-center text-xl font-bold p-2'>
-                  <div className='flex flex-row items-center justify-center uppercase'>
-                    <FaGift className='mr-2' />
+              <div className="mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4 mr-5">
+                <div className="flex flex-col items-center text-xl font-bold p-2">
+                  <div className="flex flex-row items-center justify-center uppercase">
+                    <FaGift className="mr-2" />
                     <h1>Presente</h1>
                   </div>
-                  <div className='flex items-center justify-center text-center p-3'>
-                    <p className='text-sm font-normal'>É presente? Então informe o nickname do presenteado abaixo. <br /> Caso contrário, deixe em branco.</p>
+                  <div className="flex items-center justify-center text-center p-3">
+                    <p className="text-sm font-normal">
+                      É presente? Então informe o nickname do presenteado
+                      abaixo. <br /> Caso contrário, deixe em branco.
+                    </p>
                   </div>
                   <div className="flex p-4">
                     <input
@@ -908,52 +1057,78 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
               </div> */}
             </div>
           </div>
-          <div className='sm:p-2 xl:p-4 rounded-lg flex flex-col'>
-            <div className='bg-dark2 border-b-4 border-black rounded-lg p-4'>
-              <h1 className='p-1 text-xl uppercase font-bold flex flex-row items-center'><FaMoneyBillWave className='mr-2' />PAGAMENTO</h1>
+          <div className="sm:p-2 xl:p-4 rounded-lg flex flex-col">
+            <div className="bg-dark2 border-b-4 border-black rounded-lg p-4">
+              <h1 className="p-1 text-xl uppercase font-bold flex flex-row items-center">
+                <FaMoneyBillWave className="mr-2" />
+                PAGAMENTO
+              </h1>
             </div>
-            <div className='flex flex-col items-center justify-center mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4'>
-              <div className='flex lg:flex-row sm:flex-col items-center lg:justify-evenly sm:justify-center p-4 text-normal'>
-                <h1>Pagamentos via cartão de cédito, ou saldo em conta, geralmente, são aprovados imediatamente. Boletos podem demorar até 2 dias úteis, após o pagamento, para serem aprovados.</h1>
+            <div className="flex flex-col items-center justify-center mt-3 w-full bg-dark2 border-b-4 border-black rounded-lg p-4">
+              <div className="flex lg:flex-row sm:flex-col items-center lg:justify-evenly sm:justify-center p-4 text-normal">
+                <h1>
+                  Pagamentos via cartão de cédito, ou saldo em conta,
+                  geralmente, são aprovados imediatamente. Boletos podem demorar
+                  até 2 dias úteis, após o pagamento, para serem aprovados.
+                </h1>
               </div>
               <button
-                id='mercadopago'
-                value='mercadopago'
+                id="mercadopago"
+                value="mercadopago"
                 onClick={handlePayment}
-                className={`my-6 bg-dark4 p-4 rounded-lg w-64 h-auto ${paymentMethod === 'mercadopago' && 'border-2 border-mercadopago bg-mercadopago bg-opacity-25'} cursor-pointer`}
+                className={`my-6 bg-dark4 p-4 rounded-lg w-64 h-auto ${
+                  paymentMethod === 'mercadopago' &&
+                  'border-2 border-mercadopago bg-mercadopago bg-opacity-25'
+                } cursor-pointer`}
               >
                 <input
                   {...register('gateway')}
                   type="radio"
-                  id='gateway'
-                  name='gateway'
+                  id="gateway"
+                  name="gateway"
                   value={'mercadopago'}
-                  className=''
+                  className=""
                   onChange={handlePayment}
                 />
-                <img className={`grayscale ${paymentMethod === 'mercadopago' && 'grayscale-0'} hover:grayscale-0`} src='/img/mercado-pago.svg' />
+                <img
+                  className={`grayscale ${
+                    paymentMethod === 'mercadopago' && 'grayscale-0'
+                  } hover:grayscale-0`}
+                  src="/img/mercado-pago.svg"
+                />
               </button>
-              <div className='p-4'>
+              <div className="p-4">
                 <input
-                  {...register("termos")}
+                  {...register('termos')}
                   required
-                  type="checkbox" className="mr-2 checkbox checkbox-primary focus:border-transparent focus:ring-0" />
-                Li e estou ciente dos <a className='font-bold text-roxo underline hover:text-purple-700' href='/loja/termos'>Termos de Compra</a> para os produtos que estou adquirindo.
+                  type="checkbox"
+                  className="mr-2 checkbox checkbox-primary focus:border-transparent focus:ring-0"
+                />
+                Li e estou ciente dos{' '}
+                <a
+                  className="font-bold text-roxo underline hover:text-purple-700"
+                  href="/loja/termos"
+                >
+                  Termos de Compra
+                </a>{' '}
+                para os produtos que estou adquirindo.
               </div>
-              <div className='p-4 mt-4 flex flex-col items-center justify-center'>
+              <div className="p-4 mt-4 flex flex-col items-center justify-center">
                 <button className="flex items-center justify-center px-4 bg-purple-500 focus:outline-none hover:bg-purple-700 border-b-4 border-black rounded-lg text-base w-64 h-12">
                   Finalizar pedido
                 </button>
-                <p className='text-sm mt-2 text-red-500'>Você precisa estar logado para continuar.</p>
+                <p className="text-sm mt-2 text-red-500">
+                  Você precisa estar logado para continuar.
+                </p>
               </div>
-              <div className='text-xs'>
+              <div className="text-xs">
                 Seu IP {userIP ? userIP : ''} está sendo gravado por segurança.
               </div>
             </div>
           </div>
         </div>
       </form>
-      <div className='mx-6 p-4 sm:mx-1 sm:p-2'>
+      <div className="mx-6 p-4 sm:mx-1 sm:p-2">
         <Payments />
       </div>
       <Footer />
@@ -963,27 +1138,29 @@ export default function LojaCarrinho({error, manutencao, userIP }) {
 
 export async function getServerSideProps({ query }) {
   try {
+    let error
+
     const manutencao = await api
-    .get('/configuracoes/manutencao/check')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-      return error === true
-    })
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        return error === true
+      })
 
     const userIP = await apiWay
-    .get('https://api.ipify.org/?format=json')
-    .then(res => res.data)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de getIP', e)
-    })
-  return {
-    props: {
-      error: false,
-      userIP: userIP.ip,
-      manutencao
+      .get('https://api.ipify.org/?format=json')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getIP', e)
+      })
+    return {
+      props: {
+        error: false,
+        userIP: userIP.ip,
+        manutencao
+      }
     }
-  }
   } catch (e) {
     return {
       props: { error: true }

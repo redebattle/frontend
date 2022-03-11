@@ -1,16 +1,16 @@
 const lineTheme = {
   strokeWidth: 2,
-  type: "natural",
-  dot: false,
+  type: 'natural',
+  dot: false
 }
 
 const barTheme = {
-  strokeWidth: 2,
+  strokeWidth: 2
 }
 
 const areaTheme = {
   stroke: 'none',
-  type: "natural",
+  type: 'natural',
   fillOpacity: 1
 }
 

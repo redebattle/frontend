@@ -1,3 +1,4 @@
+/* eslint-disable @next/next/inline-script-id */
 import Script from 'next/script'
 import { GA_TRACKING_ID } from '../../lib/gtag'
 

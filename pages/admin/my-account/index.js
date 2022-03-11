@@ -187,9 +187,9 @@ export default function AdminMyAccount({ profile }) {
                       />
                       {errors.confirmarsenha &&
                         errors.confirmarsenha.type === 'minLength' && (
-                        <span className="flex flex-col items-center justify-center text-red-500">
+                          <span className="flex flex-col items-center justify-center text-red-500">
                             Senha muito curta
-                        </span>
+                          </span>
                         )}
                     </div>
                   </div>
