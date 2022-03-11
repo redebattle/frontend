@@ -34,7 +34,7 @@ export default function Admin() {
     <>
       <title>Login | Administração Rede Battle</title>
 
-      <div className="flex lg:flex-row md:flex-col sm:flex-col items-center lg:justify-evenly sm:justify-center w-full h-full p-2">
+      <div className="flex lg:flex-row md:flex-col sm:flex-col items-center lg:justify-evenly sm:justify-center w-full h-screen p-2">
         <div className="">
           <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             PAINEL <br />
@@ -77,7 +77,7 @@ export default function Admin() {
                   required: true,
                   pattern: /^\S+@\S+$/i
                 })}
-                className="bg-dark shadow appearance-none border border-dark4 rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:border-transparent focus:ring-0"
+                className="bg-dark shadow appearance-none border border-dark4 rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
                 id="email"
                 type="email"
                 placeholder="email@redebattle.com.br"
@@ -94,7 +94,7 @@ export default function Admin() {
               )}
               <input
                 {...register('senha', { required: true })}
-                className="bg-dark shadow appearance-none border border-dark4 rounded w-full py-2 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-transparent focus:ring-0"
+                className="bg-dark shadow appearance-none border border-dark4 rounded w-full py-2 px-3 text-white mb-3 leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
                 id="senha"
                 type="password"
                 placeholder="Digite sua senha"
@@ -119,7 +119,7 @@ export default function Admin() {
           </form>
         </div>
       </div>
-      <div className="flex flex-col items-center justify-center text-white text-xs sm:-mt-14 lg:-mt-20">
+      <div className="flex flex-col items-center justify-center text-white text-xs sm:-mt-14 p-3">
         <div className="flex items-center justify-center">
           <FaCode className="mr-1" />
           Development by Filipe Moreno

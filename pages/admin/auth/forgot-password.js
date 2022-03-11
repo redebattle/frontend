@@ -52,7 +52,7 @@ export default function AdminForgotPassword() {
   return (
     <>
       <title>Recuperação de Senha | Rede Battle</title>
-      <div className="bg-dark flex sm:flex-col lg:flex-row items-center lg:justify-evenly sm:justify-center w-full h-full p-2">
+      <div className="bg-dark flex sm:flex-col lg:flex-row items-center lg:justify-evenly sm:justify-center w-full h-screen p-2">
         <div className="">
           <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             RECUPERE <br />
@@ -81,7 +81,7 @@ export default function AdminForgotPassword() {
           <div className="mb-4">
             <input
               {...register('email')}
-              className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white border-dark4 leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
               id="email"
               type="email"
               placeholder="Email"

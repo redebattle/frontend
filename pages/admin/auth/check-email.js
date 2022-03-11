@@ -38,7 +38,7 @@ export default function AdminAuthEmailSending() {
   return (
     <>
       <title>Pedido de recuperação enviado | Rede Battle</title>
-      <div className="bg-dark flex items-center justify-center w-full h-full p-2">
+      <div className="bg-dark flex items-center justify-center w-full h-screen p-2">
         <div className="bg-dark2 border-b-4 border-black border-opacity-60 shadow-md rounded px-8 pt-6 pb-8">
           <div className="flex items-center justify-center">
             <img

@@ -1,4 +1,5 @@
 import { motion } from 'framer-motion'
+import Image from 'next/image'
 import { Line, Bar, Area } from 'recharts'
 
 import Chart from '../components/Chart'
@@ -253,13 +254,11 @@ const Aside = () => (
       href="#"
       className="inline-flex items-center justify-center h-20 bg-purple-600 hover:bg-purple-500 focus:bg-purple-500 w-full"
     >
-      <svg fill="none" viewBox="0 0 64 64" className="h-12 w-12">
-        <title>Rede Battle</title>
-        <path
-          d="M32 14.2c-8 0-12.9 4-14.9 11.9 3-4 6.4-5.6 10.4-4.5 2.3.6 4 2.3 5.7 4 2.9 3 6.3 6.4 13.7 6.4 7.9 0 12.9-4 14.8-11.9-3 4-6.4 5.5-10.3 4.4-2.3-.5-4-2.2-5.7-4-3-3-6.3-6.3-13.7-6.3zM17.1 32C9.2 32 4.2 36 2.3 43.9c3-4 6.4-5.5 10.3-4.4 2.3.5 4 2.2 5.7 4 3 3 6.3 6.3 13.7 6.3 8 0 12.9-4 14.9-11.9-3 4-6.4 5.6-10.4 4.5-2.3-.6-4-2.3-5.7-4-2.9-3-6.3-6.4-13.7-6.4z"
-          fill="#fff"
-        />
-      </svg>
+      <Image
+        src="https://redebattle.com.br/img/logo.png"
+        width={50}
+        height={50}
+      />
     </a>
     <div className="flex-grow flex flex-col justify-between text-gray-300 bg-dark3">
       <motion.nav
@@ -327,7 +326,7 @@ const Header = () => (
   <header className="flex items-center h-20 px-6 sm:px-10 bg-dark3">
     <button
       data-collapse-toggle="mobile-menu"
-      className="sm:block lg:hidden relative flex-shrink-0 p-2 mr-2 text-gray-300 hover:bg-gray-100 hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 rounded-full"
+      className="sm:block lg:hidden relative flex-shrink-0 p-2 mr-2 text-gray-300 hover:bg-dark5 hover:text-gray-200 focus:bg-dark5 focus:text-gray-200 rounded-full"
       aria-controls="mobile-menu-2"
       aria-expanded="false"
     >
@@ -364,11 +363,11 @@ const Header = () => (
         type="text"
         role="search"
         placeholder="Pesquisar..."
-        className="py-2 pl-10 pr-4 w-full border-2 border-dark5 bg-dark2 placeholder-gray-300 focus:border-purple-500 text-gray-300 rounded-lg"
+        className="py-2 pl-10 pr-4 w-full border-1 border-dark5 bg-dark2 placeholder-gray-300 focus:border-purple-500 text-gray-300 rounded-lg"
       />
     </div>
     <div className="flex flex-shrink-0 items-center ml-auto">
-      <button className="inline-flex items-center p-2 hover:bg-gray-100 hover:text-red-500 focus:bg-gray-100 rounded-lg">
+      <button className="inline-flex items-center p-2 hover:bg-dark5 hover:text-red-500 focus:bg-dark5 rounded-lg">
         <span className="sr-only">User Menu</span>
         <div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
           <span className="font-semibold text-purple-500">Grace Simmons</span>
@@ -395,7 +394,7 @@ const Header = () => (
         </svg>
       </button>
       <div className="border-l border-dark5 pl-3 ml-3 space-x-1">
-        <button className="relative p-2 text-gray-300 hover:bg-gray-100 hover:text-dark focus:bg-gray-100 focus:text-gray-600 rounded-lg">
+        <button className="relative p-2 text-gray-300 hover:bg-dark5 focus:bg-dark5 focus:text-gray-300 rounded-lg">
           <span className="sr-only">Notifications</span>
           <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
           <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
@@ -414,7 +413,7 @@ const Header = () => (
             />
           </svg>
         </button>
-        <button className="text-center relative p-2 text-gray-300 hover:bg-gray-100 hover:text-red-500 hover:text-gray-600 focus:bg-gray-100 focus:text-gray-600 rounded-lg">
+        <button className="text-center relative p-2 text-gray-300 hover:bg-dark5 hover:text-red-500 focus:bg-dark5 focus:text-red-500 rounded-lg">
           <span className="sr-only">Log out</span>
           <svg
             aria-hidden="true"
@@ -720,7 +719,7 @@ const Main = () => (
     </section>
 
     <section className="text-center font-bold text-gray-500">
-      <p className="text-purple-500">
+      <p className="bg-dark rounded-lg bg-opacity-30">
         © Rede Battle <br />
         Development by Filipe Moreno
       </p>
@@ -742,5 +741,10 @@ function Layout() {
 }
 
 export default function Home() {
-  return <Layout></Layout>
+  return (
+    <>
+      <title>Painel | Rede Battle</title>
+      <Layout></Layout>
+    </>
+  )
 }

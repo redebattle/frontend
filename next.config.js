@@ -30,5 +30,8 @@ module.exports = {
     ]
   },
   poweredByHeader: false,
-  reactStrictMode: true
+  reactStrictMode: true,
+  images: {
+    domains: ['redebattle.com.br'],
+  },
 }

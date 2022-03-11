@@ -88,7 +88,7 @@ export default function AdminResetPassword() {
   return (
     <>
       <title>Redefina sua Senha | Rede Battle</title>
-      <div className="bg-dark flex lg:flex-row sm:flex-col items-center sm:justify-center lg:justify-evenly p-2 lg:w-full h-full">
+      <div className="bg-dark flex lg:flex-row sm:flex-col items-center sm:justify-center lg:justify-evenly p-2 lg:w-full h-screen">
         <div className="">
           <h1 className="lg:text-5xl text-white font-bold mb-2 sm:hidden lg:flex">
             REDEFINA <br />
@@ -115,7 +115,7 @@ export default function AdminResetPassword() {
           <div className="mb-4">
             <input
               {...register('email')}
-              className="bg-dark3 shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-dark3 shadow appearance-none border border-dark5 rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
               id="email"
               type="email"
               placeholder={email || 'Email'}
@@ -125,7 +125,7 @@ export default function AdminResetPassword() {
           <div className="mb-4">
             <input
               {...register('senha')}
-              className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-dark shadow appearance-none border border-dark5 rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
               id="senha"
               type="password"
               placeholder="Senha *"
@@ -136,7 +136,7 @@ export default function AdminResetPassword() {
           <div className="mb-4">
             <input
               {...register('confirmarsenha')}
-              className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+              className="bg-dark shadow appearance-none border border-dark5 rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:border-purple-500 focus:ring-0"
               id="confirmarsenha"
               type="password"
               placeholder="Confirmar nova senha *"
