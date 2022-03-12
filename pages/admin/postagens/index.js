@@ -137,7 +137,7 @@ const Table = ({
   }
 
   return (
-    <tr className="border border-dark3 h-14 rounded-lg">
+    <tr class="bg-dark5 border border-dark4 md:border-none block md:table-row rounded-lg my-2">
       <Modal
         isOpen={modalIsOpen1}
         onRequestClose={closeModal1}
@@ -208,27 +208,39 @@ const Table = ({
         </div>
       </Modal>
 
-      <td className="text-gray-300 border border-dark5 text-center">{id}</td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">ID:</span>
+        {id}
+      </td>
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Título:</span>
         {titulo}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">{autor}</td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Autor:</span>
+        {autor}
+      </td>
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Categoria:</span>
         {categoria}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Data:</span>
         {dataPost}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Status:</span>
         {(status === 'true' && <p className="text-green-500">Ativo</p>) ||
           (status === 'false' && <p className="text-red-500">Inativo</p>) ||
           '-'}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Acessos:</span>
         {acessos}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
-        <div className="flex flex-row items-center justify-center">
+      <td class="p-3 md:border md:border-dark4 md:table-cell flex flex-col">
+        <span class="inline-block md:hidden font-bold">Ações:</span>
+        <div className="flex flex-row items-center items-start justify-center sm:justify-start">
           <div className="mr-1">
             <Link href={'/postagens/' + slug}>
               <a data-tip="Visualizar" className="hover:text-purple-500">
@@ -270,6 +282,68 @@ const Table = ({
           </div>
         </div>
       </td>
+      {/* <td className="text-gray-300 border border-dark5 text-center">{id}</td> */}
+      {/* <td className="text-gray-300 border border-dark5 text-center">
+        {titulo}
+      </td>
+      <td className="text-gray-300 border border-dark5 text-center">{autor}</td>
+      <td className="text-gray-300 border border-dark5 text-center">
+        {categoria}
+      </td>
+      <td className="text-gray-300 border border-dark5 text-center">
+        {dataPost}
+      </td> */}
+      {/* <td className="text-gray-300 border border-dark5 text-center">
+        {(status === 'true' && <p className="text-green-500">Ativo</p>) ||
+          (status === 'false' && <p className="text-red-500">Inativo</p>) ||
+          '-'}
+      </td> */}
+      {/* <td className="text-gray-300 border border-dark5 text-center">
+        {acessos}
+      </td> */}
+      {/* <td className="text-gray-300 border border-dark5 text-center">
+        <div className="flex flex-row items-center justify-center">
+          <div className="mr-1">
+            <Link href={'/postagens/' + slug}>
+              <a data-tip="Visualizar" className="hover:text-purple-500">
+                <FaEye />
+              </a>
+            </Link>
+          </div>
+
+          <div className="mr-1 ml-1">
+            <a
+              data-tip={
+                (status === true && 'Inativar') ||
+                (status === false && 'Ativar') ||
+                'Status'
+              }
+              onClick={openModal2}
+              className="hover:text-purple-500"
+            >
+              <FaPause />
+            </a>
+          </div>
+
+          <div className="ml-1 mr-1">
+            <Link href="/editar">
+              <a data-tip="Editar" className="hover:text-purple-500">
+                <FaEdit />
+              </a>
+            </Link>
+          </div>
+
+          <div className="mr-1">
+            <a
+              data-tip="Excluír"
+              onClick={openModal1}
+              className="hover:text-red-500"
+            >
+              <FaTrashAlt />
+            </a>
+          </div>
+        </div>
+      </td> */}
     </tr>
   )
 }
@@ -282,7 +356,7 @@ const Main = ({ posts }) => (
     className="p-6 sm:p-10 space-y-6 bg-dark2"
   >
     <section className="grid md:grid-cols-1 xl:grid-cols-1 xl:grid-rows-1 xl:grid-flow-col gap-6">
-      <div className="flex flex-col md:col-span-2 md:row-span-2 bg-dark3 shadow rounded-lg">
+      <div className="flex flex-col md:col-span-1 md:row-span-1 bg-dark3 shadow rounded-lg">
         <div className="px-6 py-5 font-semibold border-b border-dark5 text-gray-300 flex items-center justify-between">
           Todas as postagens
           <Link href="postagens/adicionar">
@@ -293,26 +367,38 @@ const Main = ({ posts }) => (
         </div>
         <div className="p-4 flex-grow">
           <div className="flex items-center bg-dark4 justify-center h-full px-4 py-16 text-gray-300 text-sm font-bold rounded-md">
-            <table className="table-auto w-screen border-collapse">
-              <thead>
-                <tr className="bg-dark3 border border-dark5 h-14 w-full rounded-lg">
-                  <th className="text-gray-300 border border-dark5">#</th>
-                  <th className="text-gray-300 border border-dark5">Título</th>
-                  <th className="text-gray-300 border border-dark5">Autor</th>
-                  <th className="text-gray-300 border border-dark5">
+            <table className="min-w-full border-collapse table-auto bg-dark3">
+              <thead class="block md:table-header-group h-14">
+                <tr class="border border-dark5 md:border-none block md:table-row absolute -top-full md:top-auto -left-full md:left-auto md:relative">
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    #
+                  </th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    Título
+                  </th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    Autor
+                  </th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
                     Categoria
                   </th>
-                  <th className="text-gray-300 border border-dark5">Data</th>
-                  <th className="text-gray-300 border border-dark5">Status</th>
-                  <th className="text-gray-300 border border-dark5">
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    Data
+                  </th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    Status
+                  </th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
                     <div className="flex items-center justify-center p-2">
                       <FaEye />
                     </div>
                   </th>
-                  <th className="text-gray-300">Ações</th>
+                  <th class="p-2 text-white font-bold md:border md:border-dark5 text-left block md:table-cell">
+                    Ações
+                  </th>
                 </tr>
               </thead>
-              <tbody>
+              <tbody class="block md:table-row-group">
                 {posts.map(post => {
                   return (
                     <Table
