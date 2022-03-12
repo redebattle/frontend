@@ -22,7 +22,7 @@ export default function Input({
             id={id}
             type={type}
             placeholder={placeholder}
-            className={s.input}
+            // className={s.input}
           />
         </div>
       )}
