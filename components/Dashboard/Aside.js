@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion'
 import Image from 'next/image'
 
-export default function DashboardAsid() {
+export default function DashboardAsid({ active }) {
   const container = {
     hidden: { opacity: 1, scale: 0 },
     visible: {
@@ -22,24 +22,40 @@ export default function DashboardAsid() {
     }
   }
 
-  const MenuItem = (item, active) => (
-    <motion.a
-      variants={variantItem}
-      key={item.name}
-      href="#"
-      className="inline-flex items-center justify-center p-2 hover:text-gray-300 hover:bg-dark5 focus:text-gray-300 focus:bg-dark5 rounded-lg"
-    >
-      <span className="sr-only">{item.name}</span>
-      <div className="flex flex-col items-center justify-center">
-        {item.svg}
-        <span className="text-2xs text-center mt-1">{item.name}</span>
-      </div>
-    </motion.a>
+  const MenuItem = item => (
+    <>
+      {(active === item.name && (
+        <motion.a
+          variants={variantItem}
+          key={item.name}
+          href={`/admin/${item.path}`}
+          className="inline-flex items-center justify-center p-2 text-purple-500 hover:text-gray-300 hover:bg-dark5 focus:text-gray-300 focus:bg-dark5 rounded-lg bg-dark2"
+        >
+          <div className={`flex flex-col items-center justify-center`}>
+            {item.svg}
+            <span className="text-2xs text-center mt-1">{item.name}</span>
+          </div>
+        </motion.a>
+      )) || (
+        <motion.a
+          variants={variantItem}
+          key={item.name}
+          href={`/admin/${item.path}`}
+          className="inline-flex items-center justify-center p-2 hover:text-gray-300 hover:bg-dark5 focus:text-gray-300 focus:bg-dark5 rounded-lg"
+        >
+          <div className={`flex flex-col items-center justify-center`}>
+            {item.svg}
+            <span className="text-2xs text-center mt-1">{item.name}</span>
+          </div>
+        </motion.a>
+      )}
+    </>
   )
 
   const menuItems = [
     {
       name: 'Postagens',
+      path: 'postagens',
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -54,6 +70,7 @@ export default function DashboardAsid() {
     },
     {
       name: 'Equipe',
+      path: 'equipe',
       svg: (
         <svg
           xmlns="http://www.w3.org/2000/svg"
@@ -263,7 +280,7 @@ export default function DashboardAsid() {
         >
           <a
             href="#"
-            className="inline-flex items-center justify-center py-3 text-purple-600 bg-white rounded-lg"
+            className="inline-flex items-center justify-center py-3 text-purple-500 hover:bg-dark5 rounded-lg"
           >
             <span className="sr-only">Dashboard</span>
             <svg

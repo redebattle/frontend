@@ -63,7 +63,13 @@ export default function DashboardHeader() {
           <span className="sr-only">User Menu</span>
           <div className="hidden md:flex md:flex-col md:items-end md:leading-tight">
             <span className="font-semibold text-purple-500">
-              {(user?.nome && user.nome) || <Skeleton count={1} />}
+              {(user?.nome && user.nome) || (
+                <SkeletonTheme baseColor="#6049" highlightColor="#9657">
+                  <p>
+                    <Skeleton count={1} />
+                  </p>
+                </SkeletonTheme>
+              )}
             </span>
             <span className="text-sm text-gray-300">Lecturer</span>
           </div>

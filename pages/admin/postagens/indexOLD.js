@@ -1,14 +1,21 @@
+/* eslint-disable handle-callback-err */
+/* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
-import { Router } from 'next/router'
-import { parseCookies } from 'nookies'
-import { useEffect, useState } from 'react'
-import { FaEdit, FaEye, FaPause, FaTrashAlt } from 'react-icons/fa'
-import { useToasts } from 'react-toast-notifications'
-import DashboardAsid from '../../../components/Dashboard/Aside'
-import DashboardHeader from '../../../components/Dashboard/Header'
-import api from '../../../service/api'
-import Modal from 'react-modal'
 import Link from 'next/link'
+import { useContext, useState, useEffect } from 'react'
+import Router from 'next/router'
+import { parseCookies } from 'nookies'
+import { useToasts } from 'react-toast-notifications'
+import Modal from 'react-modal'
+import ReactTooltip from 'react-tooltip'
+
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
+import { FaTrashAlt, FaEdit, FaEye, FaPause } from 'react-icons/fa'
+import { AuthContext } from '../../../contexts/AuthContext'
+import AdminSidebar from '../../../components/AdminSidebar'
+import api from '../../../service/api'
 
 const customStyles = {
   content: {
@@ -137,7 +144,7 @@ const Table = ({
   }
 
   return (
-    <tr className="border border-dark3 h-14 rounded-lg">
+    <tr className="bg-dark3 border border-dark2 h-14">
       <Modal
         isOpen={modalIsOpen1}
         onRequestClose={closeModal1}
@@ -208,26 +215,26 @@ const Table = ({
         </div>
       </Modal>
 
-      <td className="text-gray-300 border border-dark5 text-center">{id}</td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">{id}</td>
+      <td className="text-gray-300 border border-dark2 text-center">
         {titulo}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">{autor}</td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">{autor}</td>
+      <td className="text-gray-300 border border-dark2 text-center">
         {categoria}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         {dataPost}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
-        {(status === 'true' && <p className="text-green-500">Ativo</p>) ||
+      <td className="text-gray-300 border border-dark2 text-center">
+        {(status === 'true' && <p className="text-whatsapp">Ativo</p>) ||
           (status === 'false' && <p className="text-red-500">Inativo</p>) ||
           '-'}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         {acessos}
       </td>
-      <td className="text-gray-300 border border-dark5 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         <div className="flex flex-row items-center justify-center">
           <div className="mr-1">
             <Link href={'/postagens/' + slug}>
@@ -274,85 +281,101 @@ const Table = ({
   )
 }
 
-const Main = ({ posts }) => (
-  <motion.main
-    transition={{ duration: 0.3, delay: 0 }}
-    animate={{ y: 0, opacity: 1 }}
-    initial={{ y: 15, opacity: 0 }}
-    className="p-6 sm:p-10 space-y-6 bg-dark2"
-  >
-    <section className="grid md:grid-cols-1 xl:grid-cols-1 xl:grid-rows-1 xl:grid-flow-col gap-6">
-      <div className="flex flex-col md:col-span-2 md:row-span-2 bg-dark3 shadow rounded-lg">
-        <div className="px-6 py-5 font-semibold border-b border-dark5 text-gray-300 flex items-center justify-between">
-          Todas as postagens
-          <Link href="postagens/adicionar">
-            <button className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
-              Nova postagem
-            </button>
-          </Link>
-        </div>
-        <div className="p-4 flex-grow">
-          <div className="flex items-center bg-dark4 justify-center h-full px-4 py-16 text-gray-300 text-sm font-bold rounded-md">
-            <table className="table-auto w-screen border-collapse">
-              <thead>
-                <tr className="bg-dark3 border border-dark5 h-14 w-full rounded-lg">
-                  <th className="text-gray-300 border border-dark5">#</th>
-                  <th className="text-gray-300 border border-dark5">Título</th>
-                  <th className="text-gray-300 border border-dark5">Autor</th>
-                  <th className="text-gray-300 border border-dark5">
-                    Categoria
-                  </th>
-                  <th className="text-gray-300 border border-dark5">Data</th>
-                  <th className="text-gray-300 border border-dark5">Status</th>
-                  <th className="text-gray-300 border border-dark5">
-                    <div className="flex items-center justify-center p-2">
-                      <FaEye />
-                    </div>
-                  </th>
-                  <th className="text-gray-300">Ações</th>
-                </tr>
-              </thead>
-              <tbody>
-                {posts.map(post => {
-                  return (
-                    <Table
-                      key={post.id}
-                      id={post.id}
-                      slug={post.slug}
-                      titulo={post.titulo}
-                      autor={post.autor.nome}
-                      categoria={post.categoria.descricao}
-                      data={post.createdAt}
-                      status={post.visivel.toString()}
-                      acessos={post.acessos}
-                    />
-                  )
-                })}
-              </tbody>
-            </table>
+export default function AdminPostagensIndex({ posts, error, possuiPermissao }) {
+  const { user } = useContext(AuthContext)
+
+  if (error) {
+    return (
+      <>
+        <title>Postagens | Administração CubeBox</title>
+        <div>
+          <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-dark text-gray-800 ml-72 mr-10 pt-8">
+            <div className="flex flex-col items-center justify-center my-auto">
+              <h1 className="text-9xl font-bold text-gray-300 text-center">
+                ERRO!
+              </h1>
+              <h1 className="text-3xl text-gray-300 font-medium text-center">
+                Ocorreu um erro.
+              </h1>
+              <h1 className="text-gray-300 text-center">
+                Não foi possível realizar a conexão com a API.
+              </h1>
+            </div>
+
+            <AdminSidebar />
           </div>
         </div>
-      </div>
-    </section>
-    <section className="text-center font-bold text-gray-500">
-      <p className="bg-dark rounded-lg bg-opacity-30">
-        © Rede Battle <br />
-        Development by Filipe Moreno
-      </p>
-    </section>
-  </motion.main>
-)
+      </>
+    )
+  }
 
-export default function PostagensDashboard({ postsInfo }) {
   return (
     <>
-      <title>Postagens | Rede Battle</title>
-      <div className="flex bg-dark2 min-h-screen">
-        <DashboardAsid active="Postagens" />
+      <title>Postagens | Painel Rede Battle</title>
+      <div>
+        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-dark text-gray-800">
+          {(possuiPermissao && (
+            <div className="ml-72 mr-8 mt-12">
+              <div className="flex items-center justify-center">
+                <Link href="postagens/adicionar">
+                  <button className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline">
+                    Nova postagem
+                  </button>
+                </Link>
+              </div>
+              <div className="flex items-center justify-center pt-4">
+                <table className="table-auto w-full border-collapse">
+                  <thead>
+                    <tr className="bg-dark2 h-14">
+                      <th className="text-gray-300">#</th>
+                      <th className="text-gray-300">Título</th>
+                      <th className="text-gray-300">Autor</th>
+                      <th className="text-gray-300">Categoria</th>
+                      <th className="text-gray-300">Data</th>
+                      <th className="text-gray-300">Status</th>
+                      <th className="text-gray-300">
+                        <div className="flex items-center justify-center p-2">
+                          <FaEye />
+                        </div>
+                      </th>
+                      <th className="text-gray-300">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {posts.map(post => {
+                      return (
+                        <Table
+                          key={post.id}
+                          id={post.id}
+                          slug={post.slug}
+                          titulo={post.titulo}
+                          autor={post.autor.nome}
+                          categoria={post.categoria.descricao}
+                          data={post.createdAt}
+                          status={post.visivel.toString()}
+                          acessos={post.acessos}
+                        />
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )) || (
+            <div className="flex flex-col items-center justify-center my-auto ml-64">
+              <h1 className="text-9xl font-bold text-gray-300 text-center">
+                403
+              </h1>
+              <h1 className="text-3xl text-gray-300 font-medium text-center">
+                Permissão insuficiente
+              </h1>
+              <h1 className="text-gray-300 text-center">
+                Você não possuí permissão para acessar esta página.
+              </h1>
+            </div>
+          )}
 
-        <div className="flex-grow text-gray-800">
-          <DashboardHeader />
-          <Main posts={postsInfo} />
+          <AdminSidebar />
         </div>
       </div>
     </>
@@ -360,10 +383,9 @@ export default function PostagensDashboard({ postsInfo }) {
 }
 
 export const getServerSideProps = async ctx => {
+  let error = false
   const { 'battleadmin.token': token } = await parseCookies(ctx)
   let possuiPermissao = false
-  let error = false
-  let page = 1
 
   if (!token) {
     return {
@@ -374,6 +396,8 @@ export const getServerSideProps = async ctx => {
     }
   }
 
+  const page = ctx.query.pagina || 1
+
   const getUserRoles = await api
     .get('/roles/admin/get', {
       headers: { Authorization: `Bearer ${token}` }
@@ -381,13 +405,12 @@ export const getServerSideProps = async ctx => {
     .then(res => res.data.permissoes)
     .catch(e => {
       console.log('Ocorreu um erro ao realizar a conexão getRoles')
-      error = true
     })
 
-  getUserRoles?.map(roles => {
+  getUserRoles.map(roles => {
     if (
-      roles.role.nome === 'DASHBOARD' ||
-      roles.role.nome === 'DASHBOARD.*' ||
+      roles.role.nome === 'SITE.POSTAGENS' ||
+      roles.role.nome === 'SITE.*' ||
       roles.role.nome === '*'
     ) {
       possuiPermissao = true
@@ -405,6 +428,6 @@ export const getServerSideProps = async ctx => {
       return (error = true)
     })
   return {
-    props: { postsInfo: postsInfo.obs.rows, possuiPermissao, error }
+    props: { error: false, posts: postsInfo.obs.rows, possuiPermissao }
   }
 }
