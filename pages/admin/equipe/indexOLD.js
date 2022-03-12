@@ -1,20 +1,21 @@
-import { motion } from 'framer-motion'
-import Link from 'next/link'
-import { parseCookies } from 'nookies'
+/* eslint-disable handle-callback-err */
+/* eslint-disable react/react-in-jsx-scope */
+
 import { useContext, useState } from 'react'
-import { useForm } from 'react-hook-form'
-import Skeleton from 'react-loading-skeleton'
+import { parseCookies } from 'nookies'
 import { useToasts } from 'react-toast-notifications'
+import { useForm } from 'react-hook-form'
+import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import Modal from 'react-modal'
 import router from 'next/router'
 
-import DashboardAsid from '../../../components/Dashboard/Aside'
-import DashboardHeader from '../../../components/Dashboard/Header'
-import api from '../../../service/api'
-import { FaEdit, FaTrashAlt } from 'react-icons/fa'
+import { confirmAlert } from 'react-confirm-alert' // Import
+import 'react-confirm-alert/src/react-confirm-alert.css' // Import css
+
+import { FaTrashAlt, FaEdit } from 'react-icons/fa'
 import { AuthContext } from '../../../contexts/AuthContext'
-import ErrorDashboard from '../../../components/Dashboard/Error'
-import NoPermissionDashboard from '../../../components/Dashboard/SemPermissao'
+import AdminSidebar from '../../../components/AdminSidebar'
+import api from '../../../service/api'
 
 const customStyles = {
   content: {
@@ -138,7 +139,7 @@ const TableMembros = ({ id, nome, cargo, cor, cargos, twitter, discord }) => {
   }
 
   return (
-    <tr className="bg-dark5 h-14">
+    <tr className="bg-dark3 border border-dark2 h-14">
       <Modal
         isOpen={modalIsOpen1}
         onRequestClose={closeModal1}
@@ -273,7 +274,7 @@ const TableMembros = ({ id, nome, cargo, cor, cargos, twitter, discord }) => {
           </div>
         </div>
       </Modal>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         <div className="flex items-center justify-center">
           <img
             src={
@@ -284,7 +285,7 @@ const TableMembros = ({ id, nome, cargo, cor, cargos, twitter, discord }) => {
           />
         </div>
       </td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         {nome || (
           <SkeletonTheme
             color="rgba(33, 33, 33, 0.2)"
@@ -296,7 +297,7 @@ const TableMembros = ({ id, nome, cargo, cor, cargos, twitter, discord }) => {
           </SkeletonTheme>
         )}
       </td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         <h1 style={{ color: cor }}>
           {cargo || (
             <SkeletonTheme
@@ -310,7 +311,7 @@ const TableMembros = ({ id, nome, cargo, cor, cargos, twitter, discord }) => {
           )}
         </h1>
       </td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         <div className="flex flex-row items-center justify-center">
           <div className="ml-1 mr-1">
             <a onClick={openModal1} className="hover:text-purple-500">
@@ -422,7 +423,7 @@ const TableCargos = ({ id, cargo, cor, posicao }) => {
     setIsOpen2(false)
   }
   return (
-    <tr className="bg-dark5 h-14">
+    <tr className="bg-dark3 border border-dark2 h-14">
       <Modal
         isOpen={modalIsOpen1}
         onRequestClose={closeModal1}
@@ -534,14 +535,14 @@ const TableCargos = ({ id, cargo, cor, posicao }) => {
         </div>
       </Modal>
 
-      <td className="text-gray-300 border border-dark4 text-center">{cargo}</td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">{cargo}</td>
+      <td className="text-gray-300 border border-dark2 text-center">
         <h1 style={{ color: cor }}>{cor}</h1>
       </td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         {posicao}
       </td>
-      <td className="text-gray-300 border border-dark4 text-center">
+      <td className="text-gray-300 border border-dark2 text-center">
         <div className="flex flex-row items-center justify-center">
           <div className="ml-1 mr-1">
             <a onClick={openModal1} className="hover:text-purple-500">
@@ -561,7 +562,7 @@ const TableCargos = ({ id, cargo, cor, posicao }) => {
   )
 }
 
-export default function EquipeDashboard({
+export default function adminEquipeIndex({
   membros,
   cargos,
   error,
@@ -584,17 +585,24 @@ export default function EquipeDashboard({
   if (error) {
     return (
       <>
-        <title>Equipe | Rede Battle</title>
-        <ErrorDashboard active={'Equipe'} />
-      </>
-    )
-  }
+        <title>Equipe | Administração CubeBox</title>
+        <div>
+          <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-dark text-gray-800 ml-72 mr-10 pt-8">
+            <div className="flex flex-col items-center justify-center my-auto">
+              <h1 className="text-9xl font-bold text-gray-300 text-center">
+                ERRO!
+              </h1>
+              <h1 className="text-3xl text-gray-300 font-medium text-center">
+                Ocorreu um erro.
+              </h1>
+              <h1 className="text-gray-300 text-center">
+                Não foi possível realizar a conexão com a API.
+              </h1>
+            </div>
 
-  if (!possuiPermissao) {
-    return (
-      <>
-        <title>Equipe | Rede Battle</title>
-        <NoPermissionDashboard active={'Equipe'} />
+            <AdminSidebar />
+          </div>
+        </div>
       </>
     )
   }
@@ -684,310 +692,279 @@ export default function EquipeDashboard({
       })
     }
   }
+
   return (
     <>
-      <title>Equipe | Rede Battle</title>
-      <div className="flex bg-dark2 min-h-screen">
-        <DashboardAsid active="Equipe" />
-        <div className="flex-grow text-gray-800">
-          <DashboardHeader />
-          <motion.main
-            transition={{ duration: 0.3, delay: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            initial={{ y: 15, opacity: 0 }}
-            className="p-6 sm:p-10 space-y-6 bg-dark2"
-          >
-            <Modal
-              isOpen={modalIsOpen1}
-              onRequestClose={closeModal1}
-              style={customStyles}
-            >
-              <div className="">
-                <div className="text-gray-300 flex items-center justify-center">
-                  <h1 className="">Criando novo cargo</h1>
-                </div>
-                <div className="p-6">
-                  <form onSubmit={handleSubmit(handleCriarCargo)}>
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Nome do cargo
-                      </label>
-                      <input
-                        {...register('nome', { required: true })}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="nome"
-                        type="text"
-                        required
-                      />
-                      {errors.cargo?.type === 'required' && (
-                        <span className="text-red-500">Nome é obrigatório</span>
-                      )}
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Cor
-                      </label>
-                      <input
-                        {...register('cor', { required: true })}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="cor"
-                        type="text"
-                      />
-                      {errors.cor?.type === 'required' && (
-                        <span className="text-red-500">Cor é obrigatória</span>
-                      )}
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Posição
-                      </label>
-                      <input
-                        {...register('posicao', { required: true })}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="posicao"
-                        type="number"
-                      />
-                      {errors.posicao?.type === 'required' && (
-                        <span className="text-red-500">
-                          Posição é obrigatória
-                        </span>
-                      )}
-                    </div>
-
-                    <div className="flex items-center justify-center">
-                      <button
-                        type="submit"
-                        className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Cadastrar
-                      </button>
-                    </div>
-                  </form>
-                  <div className="flex items-center justify-center mt-2">
-                    <button
-                      onClick={closeModal1}
-                      className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </div>
+      <Modal
+        isOpen={modalIsOpen1}
+        onRequestClose={closeModal1}
+        style={customStyles}
+      >
+        <div className="">
+          <div className="text-gray-300 flex items-center justify-center">
+            <h1 className="">Criando novo cargo</h1>
+          </div>
+          <div className="p-6">
+            <form onSubmit={handleSubmit(handleCriarCargo)}>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Nome do cargo
+                </label>
+                <input
+                  {...register('nome', { required: true })}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="nome"
+                  type="text"
+                  required
+                />
+                {errors.cargo?.type === 'required' && (
+                  <span className="text-red-500">Nome é obrigatório</span>
+                )}
               </div>
-            </Modal>
 
-            <Modal
-              isOpen={modalIsOpen2}
-              onRequestClose={closeModal2}
-              style={customStyles}
-            >
-              <div className="">
-                <div className="text-gray-300 flex items-center justify-center">
-                  <h1 className="">Adicionando novo membro</h1>
-                </div>
-                <div className="p-6">
-                  <form onSubmit={handleSubmit(handleNewMember)}>
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Nome
-                      </label>
-                      <input
-                        {...register('nome', { required: true, minLength: 3 })}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="nome"
-                        type="text"
-                        placeholder="Digite o nome"
-                        required
-                      />
-                      {errors.nome?.type === 'required' && (
-                        <span className="text-gray-300">
-                          Nome é obrigatório
-                        </span>
-                      )}
-                      {errors.name && errors.name.type === 'minLength' && (
-                        <span className="text-gray-300">Nome muito curto</span>
-                      )}
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Twitter
-                      </label>
-                      <input
-                        {...register('twitter')}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="twitter"
-                        type="text"
-                        placeholder="Digite o twitter"
-                      />
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Discord
-                      </label>
-                      <input
-                        {...register('discord')}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="discord"
-                        type="text"
-                        placeholder="Digite o discord"
-                      />
-                    </div>
-
-                    <div className="mb-4">
-                      <label className="block text-white text-sm font-bold mb-2">
-                        Cargo
-                      </label>
-                      <select
-                        {...register('cargo')}
-                        className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
-                        id="select"
-                      >
-                        <option key="">Escolha</option>
-                        {cargos.map(cargo => {
-                          return (
-                            <option key={cargo.id} id={cargo.id}>
-                              {cargo.nome}
-                            </option>
-                          )
-                        })}
-                      </select>
-                    </div>
-                    <div className="flex items-center justify-center">
-                      <button
-                        type="submit"
-                        className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                      >
-                        Adicionar
-                      </button>
-                    </div>
-                  </form>
-                  <div className="flex items-center justify-center mt-2">
-                    <button
-                      onClick={closeModal2}
-                      className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                    >
-                      Cancelar
-                    </button>
-                  </div>
-                </div>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Cor
+                </label>
+                <input
+                  {...register('cor', { required: true })}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="cor"
+                  type="text"
+                />
+                {errors.cor?.type === 'required' && (
+                  <span className="text-red-500">Cor é obrigatória</span>
+                )}
               </div>
-            </Modal>
-            <section className="grid md:grid-cols-2 xl:grid-cols-2 xl:grid-rows-2 xl:grid-flow-col gap-6">
-              <div className="flex flex-col md:col-span-1 md:row-span-2 bg-dark3 shadow rounded-lg">
-                <div className="flex justify-between items-center px-6 py-5 font-semibold border-b border-dark5 text-gray-300">
-                  Todos os membros
-                  <button
-                    onClick={openModal2}
-                    className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Adicionar membro
-                  </button>
-                </div>
-                <div className="p-4 flex-grow">
-                  <div className="flex items-center bg-dark4 justify-center h-full px-4 py-16 text-gray-300 text-sm font-bold rounded-md">
-                    <table className="table-auto w-full border-collapse border-dark5">
-                      <thead>
-                        <tr className="bg-dark3 h-14">
-                          <th className="text-gray-300 border border-dark4">
-                            <div className="flex items-center justify-center">
-                              <img
-                                src={
-                                  'https://minotar.net/bust/connor4312/40.png'
-                                }
-                                className="rounded-md"
-                              />
-                            </div>
-                          </th>
-                          <th className="text-gray-300 border border-dark4">
-                            Membro
-                          </th>
-                          <th className="text-gray-300 border border-dark4">
-                            Cargo
-                          </th>
 
-                          <th className="text-gray-300 border border-dark4">
-                            Ações
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {membros.map(membro => {
-                          return (
-                            <TableMembros
-                              key={membro.id}
-                              id={membro.id}
-                              nome={membro.nome}
-                              cargo={membro.cargos?.nome || 'Nenhum'}
-                              cor={membro.cargos?.cor}
-                              cargos={cargos}
-                              twitter={membro.twitter}
-                              discord={membro.discord}
-                            />
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Posição
+                </label>
+                <input
+                  {...register('posicao', { required: true })}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="posicao"
+                  type="number"
+                />
+                {errors.posicao?.type === 'required' && (
+                  <span className="text-red-500">Posição é obrigatória</span>
+                )}
               </div>
-              <div className="flex flex-col md:col-span-1 row-span-2 bg-dark3 shadow rounded-lg">
-                <div className="flex justify-between items-center px-6 py-6 font-semibold border-b border-dark5 text-gray-300">
-                  Todos os cargos
-                  <button
-                    onClick={openModal1}
-                    className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
-                  >
-                    Adicionar cargo
-                  </button>
-                </div>
-                <div className="p-4 flex-grow">
-                  <div className="flex items-center justify-center h-full px-4 py-24 text-gray-200 text-sm font-bold bg-dark4 rounded-lg">
-                    <table className="table-auto w-full border-collapse">
-                      <thead>
-                        <tr className="bg-dark3 h-14">
-                          <th className="text-gray-300 border border-dark4">
-                            Cargo
-                          </th>
-                          <th className="text-gray-300 border border-dark4">
-                            Cor
-                          </th>
-                          <th className="text-gray-300 border border-dark4">
-                            #
-                          </th>
-                          <th className="text-gray-300 border border-dark4">
-                            Ações
-                          </th>
-                        </tr>
-                      </thead>
-                      <tbody>
-                        {cargos.map(cargo => {
-                          return (
-                            <TableCargos
-                              key={cargo.id}
-                              id={cargo.id}
-                              cargo={cargo.nome}
-                              cor={cargo.cor || 'N/D'}
-                              posicao={cargo.posicao}
-                            />
-                          )
-                        })}
-                      </tbody>
-                    </table>
-                  </div>
-                </div>
-              </div>
-            </section>
 
-            <section className="text-center font-bold text-gray-500">
-              <p className="bg-dark rounded-lg bg-opacity-30">
-                © Rede Battle <br />
-                Development by Filipe Moreno
-              </p>
-            </section>
-          </motion.main>
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Cadastrar
+                </button>
+              </div>
+            </form>
+            <div className="flex items-center justify-center mt-2">
+              <button
+                onClick={closeModal1}
+                className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <Modal
+        isOpen={modalIsOpen2}
+        onRequestClose={closeModal2}
+        style={customStyles}
+      >
+        <div className="">
+          <div className="text-gray-300 flex items-center justify-center">
+            <h1 className="">Adicionando novo membro</h1>
+          </div>
+          <div className="p-6">
+            <form onSubmit={handleSubmit(handleNewMember)}>
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Nome
+                </label>
+                <input
+                  {...register('nome', { required: true, minLength: 3 })}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="nome"
+                  type="text"
+                  placeholder="Digite o nome"
+                  required
+                />
+                {errors.nome?.type === 'required' && (
+                  <span className="text-gray-300">Nome é obrigatório</span>
+                )}
+                {errors.name && errors.name.type === 'minLength' && (
+                  <span className="text-gray-300">Nome muito curto</span>
+                )}
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Twitter
+                </label>
+                <input
+                  {...register('twitter')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="twitter"
+                  type="text"
+                  placeholder="Digite o twitter"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Discord
+                </label>
+                <input
+                  {...register('discord')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="discord"
+                  type="text"
+                  placeholder="Digite o discord"
+                />
+              </div>
+
+              <div className="mb-4">
+                <label className="block text-white text-sm font-bold mb-2">
+                  Cargo
+                </label>
+                <select
+                  {...register('cargo')}
+                  className="bg-dark shadow appearance-none border rounded w-full py-2 px-3 text-white leading-tight focus:outline-none focus:shadow-outline"
+                  id="select"
+                >
+                  <option key="">Escolha</option>
+                  {cargos.map(cargo => {
+                    return (
+                      <option key={cargo.id} id={cargo.id}>
+                        {cargo.nome}
+                      </option>
+                    )
+                  })}
+                </select>
+              </div>
+              <div className="flex items-center justify-center">
+                <button
+                  type="submit"
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Adicionar
+                </button>
+              </div>
+            </form>
+            <div className="flex items-center justify-center mt-2">
+              <button
+                onClick={closeModal2}
+                className="bg-red-600 border-b-4 border-red-700 hover:bg-red-500 hover:border-red-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+              >
+                Cancelar
+              </button>
+            </div>
+          </div>
+        </div>
+      </Modal>
+
+      <title>Equipe | Painel Rede Battle</title>
+      <div>
+        <div className="min-h-screen flex flex-col flex-auto flex-shrink-0 antialiased bg-dark text-gray-800">
+          {(possuiPermissao && (
+            <div className="ml-72 mr-8 mt-12">
+              <div className="flex items-center justify-around">
+                <button
+                  onClick={openModal2}
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Adicionar membro
+                </button>
+
+                <button
+                  onClick={openModal1}
+                  className="bg-purple-600 border-b-4 border-purple-700 hover:bg-purple-500 hover:border-purple-500 text-white font-bold py-2 px-4 rounded focus:outline-none focus:shadow-outline"
+                >
+                  Adicionar cargo
+                </button>
+              </div>
+
+              <div className="flex justify-center pt-4">
+                <table className="table-auto w-full border-collapse mr-2 border-b-4 border-black border-opacity-50">
+                  <thead>
+                    <tr className="bg-dark2  h-14">
+                      <th className="text-gray-300">
+                        <div className="flex items-center justify-center">
+                          <img
+                            src={'https://minotar.net/bust/connor4312/40.png'}
+                            className="rounded-md"
+                          />
+                        </div>
+                      </th>
+                      <th className="text-gray-300">Membro</th>
+                      <th className="text-gray-300">Cargo</th>
+                      <th className="text-gray-300">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {membros.map(membro => {
+                      return (
+                        <TableMembros
+                          key={membro.id}
+                          id={membro.id}
+                          nome={membro.nome}
+                          cargo={membro.cargos?.nome || 'Nenhum'}
+                          cor={membro.cargos?.cor}
+                          cargos={cargos}
+                          twitter={membro.twitter}
+                          discord={membro.discord}
+                        />
+                      )
+                    })}
+                  </tbody>
+                </table>
+
+                <table className="table-auto w-full border-collapse ml-2 border-b-4 border-black border-opacity-50">
+                  <thead>
+                    <tr className="bg-dark2 h-14">
+                      <th className="text-gray-300">Cargo</th>
+                      <th className="text-gray-300">Cor</th>
+                      <th className="text-gray-300">#</th>
+                      <th className="text-gray-300">Ações</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {cargos.map(cargo => {
+                      return (
+                        <TableCargos
+                          key={cargo.id}
+                          id={cargo.id}
+                          cargo={cargo.nome}
+                          cor={cargo.cor || 'N/D'}
+                          posicao={cargo.posicao}
+                        />
+                      )
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          )) || (
+            <div className="flex flex-col items-center justify-center my-auto ml-64">
+              <h1 className="text-9xl font-bold text-gray-300 text-center">
+                403
+              </h1>
+              <h1 className="text-3xl text-gray-300 font-medium text-center">
+                Permissão insuficiente
+              </h1>
+              <h1 className="text-gray-300 text-center">
+                Você não possuí permissão para acessar esta página.
+              </h1>
+            </div>
+          )}
+          <AdminSidebar />
         </div>
       </div>
     </>

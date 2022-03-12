@@ -6,9 +6,12 @@ import { FaEdit, FaEye, FaPause, FaTrashAlt } from 'react-icons/fa'
 import { useToasts } from 'react-toast-notifications'
 import DashboardAsid from '../../../components/Dashboard/Aside'
 import DashboardHeader from '../../../components/Dashboard/Header'
+import ErrorDashboard from '../../../components/Dashboard/Error'
+import NoPermission from '../../../components/Dashboard/SemPermissao'
 import api from '../../../service/api'
 import Modal from 'react-modal'
 import Link from 'next/link'
+import NoPermissionDashboard from '../../../components/Dashboard/SemPermissao'
 
 const customStyles = {
   content: {
@@ -429,7 +432,28 @@ const Main = ({ posts }) => (
   </motion.main>
 )
 
-export default function PostagensDashboard({ postsInfo }) {
+export default function PostagensDashboard({
+  postsInfo,
+  possuiPermissao,
+  error
+}) {
+  if (error) {
+    return (
+      <>
+        <title>Equipe | Rede Battle</title>
+        <ErrorDashboard active={'Postagens'} />
+      </>
+    )
+  }
+
+  if (!possuiPermissao) {
+    return (
+      <>
+        <title>Equipe | Rede Battle</title>
+        <NoPermissionDashboard active={'Postagens'} />
+      </>
+    )
+  }
   return (
     <>
       <title>Postagens | Rede Battle</title>

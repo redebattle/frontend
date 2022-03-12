@@ -316,7 +316,7 @@ const Main = ({ cards }) => (
   </motion.main>
 )
 
-export default function Home({ getDashboard }) {
+export default function IndexDashboard({ getDashboard }) {
   return (
     <>
       <title>Painel | Rede Battle</title>
