@@ -292,19 +292,7 @@ export default function Noticias({ post, manutencao, error }) {
           <p className="px-3">
             Ainda não há respostas. Seja o primeiro a criar uma!
           </p>
-          <div className="bg-red-500 p-4 my-6 rounded-lg sm:w-full">
-            <p className="flex flex-row items-center justify-center lg:text-base sm:text-sm font-bold">
-              <BiCommentX className="mr-2" />
-              Você precisa estar logado para comentar.
-            </p>
-          </div>
-          <div className="bg-red-500 p-4 my-6 rounded-lg sm:w-full">
-            <p className="flex flex-row items-center justify-center lg:text-base sm:text-sm font-bold">
-              <BiCommentX className="mr-2" />
-              Essa postagem não permite comentários.
-            </p>
-          </div>
-          <div className="">
+          <div className="mt-4">
             <div className="flex lg:flex-row sm:flex-col p-3 lg:h-full sm:w-full bg-dark rounded-lg mb-3">
               <div className="flex lg:w-[300px] sm:w-full flex-col p-3 items-center justify-center bg-dark2 lg:rounded-lg sm:rounded-t-lg">
                 <img
@@ -365,6 +353,18 @@ export default function Noticias({ post, manutencao, error }) {
             <BiCommentAdd className="mr-2" />
             Responder postagem
           </h1>
+          <div className="bg-red-500 p-4 my-6 rounded-lg sm:w-full">
+            <p className="flex flex-row items-center justify-center lg:text-base sm:text-sm font-bold">
+              <BiCommentX className="mr-2" />
+              Você precisa estar logado para comentar.
+            </p>
+          </div>
+          <div className="bg-red-500 p-4 my-6 rounded-lg sm:w-full">
+            <p className="flex flex-row items-center justify-center lg:text-base sm:text-sm font-bold">
+              <BiCommentX className="mr-2" />
+              Essa postagem não permite comentários.
+            </p>
+          </div>
           <form className="">
             <textarea
               placeholder="Sua resposta..."

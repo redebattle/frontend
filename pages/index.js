@@ -12,6 +12,7 @@ import Header from '../components/Header'
 import IndexSidebar from '../components/Sidebars/IndexSidebar'
 import PostComponent from '../components/Posts'
 import StreamersIndex from '../components/StreamersIndex'
+import axios from 'axios'
 
 const Pagination = styled(ReactPaginate).attrs({
   activeClassName: 'active'
@@ -105,6 +106,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
     })
   }
 
+  let liveOn = true
+
   return (
     <>
       <Header />
@@ -116,7 +119,7 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
           description={'Site oficial da Rede Battle!'}
           imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'}
         />
-        <StreamersIndex />
+        {liveOn === true && <StreamersIndex />}
         <div className="flex justify-center lg:mr-6 sm:mr-0 sm:p-3 lg:flex-row sm:flex-col">
           <div className="w-full sm:mb-2">
             {(postsInfo.obs.rows.length === 0 && (

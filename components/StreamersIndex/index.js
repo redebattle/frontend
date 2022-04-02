@@ -2,7 +2,7 @@ import { motion } from 'framer-motion'
 
 import { BsRecordFill } from 'react-icons/bs'
 
-export default function StreamersIndex() {
+export default function StreamersIndex({ live }) {
   return (
     <>
       <div className="lg:my lg:mx-8 sm:m-4 sm:p-4 lg:p-6 border-b-4 border-red-500">
