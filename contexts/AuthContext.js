@@ -18,15 +18,15 @@ export function AuthProvider({ children }) {
   const isAuthenticated = !!user
 
   useEffect(async () => {
-    const { 'battleadmin.token': token } = parseCookies()
+    const { 'redebattle.token': token } = parseCookies()
 
     if (token) {
       try {
         const getUser = await api.get('/user/profile', {
           headers: { Authorization: `Bearer ${token}` }
         })
-        setUser(getUser.data.usuario)
-        setRoles(getUser.data.permissoes.rows)
+        setUser(getUser.data)
+        setRoles(getUser.data.roles)
       } catch (e) {
         const errorToString = JSON.stringify(e.toJSON().message)
         if (errorToString.indexOf('status code 401') >= 0) {
@@ -35,7 +35,7 @@ export function AuthProvider({ children }) {
             appearance: 'error',
             autoDismiss: true
           })
-          await destroyCookie(null, 'battleadmin.token')
+          await destroyCookie(null, 'redebattle.token')
           Router.push('/admin/auth/login')
         } else {
           console.log('Ocorreu um erro ao acessar o painel.')
@@ -60,7 +60,7 @@ export function AuthProvider({ children }) {
       })
       const resRoles = getRoles.data.permissoes
 
-      setCookie(undefined, 'battleadmin.token', resToken, {
+      setCookie(undefined, 'redebattle.token', resToken, {
         maxAge: 60 * 60 * 24, // 24 hours
         path: '/'
       })

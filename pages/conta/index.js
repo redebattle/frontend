@@ -6,14 +6,29 @@ import { FaShoppingCart } from 'react-icons/fa'
 import Footer from '../../components/Footer'
 import Header from '../../components/Header'
 import ContaSidebar from '../../components/Conta/ContaSidebar'
+import api from '../../service/api'
+import Manutencao from '../../components/Manutencao'
+import ErrorAPI from '../../components/ErrorAPI'
 
-export default function ContaIndex() {
+export default function ContaIndex({ getUserMedals, statusCode, manutencao }) {
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
+  }
+
+  if (manutencao) {
+    return (
+      <>
+        <Manutencao />
+      </>
+    )
+  }
+
   return (
     <>
       <Header />
       <title>Minha Conta | Rede Battle</title>
       <div className="flex lg:flex-col xl:flex-row sm:flex-col">
-        <ContaSidebar />
+        <ContaSidebar medals={getUserMedals} />
         <div className="flex flex-col">
           <div className="bg-dark2 border-b-4 border-black rounded-lg mt-5 mx-2 max-w-4xl p-10">
             <div>
@@ -91,17 +106,45 @@ export default function ContaIndex() {
 }
 
 export const getServerSideProps = async ctx => {
-  const { 'redebattle.token': token } = await parseCookies(ctx)
+  try {
+    const { 'redebattle.token': token } = await parseCookies(ctx)
+    let statusCode = { code: 200 }
 
-  if (!token) {
-    return {
-      redirect: {
-        destination: '/conta/login',
-        permanent: false
+    if (!token) {
+      return {
+        redirect: {
+          destination: '/conta/login',
+          permanent: false
+        }
       }
     }
-  }
-  return {
-    props: {}
+
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkMaintenance', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
+      })
+
+    const getUserMedals = await api
+      .get(`/medals/user/TheMito`)
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API getUserMedals', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
+      })
+
+    return {
+      props: { getUserMedals, statusCode, manutencao }
+    }
+  } catch (e) {
+    return { props: { statusCode: e.code } }
   }
 }

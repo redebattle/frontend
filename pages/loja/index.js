@@ -13,9 +13,9 @@ import LojaServidorComponent from '../../components/Loja/Servidor'
 
 import { FaShoppingCart } from 'react-icons/fa'
 
-export default function Loja({ error, manutencao, servidores }) {
-  if (error) {
-    return <ErrorAPI />
+export default function Loja({ statusCode, manutencao, servidores }) {
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
   }
 
   if (manutencao) {
@@ -150,13 +150,16 @@ export default function Loja({ error, manutencao, servidores }) {
 
 export async function getServerSideProps({ query }) {
   try {
-    let error
+    let statusCode = { code: 200 }
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return error === true
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     const servidores = await api
@@ -164,19 +167,22 @@ export async function getServerSideProps({ query }) {
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getServidores', e)
-        return error === true
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     return {
       props: {
-        error: false,
+        statusCode,
         manutencao,
         servidores
       }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e }
     }
   }
 }

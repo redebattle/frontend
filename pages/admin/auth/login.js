@@ -54,6 +54,7 @@ export default function Admin() {
               sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
               size="invisible"
               ref={reRef}
+              theme="dark"
             />
             <div className="mb-4">
               <label

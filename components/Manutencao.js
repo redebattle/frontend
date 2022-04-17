@@ -20,7 +20,7 @@ export default function Manutencao() {
   }, [mensagem])
 
   return (
-    <div className="h-full w-full flex items-center justify-center">
+    <div className="h-screen w-full flex items-center justify-center">
       <title>Manutenção | RedeBattle</title>
       <div className="flex lg:flex-row sm:flex-col lg:justify-evenly sm:justify-center items-center">
         <div className="sm:p-12">

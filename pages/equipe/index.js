@@ -116,13 +116,14 @@ const Cargo = ({ nome, totalCargo, equipe, cor }) => {
   )
 }
 
-export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
-  if (error === true) {
-    return (
-      <>
-        <ErrorAPI />
-      </>
-    )
+export default function EquipeIndex({
+  equipe,
+  cargos,
+  statusCode,
+  manutencao
+}) {
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
   }
 
   if (manutencao) {
@@ -177,13 +178,28 @@ export default function EquipeIndex({ equipe, cargos, error, manutencao }) {
 
 export async function getServerSideProps() {
   try {
-    let error = false
+    let statusCode = { code: 200 }
+
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
+      })
+
     const equipe = await api
       .get('/equipe/all')
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getEquipeAll', e)
-        return (error = true)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     const cargos = await api
@@ -191,7 +207,10 @@ export async function getServerSideProps() {
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getCargosAll', e)
-        return (error = true)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     if (!equipe) {
@@ -210,20 +229,12 @@ export async function getServerSideProps() {
       )
     }
 
-    const manutencao = await api
-      .get('/configuracoes/manutencao/check')
-      .then(res => res.data)
-      .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return (error = true)
-      })
-
     return {
-      props: { equipe, cargos, error: false, manutencao }
+      props: { equipe, cargos, statusCode, manutencao }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e }
     }
   }
 }

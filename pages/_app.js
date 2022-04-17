@@ -3,6 +3,7 @@ import { ToastProvider } from 'react-toast-notifications'
 import { useRouter } from 'next/router'
 import { useEffect } from 'react'
 import NProgress from 'nprogress'
+import { ChakraProvider } from '@chakra-ui/react'
 
 import * as gtag from '../lib/gtag'
 
@@ -52,7 +53,9 @@ function MyApp({ Component, pageProps }) {
           <ToastProvider>
             <AuthProvider>
               <ViewportMetaLink />
+
               <Component {...pageProps} />
+
               <Analytics />
               <ScrollToTheTopButton />
             </AuthProvider>

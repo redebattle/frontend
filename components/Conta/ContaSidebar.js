@@ -11,61 +11,10 @@ import {
   FaTrophy,
   FaCoins
 } from 'react-icons/fa'
+import MedalsComponent from '../Medals'
 
-export default function ContaSidebar() {
+export default function ContaSidebar({ medals }) {
   const router = useRouter()
-
-  function getMedails(medails) {
-    return (
-      <div className="flex flex-wrap items-center justify-center bg-dark3 rounded-lg p-2 m-1">
-        <div
-          className="w-8 h-8 rounded-full m-2 tooltip hover:tooltip-open"
-          data-tip="Medalha"
-        >
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/786093121757904927/7726_cs_master.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/786093123965157376/2850_DiscordStaff.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://media.discordapp.net/attachments/721741385870344232/794259132487827456/coronavirus.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/818901476721819648/vote.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/786093120416776192/5129_cs_platinum.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/828416274584961034/easter-egg_1.png"
-            alt=""
-          />
-        </div>
-        <div className="w-8 h-8 rounded-full m-2">
-          <img
-            src="https://cdn.discordapp.com/attachments/656500951762337793/791447804807086090/oie_1Z1WwBrgElcu-min.png"
-            alt=""
-          />
-        </div>
-      </div>
-    )
-  }
 
   async function handleSignOut() {
     await destroyCookie(null, 'redebattle.token', { path: '/' })
@@ -89,8 +38,8 @@ export default function ContaSidebar() {
               MASTER
             </span>
           </div>
-          <h1 className="font-bold mt-2">Medalhas</h1>
-          {getMedails()}
+          <MedalsComponent medals={medals} />
+
           {/* <div className='flex lg:flex-row sm:flex-col items-center justify-center mt-2'>
             <span class="badge badge-outline text-youtube font-bold">EM BREVE</span>
           </div> */}

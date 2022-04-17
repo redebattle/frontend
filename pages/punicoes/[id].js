@@ -92,29 +92,27 @@ export default function Punicoes({ ban, error, manutencao }) {
                   <div className="bg-dark2 p-4 rounded-lg border-b-4 border-black">
                     <h1 className="font-bold">
                       Banimento #{ban.id}{' '}
-                      {parseInt(ban.active.data) === 0 &&
-                        ban.removed_by_name === '#expired' && (
-                          <span class="badge badge-outline text-lime-400 ml-2">
-                            Finalizado
-                          </span>
-                        )}
-                      {parseInt(ban.active.data) === 0 &&
-                        ban.removed_by_name !== '#expired' && (
-                          <span class="badge badge-outline text-yellow-600 ml-2">
-                            Revogado
-                          </span>
-                        )}
-                      {parseInt(ban.active.data) === 1 && (
+                      {!ban.active && ban.removed_by_name === '#expired' && (
+                        <span class="badge badge-outline text-lime-400 ml-2">
+                          Finalizado
+                        </span>
+                      )}
+                      {!ban.active && ban.removed_by_name !== '#expired' && (
+                        <span class="badge badge-outline text-yellow-600 ml-2">
+                          Revogado
+                        </span>
+                      )}
+                      {ban.active && (
                         <span class="badge badge-outline text-red-400 ml-2">
                           Ativa
                         </span>
                       )}
-                      {parseInt(ban.ipban.data) === 1 && (
+                      {ban.ipban && (
                         <span class="badge badge-outline text-dark ml-2">
                           IPBan
                         </span>
                       )}
-                      {parseInt(ban.silent.data) === 1 && (
+                      {ban.silent && (
                         <span class="badge badge-outline text-gray-500 ml-2">
                           Silenciado
                         </span>
@@ -137,49 +135,48 @@ export default function Punicoes({ ban, error, manutencao }) {
                       </div>
                     </div>
                     <div className="flex flex-col w-full p-12 sm:p-1">
-                      {(parseInt(ban.active.data) !== 0 &&
-                        !ban.removed_by_name !== '#expired' && (
-                          // ATIVA
-                          <div className="bg-red-400 bg-opacity-25 p-4 rounded-lg m-4 ml-10 h-auto border-b-4 border-black">
-                            <div className="flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10">
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1>Banido em:</h1>
-                                <p className="text-lg font-bold">
-                                  {Intl.DateTimeFormat('pt-BR', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: 'numeric'
-                                  }).format(new Date(ban.time))}{' '}
-                                  às{' '}
-                                  {Intl.DateTimeFormat('pt-BR', {
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                  }).format(new Date(ban.time))}
-                                </p>
-                              </div>
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1>Motivo do banimento:</h1>
-                                <p className="text-2xl sm:text-lg font-bold">
-                                  {ban.reason}
-                                </p>
-                              </div>
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1>Término:</h1>
-                                <p className="text-2xl sm:text-lg font-bold">
-                                  {ban.until <= 0 && (
-                                    <span class="badge badge-outline text-red-500">
-                                      Permanente
-                                    </span>
+                      {(ban.active && !ban.removed_by_name !== '#expired' && (
+                        // ATIVA
+                        <div className="bg-red-400 bg-opacity-25 p-4 rounded-lg m-4 ml-10 h-auto border-b-4 border-black">
+                          <div className="flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10">
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1>Banido em:</h1>
+                              <p className="text-lg font-bold">
+                                {Intl.DateTimeFormat('pt-BR', {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  year: 'numeric'
+                                }).format(new Date(ban.time))}{' '}
+                                às{' '}
+                                {Intl.DateTimeFormat('pt-BR', {
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                }).format(new Date(ban.time))}
+                              </p>
+                            </div>
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1>Motivo do banimento:</h1>
+                              <p className="text-2xl sm:text-lg font-bold">
+                                {ban.reason}
+                              </p>
+                            </div>
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1>Término:</h1>
+                              <p className="text-2xl sm:text-lg font-bold">
+                                {ban.until <= 0 && (
+                                  <span class="badge badge-outline text-red-500">
+                                    Permanente
+                                  </span>
+                                )}
+                                {ban.until > 0 &&
+                                  new Date(ban.until * 1).toLocaleDateString(
+                                    'pt-BR'
                                   )}
-                                  {ban.until > 0 &&
-                                    new Date(ban.until * 1).toLocaleDateString(
-                                      'pt-BR'
-                                    )}
-                                </p>
-                              </div>
+                              </p>
                             </div>
                           </div>
-                        )) || (
+                        </div>
+                      )) || (
                         // FINALIZADAS
                         <div className="bg-lime-400 p-6 bg-opacity-25 p-4 rounded-lg m-4 ml-10 h-auto border-b-4 border-black">
                           <div className="flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10">
@@ -219,46 +216,45 @@ export default function Punicoes({ ban, error, manutencao }) {
                           </div>
                         </div>
                       )}
-                      {parseInt(ban.active.data) !== 1 &&
-                        ban.removed_by_name !== '#expired' && (
-                          // REVOGADA
-                          <div className="bg-dark2 rounded-lg m-4 ml-10 w-auto h-auto border-b-4 border-black">
-                            <div className="flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10">
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1>Revogado em:</h1>
-                                <p className="text-lg font-bold">
-                                  {Intl.DateTimeFormat('pt-BR', {
-                                    day: '2-digit',
-                                    month: '2-digit',
-                                    year: 'numeric'
-                                  }).format(new Date(ban.removed_by_date))}{' '}
-                                  às{' '}
-                                  {Intl.DateTimeFormat('pt-BR', {
-                                    hour: '2-digit',
-                                    minute: '2-digit'
-                                  }).format(new Date(ban.removed_by_date))}
-                                </p>
-                              </div>
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1>Motivo da revogação:</h1>
-                                <p className="text-lg font-bold">
-                                  {ban.removed_by_reason
-                                    ? ban.removed_by_reason
-                                    : 'Não informado.'}
-                                </p>
-                              </div>
-                              <div className="flex flex-col justify-center items-center text-sm mx-3">
-                                <h1 className="pb-2">Revogado por:</h1>
-                                <img
-                                  src={`https://minotar.net/armor/bust/${ban.removed_by_name}/80`}
-                                ></img>
-                                <p className="text-lg font-bold">
-                                  {ban.removed_by_name}
-                                </p>
-                              </div>
+                      {!ban.active && ban.removed_by_name !== '#expired' && (
+                        // REVOGADA
+                        <div className="bg-dark2 rounded-lg m-4 ml-10 w-auto h-auto border-b-4 border-black">
+                          <div className="flex lg:flex-row sm:flex-col lg:justify-between sm:justify-center items-center h-auto p-10">
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1>Revogado em:</h1>
+                              <p className="text-lg font-bold">
+                                {Intl.DateTimeFormat('pt-BR', {
+                                  day: '2-digit',
+                                  month: '2-digit',
+                                  year: 'numeric'
+                                }).format(new Date(ban.removed_by_date))}{' '}
+                                às{' '}
+                                {Intl.DateTimeFormat('pt-BR', {
+                                  hour: '2-digit',
+                                  minute: '2-digit'
+                                }).format(new Date(ban.removed_by_date))}
+                              </p>
+                            </div>
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1>Motivo da revogação:</h1>
+                              <p className="text-lg font-bold">
+                                {ban.removed_by_reason
+                                  ? ban.removed_by_reason
+                                  : 'Não informado.'}
+                              </p>
+                            </div>
+                            <div className="flex flex-col justify-center items-center text-sm mx-3">
+                              <h1 className="pb-2">Revogado por:</h1>
+                              <img
+                                src={`https://minotar.net/armor/bust/${ban.removed_by_name}/80`}
+                              ></img>
+                              <p className="text-lg font-bold">
+                                {ban.removed_by_name}
+                              </p>
                             </div>
                           </div>
-                        )}
+                        </div>
+                      )}
                     </div>
                     <div className="flex lg:flex-col sm:flex-row px-4">
                       <div className="bg-dark2 p-6 rounded-lg m-6 h-auto w-full border-b-4 border-black">
@@ -291,8 +287,8 @@ export async function getServerSideProps({ query }) {
     const { id } = query
     let error
 
-    const ban = await apiWay
-      .get(`https://way.redebattle.com.br/api/v1/banimentos/id/${id}`)
+    const ban = await api
+      .get(`/banimentos/id/${id}`)
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)

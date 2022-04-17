@@ -9,18 +9,24 @@ import PunicoesSidebar from '../../components/Punicoes/PunicoesSidebar'
 import PunicoesIndex from '../../components/Punicoes'
 import MetadataComponent from '../../components/Metadata'
 import ErrorAPI from '../../components/ErrorAPI'
+import Manutencao from '../../components/Manutencao'
 
-export default function Punicoes({ bans, estatisticas, error, manutencao }) {
+export default function Punicoes({
+  bans,
+  estatisticas,
+  statusCode,
+  manutencao
+}) {
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
+  }
+
   if (manutencao) {
     return (
       <>
         <Manutencao />
       </>
     )
-  }
-
-  if (error) {
-    return <ErrorAPI />
   }
 
   return (
@@ -46,7 +52,7 @@ export default function Punicoes({ bans, estatisticas, error, manutencao }) {
         <div className="flex lg:flex-row sm:flex-col mt-8 px-6">
           <div className="flex flex-col mr-6 w-full">
             <div className="py-5 px-5 space-y-2 sm:py-4 sm:space-y-0 bg-dark2 rounded-lg border-b-4 border-black">
-              {bans.map(ban => {
+              {bans?.map(ban => {
                 const [dataBan, setDataBan] = useState(null)
                 const [hoursBan, setHoursBan] = useState(null)
                 useEffect(() => {
@@ -78,9 +84,9 @@ export default function Punicoes({ bans, estatisticas, error, manutencao }) {
                     revogacao_autor={ban.removed_by_name}
                     revogacao_motivo={ban.removed_by_reason}
                     revogacao_data={ban.removed_by_date}
-                    ipban={ban.ipban.data}
-                    ativo={ban.active.data}
-                    silenciado={ban.silent.data}
+                    ipban={ban.ipban}
+                    ativo={ban.active}
+                    silenciado={ban.silent}
                   />
                 )
               })}
@@ -98,46 +104,48 @@ export default function Punicoes({ bans, estatisticas, error, manutencao }) {
 
 export async function getServerSideProps({ query }) {
   try {
-    let error = false
+    let statusCode = { code: 200 }
     const page = query.pagina || 1
-
-    const bans = await apiWay
-      .get('https://way.redebattle.com.br/api/v1/banimentos/all')
-      .then(res => res.data)
-      .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
-        return (error = true)
-      })
-
-    const estatisticas = await apiWay
-      .get('https://way.redebattle.com.br/api/v1/banimentos/estatisticas')
-      .then(res => res.data)
-      .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de getEstatisticas', e)
-        return (error = true)
-      })
 
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)
       .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return error === true
+        console.log('Ocorreu um erro ao acessar a API de checkManutencao')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.status)
       })
 
-    if (!bans) {
-      return (
-        <div>
-          <h1>Nenhuma punição foi encontrado.</h1>
-        </div>
-      )
-    }
+    const bans = await api
+      .get('/banimentos/all')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getPunicoes')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.status)
+      })
+
+    const estatisticas = await api
+      .get('/banimentos/estatisticas')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de getEstatisticas')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.status)
+      })
+
     return {
-      props: { bans, estatisticas, error: false, manutencao }
+      props: { bans, estatisticas, statusCode, manutencao }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e }
     }
   }
 }

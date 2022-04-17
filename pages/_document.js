@@ -125,6 +125,10 @@ class MyDocument extends Document {
           <script src="../path/to/@themesberg/flowbite/dist/flowbite.bundle.js"></script>
           <script src="https://unpkg.com/@themesberg/flowbite@1.3.0/dist/flowbite.bundle.js"></script>
 
+          {/* sweetalert2 */}
+          <link rel="stylesheet" href="@sweetalert2/themes/dark/dark.css" />
+          <script src="sweetalert2/dist/sweetalert2.min.js"></script>
+
           {/* Google Adsense */}
           <script
             data-ad-client="ca-pub-4583572814077870"

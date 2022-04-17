@@ -2,27 +2,50 @@
 /* eslint-disable react/react-in-jsx-scope */
 import { motion } from 'framer-motion'
 import { parseCookies, setCookie } from 'nookies'
-import { useRef, useState } from 'react'
+import { useContext, useRef, useState } from 'react'
 import ReCAPTCHA from 'react-google-recaptcha'
+import { useForm } from 'react-hook-form'
+import { useToasts } from 'react-toast-notifications'
 
 import Footer from '../../../components/Footer'
 import Header from '../../../components/Header'
+import { AuthContext } from '../../../contexts/AuthContext'
 
 export default function ContaLogin() {
   const reRef = useRef()
+  const { addToast } = useToasts()
+  const { signIn } = useContext(AuthContext)
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors }
+  } = useForm()
+
   const [nick, setNick] = useState('Steve')
 
-  const logar = async event => {
-    event.preventDefault()
+  async function handleSignIn(data) {
+    console.log(data)
+    addToast('Autenticando...', {
+      appearance: 'info',
+      autoDismiss: true
+    })
+
     const recaptchaToken = await reRef.current.executeAsync()
     reRef.current.reset()
-    // const email = event.target.email.value
-    alert('Funciona! Token: ' + recaptchaToken)
-    setCookie(undefined, 'redebattle.token', '1234', {
-      maxAge: 60 * 60 * 24, // 24 hours
-      path: '/'
-    })
+    await signIn(data, recaptchaToken)
   }
+
+  // async function handleSignIn(data) {
+  //   addToast('Autenticando...', {
+  //     appearance: 'info',
+  //     autoDismiss: true
+  //   })
+
+  //   const recaptchaToken = await reRef.current.executeAsync()
+  //   reRef.current.reset()
+  //   await signIn(data, recaptchaToken)
+  // }
 
   // function handleChange(value) {
   //   useEffect(() => {
@@ -36,8 +59,8 @@ export default function ContaLogin() {
       <title>Logar | Rede Battle</title>
       <div className="flex w-full pt-10 p-2 items-center justify-center">
         <form
-          onSubmit={logar}
           className="bg-dark2 border-b-4 border-black rounded-lg px-8 pt-6 pb-8 mb-4"
+          onSubmit={handleSubmit(handleSignIn)}
         >
           <ReCAPTCHA
             sitekey={process.env.NEXT_PUBLIC_RECAPTCHA_SITE_KEY}
@@ -58,6 +81,7 @@ export default function ContaLogin() {
               Nick usado no servidor
             </label>
             <input
+              {...register('email', { required: true })}
               className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-300 leading-tight focus:outline-none focus:border-black focus:ring-0 focus:shadow-outline "
               id="nick"
               type="text"
@@ -71,6 +95,7 @@ export default function ContaLogin() {
               Senha usada no servidor
             </label>
             <input
+              {...register('senha', { required: true })}
               className="shadow bg-dark appearance-none border-b-4 border-black rounded-lg w-full py-2 px-3 text-gray-400 mb-3 leading-tight focus:outline-none focus:border-black focus:ring-0 focus:shadow-outline"
               id="senha"
               type="password"

@@ -77,8 +77,19 @@ const Pagination = styled(ReactPaginate).attrs({
   }
 `
 
-export default function Home({ posts, postsInfo, query, error, manutencao }) {
+export default function Home({
+  posts,
+  getLives,
+  query,
+  statusCode,
+  manutencao
+}) {
   const router = useRouter()
+  let liveOn = true
+
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
+  }
 
   if (manutencao) {
     return (
@@ -88,12 +99,8 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
     )
   }
 
-  if (error) {
-    return <ErrorAPI />
-  }
-
   let page = query.pagina || 1
-  const totalPage = Math.ceil(postsInfo.total / 5)
+  const totalPage = Math.ceil(posts.total / 5)
 
   const pagginationHandler = async pagina => {
     const currentPath = router.pathname
@@ -106,7 +113,9 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
     })
   }
 
-  let liveOn = true
+  if (getLives.data.length === 0) {
+    liveOn = false
+  }
 
   return (
     <>
@@ -119,38 +128,35 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
           description={'Site oficial da Rede Battle!'}
           imgURL={'https://redebattle.com.br/img/last-purchases-bg.jpg'}
         />
-        {liveOn === true && <StreamersIndex />}
+        {liveOn === true && <StreamersIndex lives={getLives.data} />}
         <div className="flex justify-center lg:mr-6 sm:mr-0 sm:p-3 lg:flex-row sm:flex-col">
           <div className="w-full sm:mb-2">
-            {(postsInfo.obs.rows.length === 0 && (
+            {(posts.obs.rows.length === 0 && (
               <div className="bg-dark2 p-10 text-center rounded-lg">
                 <h1 className="text-gray-300 text-xl font-medium">
                   Ainda não há postagens 😞
                 </h1>
               </div>
             )) ||
-              posts.map(post => {
-                let linkOrSlug = null
-                let link = false
-                if (post.link == null) {
-                  linkOrSlug = post.slug
-                } else {
-                  linkOrSlug = post.link
-                  link = true
-                }
+              posts.obs.rows.map(post => {
                 return (
                   <PostComponent
                     key={post.id}
                     id={post.id}
-                    titulo={post.titulo}
-                    categoria={post.categoria.descricao}
-                    autor={post.autor.nome}
+                    titulo={post.title}
+                    categoria={post.category.name}
+                    categoria_cor={post.category.color}
+                    autor={post.author.username}
                     data={post.createdAt}
-                    imgSrc={post.header}
-                    conteudo={post.conteudo}
-                    isLink={link}
-                    link={linkOrSlug}
-                    acessos={post.acessos}
+                    imgSrc={post.banner_url}
+                    conteudo={post.content}
+                    external={post.is_external}
+                    link={post.link}
+                    slug={post.slug}
+                    acessos={post.access}
+                    comentarios={post.total_comments}
+                    reacoes={post.total_reactions}
+                    autor_verificado={post.author.is_verified}
                   />
                 )
               })}
@@ -178,15 +184,22 @@ export default function Home({ posts, postsInfo, query, error, manutencao }) {
 
 export async function getServerSideProps({ query }) {
   try {
-    let error
+    let statusCode = { code: 200 }
+
     let { pagina } = query
-    // const posts = await api
-    //   .get(`/postagens/list?page=${page}&itens=1&sort=createdAt&order=desc`)
-    //   .then(res => res.data.obs.rows)
-    //   .catch(e => {
-    //     console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
-    //   })
-    const postsInfo = await api
+
+    const manutencao = await api
+      .get('/configuracoes/manutencao/check')
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API de checkMaintenance')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
+      })
+
+    const posts = await api
       .get(
         `/postagens/list?page=${
           pagina ? pagina : 1
@@ -194,30 +207,36 @@ export async function getServerSideProps({ query }) {
       )
       .then(res => res.data)
       .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de getAllPosts', e)
-        return (error = true)
+        console.log('Ocorreu um erro ao acessar a API getPosts')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
-    const manutencao = await api
-      .get('/configuracoes/manutencao/check')
+    const getLives = await api
+      .post('/livestream')
       .then(res => res.data)
       .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return error === true
+        console.log('Ocorreu um erro ao acessar a API getLivestream')
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     return {
       props: {
-        posts: postsInfo.obs.rows,
-        postsInfo,
+        posts,
         query,
-        error: false,
-        manutencao
+        statusCode,
+        manutencao,
+        getLives
       }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e.code }
     }
   }
 }

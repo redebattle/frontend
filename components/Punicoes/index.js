@@ -41,7 +41,7 @@ export default function PunicoesIndex({
           </div>
         </div>
         <div className="collapse-content flex flex-col">
-          {(parseInt(ativo) === 1 && (
+          {(ativo && (
             //PUNIÇÕES ATIVAS
             <PunicaoInfo
               motivo={motivo}
@@ -57,7 +57,7 @@ export default function PunicoesIndex({
               opacity={true}
             />
           )) ||
-            (parseInt(ativo) === 0 && revogacao_autor === '#expired' && (
+            (!ativo && revogacao_autor === '#expired' && (
               //PUNIÇÕES FINALIZADAS
               <PunicaoInfo
                 motivo={motivo}
@@ -90,7 +90,7 @@ export default function PunicoesIndex({
             )}
           {
             // REVOGAÇÃO
-            parseInt(ativo) !== 1 && revogacao_autor !== '#expired' && (
+            !ativo && revogacao_autor !== '#expired' && (
               <PunicaoRevogada
                 revogacao_autor={revogacao_autor}
                 revogacao_motivo={revogacao_motivo}

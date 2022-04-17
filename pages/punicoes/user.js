@@ -77,7 +77,7 @@ export default function Punicoes({ bans, name, manutencao }) {
                           {name} foi banido por {ban.reason} (#{ban.id})
                         </div>
                         <div class="collapse-content flex flex-col">
-                          {(parseInt(ban.active.data) === 1 && (
+                          {(ban.active && (
                             //PUNIÇÕES ATIVAS
                             <div className="flex flex-row justify-between p-2 bg-red-600 bg-opacity-25 rounded-lg border-b-2 border-dark3">
                               <p>
@@ -86,7 +86,7 @@ export default function Punicoes({ bans, name, manutencao }) {
                               </p>
                               <p>
                                 Término: <br />
-                                {ban.until < 0 && (
+                                {ban.until <= 0 && (
                                   <span class="badge badge-outline text-red-400 font-bold">
                                     Permanente
                                   </span>
@@ -98,29 +98,29 @@ export default function Punicoes({ bans, name, manutencao }) {
                               </p>
                               <p>
                                 Status: <br />
-                                {parseInt(ban.active.data) === 0 &&
+                                {!ban.active &&
                                   ban.removed_by_name === '#expired' && (
                                     <span class="badge badge-outline text-lime-400 font-bold">
                                       Finalizado
                                     </span>
                                   )}
-                                {parseInt(ban.active.data) === 0 &&
+                                {!ban.active &&
                                   ban.removed_by_name !== '#expired' && (
                                     <span class="badge badge-outline text-yellow-600 font-bold">
                                       Revogado
                                     </span>
                                   )}
-                                {parseInt(ban.active.data) === 1 && (
+                                {ban.active && (
                                   <span class="badge badge-outline text-red-400 font-bold">
                                     Ativo
                                   </span>
                                 )}
-                                {parseInt(ban.ipban.data) === 1 && (
+                                {ban.ipban && (
                                   <span class="badge badge-outline text-dark ml-2 font-bold">
                                     IPBan
                                   </span>
                                 )}
-                                {parseInt(ban.silent.data) === 1 && (
+                                {ban.silent && (
                                   <span class="badge badge-outline text-gray-500 ml-2 font-bold">
                                     Silenciado
                                   </span>
@@ -142,7 +142,7 @@ export default function Punicoes({ bans, name, manutencao }) {
                               </p>
                             </div>
                           )) ||
-                            (parseInt(ban.active.data) === 0 &&
+                            (!ban.active &&
                               ban.removed_by_name === '#expired' && (
                                 //PUNIÇÕES FINALIZADAS
                                 <div className="flex flex-row justify-between p-2 bg-lime-600 bg-opacity-25 rounded-lg border-b-2 border-dark3">
@@ -152,7 +152,7 @@ export default function Punicoes({ bans, name, manutencao }) {
                                   </p>
                                   <p>
                                     Término: <br />
-                                    {ban.until < 0 && (
+                                    {ban.until <= 0 && (
                                       <span class="badge badge-outline text-red-400 font-bold">
                                         Permanente
                                       </span>
@@ -164,29 +164,29 @@ export default function Punicoes({ bans, name, manutencao }) {
                                   </p>
                                   <p>
                                     Status: <br />
-                                    {parseInt(ban.active.data) === 0 &&
+                                    {!ban.active &&
                                       ban.removed_by_name === '#expired' && (
                                         <span class="badge badge-outline text-lime-400 font-bold">
                                           Finalizado
                                         </span>
                                       )}
-                                    {parseInt(ban.active.data) === 0 &&
+                                    {!ban.active &&
                                       ban.removed_by_name !== '#expired' && (
                                         <span class="badge badge-outline text-yellow-600 font-bold">
                                           Revogado
                                         </span>
                                       )}
-                                    {parseInt(ban.active.data) === 1 && (
+                                    {ban.active && (
                                       <span class="badge badge-outline text-red-400 font-bold">
                                         Ativo
                                       </span>
                                     )}
-                                    {parseInt(ban.ipban.data) === 1 && (
+                                    {ban.ipban && (
                                       <span class="badge badge-outline text-dark ml-2 font-bold">
                                         IPBan
                                       </span>
                                     )}
-                                    {parseInt(ban.silent.data) === 1 && (
+                                    {ban.silent && (
                                       <span class="badge badge-outline text-gray-500 ml-2 font-bold">
                                         Silenciado
                                       </span>
@@ -216,7 +216,7 @@ export default function Punicoes({ bans, name, manutencao }) {
                                 </p>
                                 <p>
                                   Término: <br />
-                                  {ban.until < 0 && (
+                                  {ban.until <= 0 && (
                                     <span class="badge badge-outline text-red-400 font-bold">
                                       Permanente
                                     </span>
@@ -228,29 +228,29 @@ export default function Punicoes({ bans, name, manutencao }) {
                                 </p>
                                 <p>
                                   Status: <br />
-                                  {parseInt(ban.active.data) === 0 &&
+                                  {!ban.active &&
                                     ban.removed_by_name === '#expired' && (
                                       <span class="badge badge-outline text-lime-400 font-bold">
                                         Finalizado
                                       </span>
                                     )}
-                                  {parseInt(ban.active.data) === 0 &&
+                                  {!ban.active &&
                                     ban.removed_by_name !== '#expired' && (
                                       <span class="badge badge-outline text-yellow-600 font-bold">
                                         Revogado
                                       </span>
                                     )}
-                                  {parseInt(ban.active.data) === 1 && (
+                                  {ban.active && (
                                     <span class="badge badge-outline text-red-400 font-bold">
                                       Ativo
                                     </span>
                                   )}
-                                  {parseInt(ban.ipban.data) === 1 && (
+                                  {ban.ipban && (
                                     <span class="badge badge-outline text-dark ml-2 font-bold">
                                       IPBan
                                     </span>
                                   )}
-                                  {parseInt(ban.silent.data) === 1 && (
+                                  {ban.silent && (
                                     <span class="badge badge-outline text-gray-500 ml-2 font-bold">
                                       Silenciado
                                     </span>
@@ -274,54 +274,53 @@ export default function Punicoes({ bans, name, manutencao }) {
                             )}
                           {
                             // REVOGAÇÃO
-                            parseInt(ban.active.data) !== 1 &&
-                              ban.removed_by_name !== '#expired' && (
-                                <div className="flex flex-row justify-between p-3 bg-dark2 rounded-lg mt-2 border-b-2 border-black">
-                                  {ban.removed_by_name !== '#expired' && (
-                                    <p>
-                                      Revogado por: <br />{' '}
-                                      <div className="flex">
-                                        <img
-                                          src={`https://minotar.net/avatar/${
-                                            ban.removed_by_name
-                                              ? ban.removed_by_name
-                                              : 'herobrine'
-                                          }/25`}
-                                          className="mr-2 rounded-md"
-                                        ></img>
-                                        {ban.removed_by_name
-                                          ? ban.removed_by_name
-                                          : 'Não informado.'}
-                                      </div>
-                                    </p>
-                                  )}
-                                  {ban.removed_by_name !== '#expired' && (
-                                    <p>
-                                      Motivo da revogação: <br />{' '}
-                                      {ban.removed_by_reason
-                                        ? ban.removed_by_reason
+                            !ban.active && ban.removed_by_name !== '#expired' && (
+                              <div className="flex flex-row justify-between p-3 bg-dark2 rounded-lg mt-2 border-b-2 border-black">
+                                {ban.removed_by_name !== '#expired' && (
+                                  <p>
+                                    Revogado por: <br />{' '}
+                                    <div className="flex">
+                                      <img
+                                        src={`https://minotar.net/avatar/${
+                                          ban.removed_by_name
+                                            ? ban.removed_by_name
+                                            : 'herobrine'
+                                        }/25`}
+                                        className="mr-2 rounded-md"
+                                      ></img>
+                                      {ban.removed_by_name
+                                        ? ban.removed_by_name
                                         : 'Não informado.'}
-                                    </p>
-                                  )}
-                                  {ban.removed_by_name !== '#expired' && (
-                                    <p>
-                                      Revogado em: <br />{' '}
-                                      {Intl.DateTimeFormat('pt-BR', {
-                                        day: '2-digit',
-                                        month: '2-digit',
-                                        year: 'numeric'
-                                      }).format(
-                                        new Date(ban.removed_by_date)
-                                      )}{' '}
-                                      às{' '}
-                                      {Intl.DateTimeFormat('pt-BR', {
-                                        hour: '2-digit',
-                                        minute: '2-digit'
-                                      }).format(new Date(ban.removed_by_date))}
-                                    </p>
-                                  )}
-                                </div>
-                              )
+                                    </div>
+                                  </p>
+                                )}
+                                {ban.removed_by_name !== '#expired' && (
+                                  <p>
+                                    Motivo da revogação: <br />{' '}
+                                    {ban.removed_by_reason
+                                      ? ban.removed_by_reason
+                                      : 'Não informado.'}
+                                  </p>
+                                )}
+                                {ban.removed_by_name !== '#expired' && (
+                                  <p>
+                                    Revogado em: <br />{' '}
+                                    {Intl.DateTimeFormat('pt-BR', {
+                                      day: '2-digit',
+                                      month: '2-digit',
+                                      year: 'numeric'
+                                    }).format(
+                                      new Date(ban.removed_by_date)
+                                    )}{' '}
+                                    às{' '}
+                                    {Intl.DateTimeFormat('pt-BR', {
+                                      hour: '2-digit',
+                                      minute: '2-digit'
+                                    }).format(new Date(ban.removed_by_date))}
+                                  </p>
+                                )}
+                              </div>
+                            )
                           }
                         </div>
                       </div>
@@ -342,19 +341,19 @@ export async function getServerSideProps({ query }) {
   const { name } = query
   let error
 
-  const bans = await apiWay
-    .get(`https://way.redebattle.com.br/api/v1/banimentos/check/${name}`)
-    .then(res => res.data.punicoes)
-    .catch(e => {
-      console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
-    })
-
   const manutencao = await api
     .get('/configuracoes/manutencao/check')
     .then(res => res.data)
     .catch(e => {
       console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
       return error === true
+    })
+
+  const bans = await api
+    .get(`/banimentos/check/${name}`)
+    .then(res => res.data.punicoes)
+    .catch(e => {
+      console.log('Ocorreu um erro ao acessar a API de getPunicoes', e)
     })
 
   return {

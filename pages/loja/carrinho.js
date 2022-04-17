@@ -21,7 +21,7 @@ import {
   FaTrashAlt
 } from 'react-icons/fa'
 
-export default function LojaCarrinho({ error, manutencao, userIP }) {
+export default function LojaCarrinho({ statusCode, manutencao, userIP }) {
   const [cityForm, setCityForm] = useState()
   const [streetForm, setStreetForm] = useState()
   const [neighborhoodForm, setNeighborhoodForm] = useState()
@@ -30,6 +30,18 @@ export default function LojaCarrinho({ error, manutencao, userIP }) {
   const [cepError, setCepError] = useState()
   const [cpfValid, setCpfValid] = useState(true)
   const [paymentMethod, setPaymentMethod] = useState()
+
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
+  }
+
+  if (manutencao) {
+    return (
+      <>
+        <Manutencao />
+      </>
+    )
+  }
 
   const {
     register,
@@ -91,18 +103,6 @@ export default function LojaCarrinho({ error, manutencao, userIP }) {
       await setNeighborhoodForm(response?.neighborhood)
       await setResponseCEP(response)
     }
-  }
-
-  if (error) {
-    return <ErrorAPI />
-  }
-
-  if (manutencao) {
-    return (
-      <>
-        <Manutencao />
-      </>
-    )
   }
 
   return (
@@ -1138,14 +1138,17 @@ export default function LojaCarrinho({ error, manutencao, userIP }) {
 
 export async function getServerSideProps({ query }) {
   try {
-    let error
+    let statusCode = { code: 200 }
 
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return error === true
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     const userIP = await apiWay
@@ -1153,17 +1156,22 @@ export async function getServerSideProps({ query }) {
       .then(res => res.data)
       .catch(e => {
         console.log('Ocorreu um erro ao acessar a API de getIP', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
+
     return {
       props: {
-        error: false,
+        statusCode,
         userIP: userIP.ip,
         manutencao
       }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e.code }
     }
   }
 }

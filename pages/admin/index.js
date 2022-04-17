@@ -333,7 +333,7 @@ export default function IndexDashboard({ getDashboard }) {
 }
 
 export const getServerSideProps = async ctx => {
-  const { 'battleadmin.token': token } = await parseCookies(ctx)
+  const { 'redebattle.token': token } = await parseCookies(ctx)
   let possuiPermissao = false
   let error = false
 

@@ -47,18 +47,18 @@ export default function Regras({ error, manutencao }) {
               tempo que achar necessário, facultada a necessidade de apresentar
               provas.
             </p>
-            <div class="alert alert-error">
-              <div class="flex-1">
+            <div className="alert alert-error">
+              <div className="flex-1">
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   fill="none"
                   viewBox="0 0 24 24"
-                  class="w-6 h-6 mx-2 stroke-current"
+                  className="w-6 h-6 mx-2 stroke-current"
                 >
                   <path
-                    stroke-linecap="round"
-                    stroke-linejoin="round"
-                    stroke-width="2"
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth="2"
                     d="M18.364 18.364A9 9 0 005.636 5.636m12.728 12.728A9 9 0 015.636 5.636m12.728 12.728L5.636 5.636"
                   ></path>
                 </svg>
@@ -87,12 +87,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> Aproveitar-se de um erro de duplicação de itens.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-orange-500 font-normal text-lg">
                     -{'>'}1ª ocorrência: banimento de 15 dias;
                   </p>
@@ -119,12 +119,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Atrapalhar os próprios companheiros em modos de
                 jogo coletivos.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 7 horas;
                   </p>
@@ -150,12 +150,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> "Se você não fizer isso, vou derrubar sua
                 internet".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: mute de 1 dia;
                   </p>
@@ -181,12 +181,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Troco conta por skins de CS:GO" e "Compro conta
                 VIP".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 1 dia;
                   </p>
@@ -213,12 +213,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> Criar conta fake para abusar de um bug.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-red-600 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento indeterminado.
                   </p>
@@ -231,12 +231,12 @@ export default function Regras({ error, manutencao }) {
                 Fazer uma construção ofensiva ou com símbolos inapropriados em
                 qualquer um dos modos de jogo da rede.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 1 dia;
                   </p>
@@ -259,12 +259,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> "Amanhã todos os jogadores irão receber VIP de
                 graça".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: mute de 12 horas;
                   </p>
@@ -286,12 +286,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> "Entra no meu Discord: https://discord.gg/".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: mute de 12 horas;
                   </p>
@@ -318,12 +318,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> "Vamos todos agora para a rede abacate! IP:
                 127.0.0.1 VIP FREE".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-orange-500 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 15 dia;
                   </p>
@@ -345,12 +345,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Adquirir Gold, utilizar para comprar produtos e
                 solicitar estorno por qualquer meio.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-red-600 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento indeterminado.
                   </p>
@@ -368,12 +368,12 @@ export default function Regras({ error, manutencao }) {
                 para criar uma situação inexistente em que outro jogador quebrou
                 alguma regra.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-red-600 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento indeterminado.
                   </p>
@@ -399,12 +399,12 @@ export default function Regras({ error, manutencao }) {
                 <br />
                 "Venha à minha loja"
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: mute de 2 horas;
                   </p>
@@ -430,12 +430,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> "Não jogo com gente da sua cor".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 15 dias;
                   </p>
@@ -460,12 +460,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Utilizar Kill Aura, Autoarmor, Xray e outros
                 tipos de hack.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-orange-500 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 3 meses;
                   </p>
@@ -484,12 +484,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Enganar um jogador para obter sua senha e
                 invadir sua conta.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-red-600 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento indeterminado.
                   </p>
@@ -506,12 +506,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> Palavrões, partes íntimas, ofensas diretas etc.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-red-600 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento indeterminado.
                   </p>
@@ -528,12 +528,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> "Seu filho da ****".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: mute de 5 horas;
                   </p>
@@ -561,12 +561,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> "Servidor filho da ****, mer***".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-orange-500 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 7 dias;
                   </p>
@@ -586,12 +586,12 @@ export default function Regras({ error, manutencao }) {
                 <b>Exemplo:</b> Fazer uma troca com um jogador e não entregar o
                 item prometido.
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 5 horas;
                   </p>
@@ -614,12 +614,12 @@ export default function Regras({ error, manutencao }) {
               <p className="mt-2">
                 <b>Exemplo:</b> Vamos fazer time para matar o Pedro".
               </p>
-              <div class="collapse collapse-plus mt-2">
+              <div className="collapse collapse-plus mt-2">
                 <input type="checkbox" />
-                <div class="collapse-title font-medium">
+                <div className="collapse-title font-medium">
                   <p>Punições (Clique)</p>
                 </div>
-                <div class="collapse-content flex flex-col">
+                <div className="collapse-content flex flex-col">
                   <p className="text-yellow-400 font-normal text-lg">
                     -{'>'} 1ª ocorrência: banimento de 1 horas;
                   </p>

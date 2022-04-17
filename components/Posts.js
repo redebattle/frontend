@@ -13,10 +13,15 @@ export default function PostComponent({
   data,
   imgSrc,
   conteudo,
-  isLink,
+  external,
   link,
+  slug,
   acessos,
-  avatarId
+  avatarId,
+  comentarios,
+  reacoes,
+  categoria_cor,
+  autor_verificado
 }) {
   const [dataPost, setDataPost] = useState(data)
   const [hourPost, setHourPost] = useState(data)
@@ -75,15 +80,17 @@ export default function PostComponent({
                   className="lg:text-lg sm:text-sm text-gray-300 font-medium sm:items-center sm:justify-center sm:text-center lg:text-left flex items-center justify-center"
                 >
                   Postado por {autor}{' '}
-                  <div
-                    data-tip="Membro verificado"
-                    className="tooltip tooltip-top"
-                  >
-                    <BsPatchCheckFill
-                      className="ml-1 lg:text-base sm:text-xs text-facebook"
+                  {autor_verificado && (
+                    <div
                       data-tip="Membro verificado"
-                    />
-                  </div>
+                      className="tooltip tooltip-top"
+                    >
+                      <BsPatchCheckFill
+                        className="ml-1 lg:text-base sm:text-xs text-facebook"
+                        data-tip="Membro verificado"
+                      />
+                    </div>
+                  )}
                 </a>
                 <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs sm:items-center sm:justify-center sm:text-center lg:text-left">
                   {dataPost} às {hourPost}
@@ -94,11 +101,11 @@ export default function PostComponent({
                   </p>
                   <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start">
                     <FaCommentAlt className="mr-1 text-blue-500 ml-3 text-lg" />{' '}
-                    {acessos}
+                    {comentarios}
                   </p>
                   <p className="text-gray-300 font-extralight lg:text-sm sm:text-xs flex flex-row items-center sm:justify-center sm:text-center lg:justify-start">
                     <FaHeart className="mr-1 ml-3 text-red-500 text-lg" />{' '}
-                    {acessos}
+                    {reacoes}
                   </p>
                 </div>
               </div>
@@ -111,7 +118,12 @@ export default function PostComponent({
           {/* CATEGORIA */}
           <div className="p-5 w-full -mt-28 drop-shadow-lg">
             <h1 className="text-white font-thin text-lg sm:text-sm tracking-tight">
-              <div className="badge text-sm sm:text-xs">{categoria}</div>
+              <div
+                className="badge  text-sm sm:text-xs"
+                style={{ background: categoria_cor }}
+              >
+                {categoria}
+              </div>
             </h1>
             <h1 className="text-white font-semibold text-3xl lg:sm:text-xl sm:text-sm tracking-tight">
               {titulo}
@@ -126,10 +138,10 @@ export default function PostComponent({
           />
         </div>
         <div className="flex justify-center pb-5 tracking-tight -mt-14">
-          {!isLink && (
+          {!external && (
             <Link
               href={{
-                pathname: `/postagens/${link}`
+                pathname: `/postagens/${slug}`
                 // query: { slug: `${link}` }
               }}
               key={id}
@@ -148,7 +160,7 @@ export default function PostComponent({
             </Link>
           )}
 
-          {isLink && (
+          {external && (
             <Link href={`${link}`} key={id}>
               <motion.button
                 whileHover={{ scale: 1.1 }}

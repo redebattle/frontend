@@ -9,7 +9,7 @@ export default function DashboardHeader() {
   const { user, roles } = useContext(AuthContext)
 
   async function handleSignOut() {
-    await destroyCookie(null, 'battleadmin.token', {
+    await destroyCookie(null, 'redebattle.token', {
       path: '/'
     })
     Router.push('/admin/auth/login')

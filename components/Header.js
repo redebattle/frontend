@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion'
-import { useEffect, useState } from 'react'
+import { useContext, useEffect, useState } from 'react'
 import Skeleton, { SkeletonTheme } from 'react-loading-skeleton'
 import CookieConsent, { Cookies } from 'react-cookie-consent'
 import Link from 'next/link'
@@ -12,12 +12,27 @@ import {
   FaUsers,
   FaFile,
   FaSignInAlt,
-  FaShoppingBasket
+  FaShoppingBasket,
+  FaUserAlt
 } from 'react-icons/fa'
 
-import api from '../service/api'
+import { IoIosNotifications } from 'react-icons/io'
 
-export default function Header({ online }) {
+import api from '../service/api'
+import { parseCookies } from 'nookies'
+import Swal from 'sweetalert2'
+import { AuthContext } from '../contexts/AuthContext'
+import Router from 'next/router'
+
+export default function Header(context, { online }) {
+  const Toast = Swal.mixin({
+    toast: true,
+    position: 'top-right',
+    iconColor: 'white',
+    showConfirmButton: false,
+    timer: 4500,
+    timerProgressBar: true
+  })
   const copyToClipboard = () => {
     const textField = document.createElement('textarea')
     textField.innerText = 'jogar.redebattle.com.br'
@@ -25,11 +40,19 @@ export default function Header({ online }) {
     textField.select()
     document.execCommand('copy')
     textField.remove()
-    alert('Copiado!')
+    Toast.fire({
+      icon: 'success',
+      background: '#49872a',
+      color: 'white',
+      title: 'O IP foi copiado!'
+    })
   }
 
   const [playersOnline, setplayersOnline] = useState(null)
   const [discordOnline, setdiscordOnline] = useState(null)
+  const { user, isAuthenticated } = useContext(AuthContext)
+
+  const [itemsCart, setItemsCart] = useState(0)
 
   useEffect(() => {
     api
@@ -42,7 +65,7 @@ export default function Header({ online }) {
         )
       })
       .catch(e => {
-        setplayersOnline(null)
+        setplayersOnline('-/-')
         console.log('Ocorreu um erro na conexão a API getOnlinePlayers', e)
       })
   })
@@ -58,13 +81,25 @@ export default function Header({ online }) {
         )
       })
       .catch(e => {
-        setdiscordOnline(null)
+        setdiscordOnline('-/-')
         console.log('Ocorreu um erro na conexão a API getDiscordOn', e)
       })
   })
 
   return (
     <header>
+      {isAuthenticated && (
+        <div className="bg-dark2 w-full h-6 flex items-center">
+          {user.is_administrator && (
+            <a
+              onClick={() => Router.push('/admin')}
+              className="text-gray-500 text-sm mx-4 cursor-pointer hover:text-purple-500"
+            >
+              Painel de administração
+            </a>
+          )}
+        </div>
+      )}
       <div className="relative bg-header-image py-4 md:py-8 ">
         <div className="flex items-center align-middle justify-center tracking-tight ">
           <div className="lg:block md:hidden sm:hidden">
@@ -74,16 +109,24 @@ export default function Header({ online }) {
               onClick={copyToClipboard}
             >
               <h1 className="text-white font-semibold text-4xl text-left">
-                {Intl.NumberFormat('pt-BR').format(playersOnline) || (
+                {(playersOnline === '-/-' && (
                   <SkeletonTheme
                     color="rgba(33, 33, 33, 0.2)"
                     highlightColor="rgba(255, 255, 255, 0.3)"
                   >
-                    <p>
-                      <Skeleton count={1} />
-                    </p>
+                    <p>-/-</p>
                   </SkeletonTheme>
-                )}
+                )) ||
+                  Intl.NumberFormat('pt-BR').format(playersOnline) || (
+                    <SkeletonTheme
+                      color="rgba(33, 33, 33, 0.2)"
+                      highlightColor="rgba(255, 255, 255, 0.3)"
+                    >
+                      <p>
+                        <Skeleton count={1} />
+                      </p>
+                    </SkeletonTheme>
+                  )}
               </h1>
               <h1 className="text-white font-medium">jogadores Online</h1>
             </motion.button>
@@ -113,64 +156,30 @@ export default function Header({ online }) {
               whileTap={{ scale: 0.9 }}
             >
               <h1 className="text-white font-semibold text-4xl text-left">
-                {Intl.NumberFormat('pt-BR').format(discordOnline) || (
+                {(discordOnline === '-/-' && (
                   <SkeletonTheme
                     color="rgba(33, 33, 33, 0.2)"
                     highlightColor="rgba(255, 255, 255, 0.3)"
                   >
-                    <p>
-                      <Skeleton count={1} />
-                    </p>
+                    <p>-/-</p>
                   </SkeletonTheme>
-                )}
+                )) ||
+                  Intl.NumberFormat('pt-BR').format(discordOnline) || (
+                    <SkeletonTheme
+                      color="rgba(33, 33, 33, 0.2)"
+                      highlightColor="rgba(255, 255, 255, 0.3)"
+                    >
+                      <p>
+                        <Skeleton count={1} />
+                      </p>
+                    </SkeletonTheme>
+                  )}
               </h1>
               <h1 className="text-white font-medium">onlines no Discord!</h1>
             </motion.button>
           </div>
         </div>
       </div>
-
-      {/* <div className="flex justify-center w-full md:justify-between py-2 px-20 md:py-4 items-center bg-purple-600 border-b-4 border-purple-700 sm:hidden">
-        <nav className="space-x-8 text-1xl text-white font-semibold ">
-          <Link href="/">
-            <a className=" hover:text-purple-300 inline-flex items-center tracking-tight">
-              <FaHome /> <div className="pl-1">INÍCIO</div>
-            </a>
-          </Link>
-          <Link href="/loja">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaShoppingCart /> <div className="pl-1">LOJA</div>
-            </a>
-          </Link>
-          <Link href="/discord">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaDiscord /> <div className="pl-1">DISCORD</div>
-            </a>
-          </Link>
-          <Link href="/equipe">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaUsers /> <div className="pl-1">EQUIPE</div>
-            </a>
-          </Link>
-          <Link href="/punicoes">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaBan /> <div className="pl-1">PUNIÇÕES</div>
-            </a>
-          </Link>
-          <Link href="/changelog">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaFile /> <div className="pl-1">CHANGELOG</div>
-            </a>
-          </Link>
-        </nav>
-        <nav className="space-x-8 text-1xl text-white font-semibold">
-          <Link href="/conta">
-            <a className="tracking-wide hover:text-purple-300 inline-flex items-center">
-              <FaSignInAlt /> <div className="pl-1">LOGAR</div>
-            </a>
-          </Link>
-        </nav>
-      </div> */}
       <nav className="bg-white border-gray-200 px-2 sm:px-4 py-2.5 rounded-b-lg dark:bg-purple-600 dark:border-b-4 dark:border-purple-700">
         <div className="container flex flex-wrap justify-between items-center mx-auto">
           {/* <a href="#" class="flex">
@@ -211,11 +220,11 @@ export default function Header({ online }) {
             </svg>
           </button>
           <div className="hidden w-full md:block md:w-auto" id="mobile-menu">
-            <ul className="flex flex-col mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
+            <ul className="flex flex-col items-center mt-4 md:flex-row md:space-x-8 md:mt-0 md:text-sm md:font-medium">
               <li>
                 <Link href="/">
                   <a
-                    className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black"
+                    className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800  dark:border-black"
                     aria-current="page"
                   >
                     <div className="flex flex-row items-center">
@@ -227,7 +236,7 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/loja">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-purple-800 focus:bg-purple-800 dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaShoppingBasket className="mr-1" />
                       LOJA
@@ -237,7 +246,7 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/discord">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 dark:hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaDiscord className="mr-1" />
                       DISCORD
@@ -247,7 +256,7 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/equipe">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaUsers className="mr-1" />
                       EQUIPE
@@ -257,7 +266,7 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/punicoes">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaBan className="mr-1" />
                       PUNIÇÕES
@@ -267,7 +276,7 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/changelog">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaFile className="mr-1" />
                       CHANGELOG
@@ -277,24 +286,73 @@ export default function Header({ online }) {
               </li>
               <li>
                 <Link href="/loja/carrinho">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
+                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
                     <div className="flex flex-row items-center">
                       <FaShoppingCart className="mr-1" />
-                      CARRINHO
+                      CARRINHO ({itemsCart})
                     </div>
                   </a>
                 </Link>
               </li>
-              <li>
-                <Link href="/conta">
-                  <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-black md:dark:hover:bg-opacity-20 md:p-1 md:dark:hover:p-1 dark:hover:text-purple-500 dark:hover:bg-black dark:hover:bg-opacity-40 dark:hover:text-white dark:border-black">
-                    <div className="flex flex-row items-center">
-                      <FaSignInAlt className="mr-1" />
-                      ENTRAR
+              {(!isAuthenticated && (
+                <li>
+                  <Link href="/conta">
+                    <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
+                      <div className="flex flex-row items-center">
+                        <FaSignInAlt className="mr-1" />
+                        ENTRAR
+                      </div>
+                    </a>
+                  </Link>
+                </li>
+              )) || (
+                <li>
+                  <Link href="/conta">
+                    <a className="block py-2 pr-4 pl-3 text-white font-bold rounded md:bg-transparent md:text-gray-300 md:p-0 dark:text-gray-300 md:dark:hover:text-white md:dark:hover:bg-purple-800 focus:bg-purple-800 md:p-2 md:dark:hover:p-2 dark:hover:text-purple-500 hover:bg-purple-800 focus:bg-purple-800 dark:hover:text-white dark:border-black">
+                      <div className="flex flex-row items-center">
+                        <FaUserAlt className="mr-1" />
+                        SUA CONTA
+                      </div>
+                    </a>
+                  </Link>
+                </li>
+              )}
+              {isAuthenticated && (
+                <li>
+                  <div className="dropdown">
+                    <label>
+                      <button className="relative p-2 text-gray-300 hover:bg-purple-800 focus:bg-purple-800 focus:text-gray-300 rounded-lg">
+                        <span className="sr-only">Notificações</span>
+                        <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full"></span>
+                        <span className="absolute top-0 right-0 h-2 w-2 mt-1 mr-2 bg-red-500 rounded-full animate-ping"></span>
+                        <svg
+                          aria-hidden="true"
+                          fill="none"
+                          viewBox="0 0 24 24"
+                          stroke="currentColor"
+                          className="h-6 w-6"
+                        >
+                          <path
+                            stroke-linecap="round"
+                            stroke-linejoin="round"
+                            stroke-width="2"
+                            d="M15 17h5l-1.405-1.405A2.032 2.032 0 0118 14.158V11a6.002 6.002 0 00-4-5.659V5a2 2 0 10-4 0v.341C7.67 6.165 6 8.388 6 11v3.159c0 .538-.214 1.055-.595 1.436L4 17h5m6 0v1a3 3 0 11-6 0v-1m6 0H9"
+                          />
+                        </svg>
+                      </button>
+                    </label>
+                    <div
+                      tabindex="0"
+                      className="dropdown-content card card-compact w-64 p-2 shadow bg-dark3 text-primary-content"
+                    >
+                      <div className="card-body">
+                        <h3 className="card-title">😁</h3>
+                        <p>Você não tem novas notificações.</p>
+                      </div>
                     </div>
-                  </a>
-                </Link>
-              </li>
+                  </div>
+                </li>
+              )}
             </ul>
           </div>
         </div>
@@ -303,7 +361,7 @@ export default function Header({ online }) {
         location="bottom"
         buttonText="Entendi"
         cookieName="accept-cookies"
-        style={{ background: '#313131' }}
+        style={{ background: '#1b1b1b' }}
         buttonStyle={{ background: '#7c3aed', color: '#FFF', fontSize: '14px' }}
         expires={150}
       >

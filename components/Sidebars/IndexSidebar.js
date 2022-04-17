@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion'
 import { useToasts } from 'react-toast-notifications'
 import { Timeline } from 'react-twitter-widgets'
+import Swal from 'sweetalert2'
 
 import GoogleAd from '../GoogleAd'
 
@@ -17,6 +18,10 @@ export default function IndexSidebar() {
     addToast('IP copiado com sucesso!', {
       appearance: 'success',
       autoDismiss: true
+    })
+    Swal.fire({
+      icon: 'success',
+      text: 'IP copiado com sucesso!'
     })
   }
   return (

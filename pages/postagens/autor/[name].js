@@ -22,34 +22,13 @@ export default function ShowPostsFromAuthor({
   autorName,
   posts,
   manutencao,
-  error
+  statusCode
 }) {
-  const [dataPost, setDataPost] = useState(null)
-  const [hourPost, setHourPost] = useState(null)
   const router = useRouter()
 
-  // if (post?.createdAt) {
-  //   useEffect(async () => {
-  //     await setDataPost(
-  //       Intl.DateTimeFormat('pt-BR', {
-  //         day: '2-digit',
-  //         month: 'long',
-  //         year: 'numeric'
-  //       }).format(new Date(post?.createdAt))
-  //     )
-  //   }, [dataPost])
-  // }
-
-  // if (post?.createdAt) {
-  //   useEffect(async () => {
-  //     await setHourPost(
-  //       Intl.DateTimeFormat('pt-BR', {
-  //         hour: '2-digit',
-  //         minute: '2-digit',
-  //       }).format(new Date(post?.createdAt))
-  //     )
-  //   }, [hourPost])
-  // }
+  if (statusCode?.code !== 200) {
+    return <ErrorAPI statusCode={statusCode} />
+  }
 
   if (manutencao) {
     return (
@@ -57,10 +36,6 @@ export default function ShowPostsFromAuthor({
         <Manutencao />
       </>
     )
-  }
-
-  if (error) {
-    return <ErrorAPI />
   }
 
   return (
@@ -170,17 +145,27 @@ export default function ShowPostsFromAuthor({
 
           return (
             <div className="flex flex-col lg:w-[400px] lg:h-[550px] sm:w-full sm:h-auto items-center justify-center bg-dark2 lg:m-6 sm:m-2 lg:p-6 sm:p-2 rounded-lg">
-              <div className="bg-header-image lg:w-[385px] h-[190px] sm:w-full rounded-lg">
-                <div className="float-right badge bg-red-500 p-4 m-4 text-lg font-bold">
-                  {post.categoria.descricao}
+              <div
+                className="lg:w-[385px] h-[190px] sm:w-full rounded-lg"
+                style={{
+                  backgroundImage: `url('${post.banner_url}')`,
+                  backgroundRepeat: 'no-repeat',
+                  backgroundSize: 'cover'
+                }}
+              >
+                <div
+                  className="float-right badge p-4 m-4 text-lg font-bold"
+                  style={{ background: post.category.color }}
+                >
+                  {post.category.name}
                 </div>
               </div>
               <div className="my-8 text-2xl font-bold border-b-4 border-purple-500">
-                <Link href={`/postagens/${post.slug}`}>{post.titulo}</Link>
+                <Link href={`/postagens/${post.slug}`}>{post.title}</Link>
               </div>
               <div
                 className="text-lg text-center text-gray-400"
-                dangerouslySetInnerHTML={{ __html: post.conteudo }}
+                dangerouslySetInnerHTML={{ __html: post.content }}
               />
               <div className="flex flex-row mt-5 justify-between bg-dark3 p-2 rounded-lg">
                 <div className="text-gray-400 font-bold">
@@ -198,21 +183,30 @@ export default function ShowPostsFromAuthor({
 
 export async function getServerSideProps(context) {
   try {
-    let error
+    let statusCode = { code: 200 }
+
     const { name } = context.query
-    const posts = await api
-      .get(`/postagens/autor/${name}`)
-      .then(res => res.data)
-      .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de postagens', e)
-      })
 
     const manutencao = await api
       .get('/configuracoes/manutencao/check')
       .then(res => res.data)
       .catch(e => {
-        console.log('Ocorreu um erro ao acessar a API de checkManutencao', e)
-        return (error = true)
+        console.log('Ocorreu um erro ao acessar a API getMaintenanceStatus', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
+      })
+
+    const posts = await api
+      .get(`/post/author/${name}`)
+      .then(res => res.data)
+      .catch(e => {
+        console.log('Ocorreu um erro ao acessar a API getPosts', e)
+        if (e?.code?.includes('ECONNREFUSED') === true) {
+          return (statusCode.code = 503)
+        }
+        return (statusCode = e.response.data)
       })
 
     // if (!post) {
@@ -222,11 +216,11 @@ export async function getServerSideProps(context) {
     // }
 
     return {
-      props: { posts, manutencao, error: false, autorName: name }
+      props: { posts, manutencao, statusCode, autorName: name }
     }
   } catch (e) {
     return {
-      props: { error: true }
+      props: { statusCode: e.code }
     }
   }
 }

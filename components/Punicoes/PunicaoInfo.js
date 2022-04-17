@@ -34,27 +34,27 @@ export default function PunicaoAtiva({
         <p className="sm:mb-3">
           Status:
           <div className="flex sm:flex-col">
-            {parseInt(ativo) === 0 && revogacao_autor === '#expired' && (
+            {!ativo && revogacao_autor === '#expired' && (
               <span className="badge badge-outline text-lime-400 font-bold">
                 Finalizado
               </span>
             )}
-            {parseInt(ativo) === 0 && revogacao_autor !== '#expired' && (
+            {!ativo && revogacao_autor !== '#expired' && (
               <span className="badge badge-outline text-yellow-600 font-bold">
                 Revogado
               </span>
             )}
-            {parseInt(ativo) === 1 && (
+            {ativo && (
               <span className="badge badge-outline text-red-400 font-bold my-1">
                 Ativo
               </span>
             )}
-            {parseInt(ipban) === 1 && (
+            {ipban && (
               <span className="badge badge-outline text-dark font-bold my-1">
                 IPBan
               </span>
             )}
-            {parseInt(silenciado) === 1 && (
+            {silenciado && (
               <span className="badge badge-outline text-gray-500 font-bold my-1 -mb-1">
                 Silenciado
               </span>
